@@ -12,7 +12,7 @@ JobStreamer
 Concept
 ------------
 
-JobStreamer is an distributed executing environment for jobs. 
+JobStreamer is a distributed executing environment for jobs. 
 JobStreamer agent that executes jobs has an exclusive feature. It's No deploy and No configuration.
 
 ------------

@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015, kawasima & contributors
+# This file is distributed under the same license as the job-streamer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: job-streamer 0.1.0-SNAPSHOT\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-05 05:02+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../setup.rst:4
+# 7bfce89bf18b4ce8bcaa44ee64fc7073
+msgid "Setup"
+msgstr ""
+
+#: ../../setup.rst:7
+# 3479e53d000440aeafcfdf23909bcae7
+msgid "Control bus"
+msgstr ""
+
+#: ../../setup.rst:9
+# 268461d7019247139bc7693403812868
+msgid "Get datomic-free::"
+msgstr ""
+
+#: ../../setup.rst:15
+# 4241b75089d24f94b581119c286127f8
+msgid "Clone control bus::"
+msgstr ""
+
+#: ../../setup.rst:19
+# bed433535cf641afaa2f8e5a5146bf15
+msgid "Run the contorl bus::"
+msgstr ""
+
+#: ../../setup.rst:25
+# f065f2cfa400426da2680575b963fea0
+msgid "Management console"
+msgstr ""
+
+#: ../../setup.rst:27
+# 512d8964f6e14ee080ca345459a726a8
+msgid "Clone the management console::"
+msgstr ""
+
+#: ../../setup.rst:31
+# a098120ace7b4aebbdc556bf5fac20e8
+msgid "Run the management console::"
+msgstr ""
+
+#: ../../setup.rst:37
+# 2e4e9eb0377b4171bc4b0094383bc19c
+msgid "Agent"
+msgstr ""
+
+#: ../../setup.rst:39
+# 0bb59db8400d4f3e9a2f3bf895fff011
+msgid "Clone the agent::"
+msgstr ""
+
+#: ../../setup.rst:43
+# b4e08b7a6f2c43759a3d5d05dafec51b
+msgid "Build a docker image::"
+msgstr ""
+
+#: ../../setup.rst:47
+# b7b71da45bdf446fae1604d5b44b7ff7
+msgid "Run a docker container::"
+msgstr ""
+
+#: ../../setup.rst:51
+# 659c410bc83a4290963b179569019af6
+msgid "If a container has started successfully, it connects the control bus automatically."
+msgstr ""
+
