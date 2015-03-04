@@ -3,13 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. rst-class:: masthead
-
 JobStreamer
 ==============
 
-.. rst-class:: overview image
-.. image:: assets/images/overview.png
+.. image:: _images/overview.png
 
 ------------
 Concept
