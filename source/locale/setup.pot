@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015, kawasima & contributors
+# This file is distributed under the same license as the job-streamer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: job-streamer 0.1.0-SNAPSHOT\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-05 02:14+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/setup.rst:4
+# a2733b7d040e4ef8b5cb91c8582605bf
+msgid "Setup"
+msgstr ""
+
+#: ../../source/setup.rst:7
+# 99778ddb44034904b028f07cfcda61e7
+msgid "Control bus"
+msgstr ""
+
+#: ../../source/setup.rst:9
+# 57b68d5051144dd9a49daae5fcdd904a
+msgid "Get datomic-free::"
+msgstr ""
+
+#: ../../source/setup.rst:15
+# 2116529de52d4782bba669a7c32074a4
+msgid "Clone control bus::"
+msgstr ""
+
+#: ../../source/setup.rst:19
+# 6e9289b123dd4c6eace71e310456322c
+msgid "Run the contorl bus::"
+msgstr ""
+
+#: ../../source/setup.rst:25
+# 28bf04b5925a4ead96b7b527938ee3bc
+msgid "Management console"
+msgstr ""
+
+#: ../../source/setup.rst:27
+# 48e1c0938450496685e7cd6c19b6ec4b
+msgid "Clone the management console::"
+msgstr ""
+
+#: ../../source/setup.rst:31
+# 6cd1afc7ac5045c287cae58b9e1838d6
+msgid "Run the management console::"
+msgstr ""
+
+#: ../../source/setup.rst:37
+# 313c12f0a24c43a0a05458245bd904ee
+msgid "Agent"
+msgstr ""
+
+#: ../../source/setup.rst:39
+# e421a22f1ee64ce5bc2d3ec81ebebfdb
+msgid "Clone the agent::"
+msgstr ""
+
+#: ../../source/setup.rst:43
+# f165e472d8c2491486f65d7f16749ef6
+msgid "Build a docker image::"
+msgstr ""
+
+#: ../../source/setup.rst:47
+# bf8051499a86472ab583a500b1f84418
+msgid "Run a docker container::"
+msgstr ""
+
+#: ../../source/setup.rst:51
+# 9de4f3566cb643baa5b6bcf5b0179daf
+msgid "If a container has started successfully, it connects the control bus automatically."
+msgstr ""
+
