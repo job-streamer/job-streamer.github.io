@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015, kawasima & contributors
+# This file is distributed under the same license as the job-streamer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: job-streamer 0.1.0-SNAPSHOT\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-05 02:14+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# 8992277251174bffb3651d3f2e3f5f00
+#: ../../source/index.rst:7
+msgid "JobStreamer"
+msgstr ""
+
+# 0c71961942b3472eaafbcc27cb6e6d54
+#: ../../source/index.rst:13
+msgid "Concept"
+msgstr ""
+
+# 19b09176d425499eaced6b9d1e8c00cd
+#: ../../source/index.rst:20
+msgid "Get started"
+msgstr ""
+
+# fb71f0846c104b679445e91553bb807c
+#: ../../source/index.rst:22
+msgid ":doc:`setup`"
+msgstr ""
+
+# 6c99a974f8214473a61be5ba874f8bf1
+#: ../../source/index.rst:23
+msgid "Create a job"
+msgstr "ジョブの作成"
+
+# ec7a719f7e8f4a6e9155e52db6907b8b
+#: ../../source/index.rst:24
+msgid "Deploy jobs"
+msgstr "ジョブのデプロイ"
+
+# b3f2dc104d0a4564b464592f171dd181
+#: ../../source/index.rst:28
+msgid "Components"
+msgstr ""
+
+# 9dd35f6a4e6e4366989c0ad9d469cb9b
+#: ../../source/index.rst:30
+msgid "`Control bus`_"
+msgstr ""
+
+# e23859ef8c394b49876704a7d159866e
+#: ../../source/index.rst:31
+msgid "`Agent`_"
+msgstr ""
+
+# 5e213695939b47a795c805d4b8f8f73b
+#: ../../source/index.rst:32
+msgid "`Management console`_"
+msgstr ""
+
+#: ../../source/index.rst:15
+msgid ""
+"JobStreamer is a distributed executing environment for jobs. JobStreamer "
+"agent that executes jobs has an exclusive feature. It's No deploy and No "
+"configuration."
+msgstr ""
+"JobStreamer は Java Batch の分散実行環境です! JobStreamer "
+"agent that executes jobs has an exclusive feature. It's No deploy and No "
+"configuration."
+
+#~ msgid ""
+#~ "JobStreamer is an distributed executing environment for jobs. JobStreamer "
+#~ "agent that executes jobs has an exclusive feature. It's No deploy and No "
+#~ "configuration."
+#~ msgstr ""

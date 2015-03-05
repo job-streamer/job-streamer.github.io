@@ -2,12 +2,14 @@
 #
 
 # You can set these variables from the command line.
-SPHINXOPTS    =
-SPHINXBUILD   = sphinx-build
-SPHINXINTL    = sphinx-intl
-PAPER         =
-SOURCEDIR     = source
-BUILDDIR      = build
+SPHINXOPTS      =
+SPHINXBUILD     = sphinx-build
+SPHINXINTL      = sphinx-intl
+SPHINXAUTOBUILD = sphinx-autobuild
+PAPER           =
+SOURCEDIR       = source
+BUILDDIR        = build
+LOCALEDIR       = locale
 
 # User-friendly check for sphinx-build
 ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)
@@ -151,19 +153,19 @@ info:
 	@echo "makeinfo finished; the Info files are in $(BUILDDIR)/texinfo."
 
 gettext:
-	$(SPHINXBUILD) -b gettext $(I18NSPHINXOPTS) $(SOURCEDIR)/locale/pot
+	$(SPHINXBUILD) -b gettext $(I18NSPHINXOPTS) $(LOCALEDIR)/pot
 	@echo
-	@echo "Build finished. The message catalogs are in $(SOURCEDIR)/locale/pot."
+	@echo "Build finished. The message catalogs are in locale/pot."
 
 intlupdate: gettext
-	$(SPHINXINTL) update -p $(SOURCEDIR)/locale/pot -c $(SOURCEDIR)/conf.py $(INTLOPTS)
+	$(SPHINXINTL) update -p $(LOCALEDIR)/pot -c $(SOURCEDIR)/conf.py $(INTLOPTS)
 	@echo
 	@echo "Build finished. Updated message catalogs in $(SOURCEDIR)/locale."
 
 intlbuild:
-	$(SPHINXINTL) build -c $(SOURCEDIR)/conf.py 
+	$(SPHINXINTL) build -c $(SOURCEDIR)/conf.py
 	@echo
-	@echo "Build finished. Bulit message catalogs in $(SOURCEDIR)/locale."
+	@echo "Build finished. Bulit message catalogs in locale."
 
 changes:
 	$(SPHINXBUILD) -b changes $(ALLSPHINXOPTS) $(BUILDDIR)/changes
@@ -190,3 +192,6 @@ pseudoxml:
 	$(SPHINXBUILD) -b pseudoxml $(ALLSPHINXOPTS) $(BUILDDIR)/pseudoxml
 	@echo
 	@echo "Build finished. The pseudo-XML files are in $(BUILDDIR)/pseudoxml."
+
+livehtml: html
+	$(SPHINXAUTOBUILD) -b html --watch $(LOCALEDIR) $(ALLSPHINXOPTS) $(BUILDDIR)/html

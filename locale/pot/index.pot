@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: job-streamer 0.1.0-SNAPSHOT\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-05 05:02+0900\n"
+"POT-Creation-Date: 2015-03-05 10:09+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,57 +16,57 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../../index.rst:7
+#: ../../source/index.rst:7
 # b793aa4046ef40e69d8f11ed477ebcb1
 msgid "JobStreamer"
 msgstr ""
 
-#: ../../index.rst:13
+#: ../../source/index.rst:13
 # 74ba1b2aaa8647bda631c96988d24600
 msgid "Concept"
 msgstr ""
 
-#: ../../index.rst:15
+#: ../../source/index.rst:15
 # 9d6cd53a0a43462aba85598de6e84912
 msgid "JobStreamer is a distributed executing environment for jobs. JobStreamer agent that executes jobs has an exclusive feature. It's No deploy and No configuration."
 msgstr ""
 
-#: ../../index.rst:20
+#: ../../source/index.rst:20
 # 9c38869b754441958a41783929b8f5e0
 msgid "Get started"
 msgstr ""
 
-#: ../../index.rst:22
+#: ../../source/index.rst:22
 # 7b09c447a7af41e0b9d86bc43ebe0d9f
 msgid ":doc:`setup`"
 msgstr ""
 
-#: ../../index.rst:23
+#: ../../source/index.rst:23
 # e5d8fa1798884584844e9038a49964d5
 msgid "Create a job"
 msgstr ""
 
-#: ../../index.rst:24
+#: ../../source/index.rst:24
 # f513dffc822e459f8ecbed143938c260
 msgid "Deploy jobs"
 msgstr ""
 
-#: ../../index.rst:28
+#: ../../source/index.rst:28
 # ed0f15468a1e4d0c90300abf567f1c01
 msgid "Components"
 msgstr ""
 
-#: ../../index.rst:30
+#: ../../source/index.rst:30
 # 1887bedece17470e85404414e9e6ac53
 msgid "`Control bus`_"
 msgstr ""
 
-#: ../../index.rst:31
+#: ../../source/index.rst:31
 # 01a059b06a544a25b57dd7c959d52235
 msgid "`Agent`_"
 msgstr ""
 
-#: ../../index.rst:32
+#: ../../source/index.rst:32
 # cfc54d3df9b442fdb3296335881f4279
 msgid "`Management console`_"
 msgstr ""

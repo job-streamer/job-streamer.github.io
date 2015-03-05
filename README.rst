@@ -1,39 +1,53 @@
-## Install
+Prerequisites
+=====================
 
-.. code-block: bash
+.. code-block:: bash
 
+   easy_install pip
    pip install -r requirements.txt
 
-## Build
 
-### en
+Build
+=====================
 
-.. code-block: bash
+English
+---------------------
 
-   make html
+.. code-block:: bash
 
-### ja
+   make livehtml
 
-.. code-block: bash
+Japanese
+---------------------
 
-   make -e SPHINXOPTS="-c source/locale/ja" html
+.. code-block:: bash
 
-## Translate
+   make -e SPHINXOPTS="-c ja" livehtml
 
-create pot files.
+view built html
+---------------------
 
-.. code-block: bash
+access to http://localhost:8000
 
-   make clean gettext
+Translate
+---------------------
 
-update locales.
+#. create pot files.
 
-.. code-block: bash
+   .. code-block:: bash
 
-   sphinx-intl update -p build/locale -l ja
+      make gettext
 
-build locales.
+#. update locales.
 
-.. code-block: bash
+   .. code-block:: bash
 
-   sphinx-intl build
+      make intlupdate
+
+#. edit po files in ``locale/ja/LC_MESSAGES``
+
+#. build locales.
+
+   .. code-block:: bash
+
+      make intlbuild
