@@ -2,4 +2,4 @@ Sphinx==1.2.3
 sphinx-rtd-theme
 Pillow
 sphinx-intl
-watchdog
+sphinx-autobuild
