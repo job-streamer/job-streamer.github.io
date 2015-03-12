@@ -21,15 +21,15 @@ msgstr ""
 
 #: ../../source/setup.rst:9
 msgid "Get datomic-free::"
-msgstr ""
+msgstr "datomic-free をダウンロードします。::"
 
 #: ../../source/setup.rst:15
 msgid "Clone control bus::"
-msgstr ""
+msgstr "control bus を clone します。::"
 
 #: ../../source/setup.rst:19
 msgid "Run the contorl bus::"
-msgstr ""
+msgstr "control bus を実行します。::"
 
 #: ../../source/setup.rst:25
 msgid "Management console"
@@ -37,11 +37,11 @@ msgstr ""
 
 #: ../../source/setup.rst:27
 msgid "Clone the management console::"
-msgstr ""
+msgstr "management consoleを clone します。::"
 
 #: ../../source/setup.rst:31
 msgid "Run the management console::"
-msgstr ""
+msgstr "management console を実行します。::"
 
 #: ../../source/setup.rst:37
 msgid "Agent"
@@ -49,15 +49,15 @@ msgstr ""
 
 #: ../../source/setup.rst:39
 msgid "Clone the agent::"
-msgstr ""
+msgstr "agent を clone します。::"
 
 #: ../../source/setup.rst:43
 msgid "Build a docker image::"
-msgstr ""
+msgstr "docker image をビルドします。::"
 
 #: ../../source/setup.rst:47
 msgid "Run a docker container::"
-msgstr ""
+msgstr "docker container を実行します。"
 
 #: ../../source/setup.rst:51
 msgid ""

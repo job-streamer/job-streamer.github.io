@@ -32,6 +32,7 @@ extensions = [
     'sphinx.ext.todo',
 ]
 locale_dirs = ['../locale']
+gettext_compact = False
 language = 'en'
 
 # Add any paths that contain templates here, relative to this directory.
