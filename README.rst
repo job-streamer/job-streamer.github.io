@@ -22,7 +22,7 @@ Japanese
 
 .. code-block:: bash
 
-   make -e SPHINXOPTS="-c ja" livehtml
+   make -e SPHINXOPTS="-c ja" SOURCEDIR="ja" livehtml
 
 view built html
 ---------------------
@@ -51,3 +51,23 @@ Translate
    .. code-block:: bash
 
       make intlbuild
+
+
+Directories
+=====================
+
+* ``source``
+
+  Contains document sources in English.
+
+* ``locale``
+
+  Contains gettext translation files (``po`` files).
+
+* ``ja`` etc. (Locale name directory)
+
+  Contains document sources in Japanese etc.
+  These directories are used to build documents on readthedocs.org in each locales.
+
+  Basically, these directories contain symlinks to ``source`` directory contents (excluding ``locale`` directory), and have locale specific ``conf.py``.
+  But if you want to add pages not contained in ``source`` directory, simply add ``rst`` file in this directory. 
