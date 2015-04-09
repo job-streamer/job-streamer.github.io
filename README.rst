@@ -24,7 +24,7 @@ Japanese
 
    make -e SPHINXOPTS="-c ja" SOURCEDIR="ja" livehtml
 
-view built html
+View built html
 ---------------------
 
 access to http://localhost:8000
