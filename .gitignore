@@ -1,2 +1,5 @@
-*
-!index.html
+build
+*.swp
+*.pyc
+.#*
+#*#
