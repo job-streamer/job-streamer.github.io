@@ -1,8 +1,3 @@
-.. job-streamer documentation master file, created by
-   sphinx-quickstart on Tue Feb 24 15:01:20 2015.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 JobStreamer
 ==============
 
@@ -19,10 +14,17 @@ JobStreamer agent that executes jobs has an exclusive feature. It's No deploy an
 Get started
 ------------
 
-- :doc:`setup`
-- Create a job
-- Deploy jobs
+- :doc:`setup-for-developer`
+- :doc:`setup-for-user`
 
+------------
+How to use
+------------
+- :doc:`deploy-batch-components`
+- :doc:`create-a-job`
+- :doc:`execute-the-job`
+- :doc:`job-config`
+- :doc:`notificator-config`
 ------------
 Components
 ------------
@@ -30,9 +32,11 @@ Components
 - `Control bus`_
 - `Agent`_
 - `Management console`_
+- `Notificator`_
 
 .. _Control bus:        https://github.com/job-streamer/job-streamer-control-bus
 .. _Agent:              https://github.com/job-streamer/job-streamer-agent
 .. _Management console: https://github.com/job-streamer/job-streamer-console
+.. _Notificator:        https://github.com/job-streamer/job-streamer-notificator
 
 

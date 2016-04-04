@@ -1,6 +1,6 @@
 .. highlight:: guess
 
-Setup
+Setup for developer
 ===========
 
 Control bus
@@ -24,7 +24,7 @@ Control bus
 Management console
 -------------------
 
-1. Clone the management console::
+1. Clone management console::
 
     % git clone http://github.com/job-streamer/job-streamer-console.git
 
@@ -36,7 +36,7 @@ Management console
 Agent
 -------------------
 
-1. Clone the agent::
+1. Clone agent::
 
     % git clone http://github.com/job-streamer/job-streamer-agent.git
 
