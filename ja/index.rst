@@ -1,8 +1,3 @@
-.. job-streamer documentation master file, created by
-   sphinx-quickstart on Tue Feb 24 15:01:20 2015.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 .. toctree::
    :hidden:
 
@@ -26,15 +21,23 @@ JavaBatchでは規格化されていないJobのスケジュール実行も可�
 
 * `Agent`_ はノーデプロイ、ノーコンフィギュレーション。仮想イメージを立ち上げると瞬時にジョブ実行サーバとなります。
 * `Management console`_ は `Control bus`_ のフロントエンドで、Control busの提供するAPIから取得した結果を表示する機能だけを持ちます。
+* :doc:`developer-guide`
 
 ------------
 Get started
 ------------
 
-- :doc:`setup`
-- :doc:`create-job`
-- :doc:`deploy-jobs`
+- :doc:`setup-for-developer`
+- :doc:`setup-for-user`
 
+------------
+How to use
+------------
+- :doc:`deploy-batch-components`
+- :doc:`create-a-job`
+- :doc:`execute-the-job`
+- :doc:`job-config`
+- :doc:`notificator-config`
 ------------
 Components
 ------------
@@ -42,9 +45,11 @@ Components
 - `Control bus`_
 - `Agent`_
 - `Management console`_
+- `Notificator`_
 
 .. _Control bus:        https://github.com/job-streamer/job-streamer-control-bus
 .. _Agent:              https://github.com/job-streamer/job-streamer-agent
 .. _Management console: https://github.com/job-streamer/job-streamer-console
+.. _Notificator:        https://github.com/job-streamer/job-streamer-notificator
 
 
