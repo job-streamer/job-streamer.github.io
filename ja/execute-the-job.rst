@@ -14,19 +14,13 @@
 ジョブをリスタート可能に組んでいる場合、中断または失敗ジョブに対して、コンソールからリスタートできます。
 
 .. image:: _images/restart.png
+ :width: 100%
 
 パラメータが必要な場合は、自動的にJobStreamerが解析して入力フォームを作るので、値を入力してRestartボタンを押します。
 
 .. image:: _images/restart_dialog.png
+ :width: 100%
 
-スケジュールで自動実行する
+スケジューリング
 --------------
-`quartz`_ 形式でスケジュールを登録することで、ジョブを自動実行できます。
-
-.. _quartz: http://quartz-scheduler.org/api/2.2.0/org/quartz/CronExpression.html
-
-.. image:: _images/schedule_quartz.png
-
-カレンダーを設定して休日はジョブの実行を抑止する
---------------
-quartz形式とともにカレンダーも設定することでカレンダーに休日として登録されている日はジョブの実行を抑止することができます。
+:doc:`schedule-job`

@@ -14,6 +14,7 @@ Monitor execution
 You can monitor execution at jobs->[job-name]->setting.
 
 .. image:: _images/notificator_dojob.png
+ :width: 100%
 
 
 Send key to notificator in response to Batch status/Exit status

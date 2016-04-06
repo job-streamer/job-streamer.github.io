@@ -1,6 +1,6 @@
 .. highlight:: guess
 
-Setup for user
+Quickly
 ===========
 
 Control bus

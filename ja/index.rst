@@ -12,7 +12,7 @@ JobStreamer
 .. image:: _images/overview.png
 
 ------------
-Concept
+コンセプト
 ------------
 
 JobStreamerは、JavaBatchの分散実行環境です。設定やデプロイなしで実行環境をクラウド上に構築できるため、負荷量に応じて非常に簡単に実行環境を増減させることが出来ます。
@@ -21,25 +21,26 @@ JavaBatchでは規格化されていないJobのスケジュール実行も可�
 
 * `Agent`_ はノーデプロイ、ノーコンフィギュレーション。仮想イメージを立ち上げると瞬時にジョブ実行サーバとなります。
 * `Management console`_ は `Control bus`_ のフロントエンドで、Control busの提供するAPIから取得した結果を表示する機能だけを持ちます。
-* :doc:`developer-guide`
 
 ------------
-Get started
+起動
 ------------
 
-- :doc:`setup-for-developer`
-- :doc:`setup-for-user`
+- :doc:`get-started-developer`
+- :doc:`get-started-quickly`
 
 ------------
-How to use
+使い方
 ------------
 - :doc:`deploy-batch-components`
 - :doc:`create-a-job`
 - :doc:`execute-the-job`
+- :doc:`schedule-job`
 - :doc:`job-config`
 - :doc:`notificator-config`
+
 ------------
-Components
+部品
 ------------
 
 - `Control bus`_
@@ -52,4 +53,7 @@ Components
 .. _Management console: https://github.com/job-streamer/job-streamer-console
 .. _Notificator:        https://github.com/job-streamer/job-streamer-notificator
 
-
+------------
+ガイド
+------------
+- :doc:`developer-guide`

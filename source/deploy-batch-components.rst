@@ -3,6 +3,15 @@
 Deploy batch components
 ===========
 
+How to deploy
+--------------
+
+You can deploy batch conpornent on control bus using `maven plugin`_ .
+
+For the reason,we recommend you make batch conpornent as "maven project"
+
+.. _maven plugin: https://github.com/job-streamer/job-streamer-maven-plugin
+
 Example
 --------------
 

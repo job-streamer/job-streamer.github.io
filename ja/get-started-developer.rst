@@ -1,22 +1,22 @@
 .. highlight:: guess
 
-Setup for developer
+開発者向け
 ===========
 
 Control bus
 --------------
 
-1. Get datomic-free::
+1. datomic-freeを取得::
 
    % unzip datomic-free-0.9.5130.zip
    % cd datomic-free-0.9.5130
    % bin/transactor config/samples/free-transactor-template.properties
 
-2. Clone control bus::
+2. control busを取得::
 
     % git clone https://github.com/job-streamer/job-streamer-control-bus.git
 
-3. Run the contorl bus::
+3. contorl busを起動::
 
     % lein run
 
@@ -24,11 +24,11 @@ Control bus
 Management console
 -------------------
 
-1. Clone management console::
+1. management consoleを取得::
 
     % git clone http://github.com/job-streamer/job-streamer-console.git
 
-2. Run the management console::
+2. consoleを起動::
 
     % lein ring server
 
@@ -36,18 +36,18 @@ Management console
 Agent
 -------------------
 
-1. Clone agent::
+1. agentを取得::
 
     % git clone http://github.com/job-streamer/job-streamer-agent.git
 
-2. Build a docker image::
+2. docker imageをビルド::
 
     % docker build -t job-streamer/agent:0.1.0
 
-3. Run a docker container::
+3. docker containerを起動::
 
     % docker run job-streamer/agent:0.1.0
 
-4. If a container has started successfully, it connects the control bus automatically.
+4. コンテナは正常に起動すると、自動的にコントロールバスにコンタクトを取ります。
 
 

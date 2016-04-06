@@ -3,6 +3,9 @@ Notificator config
 ==============
 
 Make rule using edn file.
+Define action when some key is sent from control bus at edn file.
+POST :messge key content to :uri key.
+
 Ex. ::
 
 

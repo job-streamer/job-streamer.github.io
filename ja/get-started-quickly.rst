@@ -1,6 +1,6 @@
 .. highlight:: guess
 
-ユーザ向けセットアップ
+クイックスタート
 ===========
 
 Control bus
