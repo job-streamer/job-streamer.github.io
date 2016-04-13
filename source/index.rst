@@ -2,7 +2,6 @@ JobStreamer
 ==============
 
 .. image:: _images/overview.png
- :width: 100%
 
 ------------
 Concept
