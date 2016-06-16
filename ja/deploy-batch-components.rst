@@ -6,10 +6,11 @@
 デプロイ手法
 --------------
 
-`maven plugin`_ を用いてバッチ部品をコントロールバス上にデプロイします。
+`maven plugin`_
+を用いてバッチ部品をコントロールバス上にデプロイします。
 そのため、バッチ部品はmavenプロジェクトで作成することを推奨します。
 
-.. _`maven plugin` https://github.com/job-streamer/job-streamer-maven-plugin
+.. _maven plugin: https://github.com/job-streamer/job-streamer-maven-plugin
 
 例
 --------------

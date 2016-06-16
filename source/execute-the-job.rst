@@ -31,6 +31,13 @@ You can automatically execute job registrationing schedule using `quartz schedul
 .. image:: _images/schedule_quartz.png
  :width: 100%
 
+Job execution log
+--------------
+You can see job execution log in console.
+
+.. image:: _images/excute_log.png
+ :width: 100%
+ 
 Set calendar
 --------------
 You can control job execution setting calendar with quartz scheduler.

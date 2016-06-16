@@ -20,6 +20,13 @@
 
 .. image:: _images/restart_dialog.png
  :width: 100%
+ 
+ジョブの実行ログについて
+--------------
+コンソール画面上から実行ログにを確認できます。
+
+.. image:: _images/execute_log.png
+ :width: 100%
 
 スケジューリング
 --------------
