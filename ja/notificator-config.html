@@ -73,16 +73,11 @@
             </a>
          </div>
          <div id="main_content_wrap" class="main grid content full height">
-      <h1>Control-bus</h1><h2>Control-busとは？</h2><p>control-busはAPI呼び出しを制御しています。<br/>すべてのAPI呼び出しはcontrol-busを介して行います。<br/>なので直接console-&gt;agentといったAPIアクセスが発生することはありません。</p><p><img src="img/scheduling.png" alt="image" /></p><h2>Control-busで出来ること</h2>
-<ul>
-  <li>バッチ部品のデプロイ</li>
-  <li>ジョブの登録</li>
-  <li>ジョブの削除</li>
-  <li>ジョブの変更</li>
-  <li><p>ジョブのスケジューリング</p></li>
-  <li>ジョブのスケジュールの停止</li>
-  <li>ジョブのスケジューリングの削除</li>
-</ul><h2><a href="#github" name="github">GitHub</a></h2><p><a href="https://github.com/job-streamer/job-streamer-control-bus">https://github.com/job-streamer/job-streamer-control-bus</a></p>
+      <h1><a href="#通知サーバの設定" name="通知サーバの設定">通知サーバの設定</a></h1><p>ednファイルを用いてルールの設定を行います。<br/>ednファイルにはコントロールバスからあるキーが送られた時に動作を定義します。<br/>:uriキーに指定されたuriに:messageキーで指定されたメッセージをPOSTリクエストを送付します。</p><p>例 :</p>
+<pre><code>{ :do-job {:uri &quot;http://localhost:45102/default/job/success-mail/executions?Exchange.CONTENT_TYPE=application/edn&quot;
+           :message &quot;{}&quot;}
+}
+</code></pre><p>この設定では&ldquo;:do-job&rdquo;のキーが送られた時&ldquo;http://localhost:45102/default/job/success-mail/executions?Exchange.CONTENT_TYPE=application/edn&rdquo;にPOSTリクエストを送るので、&ldquo;success-mail&rdquo;が実行されます。<br/>コントロールバスと通知サーバは同じサーバに存在する必要があります。</p>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">

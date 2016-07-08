@@ -73,16 +73,7 @@
             </a>
          </div>
          <div id="main_content_wrap" class="main grid content full height">
-      <h1>Control-bus</h1><h2>Control-busとは？</h2><p>control-busはAPI呼び出しを制御しています。<br/>すべてのAPI呼び出しはcontrol-busを介して行います。<br/>なので直接console-&gt;agentといったAPIアクセスが発生することはありません。</p><p><img src="img/scheduling.png" alt="image" /></p><h2>Control-busで出来ること</h2>
-<ul>
-  <li>バッチ部品のデプロイ</li>
-  <li>ジョブの登録</li>
-  <li>ジョブの削除</li>
-  <li>ジョブの変更</li>
-  <li><p>ジョブのスケジューリング</p></li>
-  <li>ジョブのスケジュールの停止</li>
-  <li>ジョブのスケジューリングの削除</li>
-</ul><h2><a href="#github" name="github">GitHub</a></h2><p><a href="https://github.com/job-streamer/job-streamer-control-bus">https://github.com/job-streamer/job-streamer-control-bus</a></p>
+      <h2><a href="#ジョブの設定" name="ジョブの設定">ジョブの設定</a></h2><h2><a href="#ジョブの同時起動制御" name="ジョブの同時起動制御">ジョブの同時起動制御</a></h2><p>ジョブを同時に実行すると都合の悪い場合があります。同時実行をさせないためには、ジョブのSettingsタブでExclusive<br/>executionをオンにしてください。</p><h2><a href="#ジョブの監視" name="ジョブの監視">ジョブの監視</a></h2><p>同じくSettingsタブで監視の設定が可能です。</p><p><img src="_images/notificator_dojob.png" alt="image" /></p><h3><a href="#バッチステータス-終了ステータスの値に応じてメールを送信する" name="バッチステータス-終了ステータスの値に応じてメールを送信する">バッチステータス、終了ステータスの値に応じてメールを送信する</a></h3><p>Batch statusの場合は、プルダウンからステータスを選択します。Exit<br/>statusの場合は、ステータスを入力してください。<br/>そして通知内容を設定しますが、これは通知サーバに設定した通知項目のキーを入力してください。</p><h3><a href="#一定時間以上ジョブが実行されていたらメールを送る" name="一定時間以上ジョブが実行されていたらメールを送る">一定時間以上ジョブが実行されていたらメールを送る</a></h3><p>Execution constraints<br/>で経過分数を入力し、プルダウンでAlertを選択してください。<br/>通知内容の設定は、通知サーバに設定した通知項目のキーを入力してください。</p><h3><a href="#一定時間以上ジョブが実行されていたらジョブを停止する" name="一定時間以上ジョブが実行されていたらジョブを停止する">一定時間以上ジョブが実行されていたらジョブを停止する</a></h3><p>Execution constraints<br/>で経過分数を入力し、プルダウンでStopを選択してください。</p>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">

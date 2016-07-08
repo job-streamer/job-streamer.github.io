@@ -73,16 +73,18 @@
             </a>
          </div>
          <div id="main_content_wrap" class="main grid content full height">
-      <h1>Control-bus</h1><h2>Control-busとは？</h2><p>control-busはAPI呼び出しを制御しています。<br/>すべてのAPI呼び出しはcontrol-busを介して行います。<br/>なので直接console-&gt;agentといったAPIアクセスが発生することはありません。</p><p><img src="img/scheduling.png" alt="image" /></p><h2>Control-busで出来ること</h2>
-<ul>
-  <li>バッチ部品のデプロイ</li>
-  <li>ジョブの登録</li>
-  <li>ジョブの削除</li>
-  <li>ジョブの変更</li>
-  <li><p>ジョブのスケジューリング</p></li>
-  <li>ジョブのスケジュールの停止</li>
-  <li>ジョブのスケジューリングの削除</li>
-</ul><h2><a href="#github" name="github">GitHub</a></h2><p><a href="https://github.com/job-streamer/job-streamer-control-bus">https://github.com/job-streamer/job-streamer-control-bus</a></p>
+      <h1><a href="#バッチ部品のデプロイ" name="バッチ部品のデプロイ">バッチ部品のデプロイ</a></h1><h2><a href="#デプロイ手法" name="デプロイ手法">デプロイ手法</a></h2><p><a href="https://github.com/job-streamer/job-streamer-maven-plugin">maven plugin</a>を用いてバッチ部品をコントロールバス上にデプロイします。<br/>そのため、バッチ部品はmavenプロジェクトで作成することを推奨します。</p><p>例<br/>==</p>
+<ol>
+  <li><p>Exampleを取得:</p>
+  <pre><code>% git clone https://github.com/job-streamer/job-streamer-examples.git
+</code></pre></li>
+  <li><p>デプロイ:</p>
+  <pre><code>% cd job-streamer-examples
+% mvn -e clean package job-streamer:deploy
+</code></pre></li>
+</ol>
+<blockquote><p>デプロイを行うにはデプロイ資源とcontrol-busが同じサーバーに存在する必要があります。</p>
+</blockquote>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">

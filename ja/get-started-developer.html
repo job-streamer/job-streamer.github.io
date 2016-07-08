@@ -73,16 +73,40 @@
             </a>
          </div>
          <div id="main_content_wrap" class="main grid content full height">
-      <h1>Control-bus</h1><h2>Control-busとは？</h2><p>control-busはAPI呼び出しを制御しています。<br/>すべてのAPI呼び出しはcontrol-busを介して行います。<br/>なので直接console-&gt;agentといったAPIアクセスが発生することはありません。</p><p><img src="img/scheduling.png" alt="image" /></p><h2>Control-busで出来ること</h2>
-<ul>
-  <li>バッチ部品のデプロイ</li>
-  <li>ジョブの登録</li>
-  <li>ジョブの削除</li>
-  <li>ジョブの変更</li>
-  <li><p>ジョブのスケジューリング</p></li>
-  <li>ジョブのスケジュールの停止</li>
-  <li>ジョブのスケジューリングの削除</li>
-</ul><h2><a href="#github" name="github">GitHub</a></h2><p><a href="https://github.com/job-streamer/job-streamer-control-bus">https://github.com/job-streamer/job-streamer-control-bus</a></p>
+      <h1><a href="#replコマンド集" name="replコマンド集">REPLコマンド集</a></h1><h2><a href="#control-bus" name="control-bus">Control bus</a></h2>
+<ol>
+  <li><p>datomic-freeを取得:</p>
+  <pre><code>% unzip datomic-free-0.9.5130.zip
+% cd datomic-free-0.9.5130
+% bin/transactor config/samples/free-transactor-template.properties
+</code></pre></li>
+  <li><p>control busを取得:</p>
+  <pre><code>% git clone https://github.com/job-streamer/job-streamer-control-bus.git
+</code></pre></li>
+  <li><p>contorl busを起動:</p>
+  <pre><code>% lein run
+</code></pre></li>
+</ol><h2><a href="#management-console" name="management-console">Management console</a></h2>
+<ol>
+  <li><p>management consoleを取得:</p>
+  <pre><code>% git clone http://github.com/job-streamer/job-streamer-console.git
+</code></pre></li>
+  <li><p>consoleを起動:</p>
+  <pre><code>% lein ring server
+</code></pre></li>
+</ol><h2><a href="#agent" name="agent">Agent</a></h2>
+<ol>
+  <li><p>agentを取得:</p>
+  <pre><code>% git clone http://github.com/job-streamer/job-streamer-agent.git
+</code></pre></li>
+  <li><p>docker imageをビルド:</p>
+  <pre><code>% docker build -t job-streamer/agent:0.1.0
+</code></pre></li>
+  <li><p>docker containerを起動:</p>
+  <pre><code>% docker run job-streamer/agent:0.1.0
+</code></pre></li>
+  <li><p>コンテナは正常に起動すると、自動的にコントロールバスにコンタクトを取ります。</p></li>
+</ol>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
