@@ -73,27 +73,36 @@
             </a>
          </div>
          <div id="main_content_wrap" class="main grid content full height">
-  <header>
-    <div class="ui one column centered grid">
-      <div class="column">
-        <h1>JobStreamer</h1>
-        <img src="img/overview.png"/>
-      </div>
-    </div>
-  </header>
-  <section class="ui one column centered grid">
-    <div class="column">
-        <h2 class="ui header">Concept</h2>
-        <p>
-        JobStreamer is a distributed executing environment for jobs. 
-        JobStreamer can execute job that is not on the rule of JavaBatch.
-
-        Agent that executes jobs has an exclusive feature. It's No deploy and No configuration.
-        Management console is front-end of Control bus. It has a function only desplay result got from Control bus API.
-        </p>
-    <div>
-  </section>
-
+      <h1><a href="#jobstreamer-developer-guide" name="jobstreamer-developer-guide">JobStreamer developer guide</a></h1><h2><a href="#format-policy" name="format-policy">Format policy</a></h2>
+<ul>
+  <li>All of exchange data is done using <a href="https://github.com/edn-format/edn">EDN Format</a>.(In comparison with the JSON, there is an advantage that it is possible to have a type of <code>Date</code> and <code>UUID</code> .)</li>
+  <li>Map key in EDN is keyword with entity&rsquo;s name-space. (Easy to understand when see only data.)</li>
+</ul><h2><a href="#interface-policy" name="interface-policy">Interface policy</a></h2>
+<ul>
+  <li>Both Agent and Control bus use REST API as interface.(for enable tool-development Other than Console)</li>
+  <li>Must call from Control bus to Agent API.Don&rsquo;t call reverse.</li>
+</ul><h2><a href="#connection-policy" name="connection-policy">connection policy</a></h2>
+<ul>
+  <li>In order to Improve responsivility of Agent,WebSocket connect bus from agent to Control.</li>
+  <li>Consideration of failure,WebSocket doesn&rsquo;t exchange data,only notification.</li>
+  <li>Monitoring dead-or-alive and performance of Agent is done through WebSocket.</li>
+  <li>In order to make Agent be no configuration,detect Control bus address automatically.
+  <ol>
+    <li>Agent broadcast its own address when process starts.</li>
+    <li>When Control bus catch broadcast from Agent, send connection<br/>request to Agent.</li>
+    <li>Agent that recieve connection request try to connect control bus<br/>on WebSocket.</li>
+  </ol></li>
+  <li>When close connection from Agent to Control bus,Agent restart broadcast,so that even if switch Control bus stand-by,switch connection automatically.</li>
+</ul><h2><a href="#persitence-policy" name="persitence-policy">Persitence policy</a></h2>
+<ul>
+  <li>All data flowing at Control bus are stored in Datomic.</li>
+  <li>Accessing to Datomic is allowed only from Control bus.</li>
+</ul><h2><a href="#if-you-want-more-safely-structure" name="if-you-want-more-safely-structure">If you want more safely structure</a></h2>
+<ul>
+  <li>Because <a href="https://github.com/kawasima/websocket-classloader">WebSocketClassLoader</a> is eccentric structure,enable useing application deploying to Agent.<br/>In this case,If bypass ClassLoder configuation,Agent&rsquo;s local context ClassLoder is used.<br/>In this way,enable to use JobStreamer as job scheduler.</li>
+  <li>Job&rsquo;s execution log is sent to Control bus and stored in Datomic in the default setting.</li>
+  <li>Depending on logback setting, be able to write log into local file of Agent or Control bus.</li>
+</ul>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">

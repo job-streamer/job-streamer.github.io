@@ -73,27 +73,7 @@
             </a>
          </div>
          <div id="main_content_wrap" class="main grid content full height">
-  <header>
-    <div class="ui one column centered grid">
-      <div class="column">
-        <h1>JobStreamer</h1>
-        <img src="img/overview.png"/>
-      </div>
-    </div>
-  </header>
-  <section class="ui one column centered grid">
-    <div class="column">
-        <h2 class="ui header">Concept</h2>
-        <p>
-        JobStreamer is a distributed executing environment for jobs. 
-        JobStreamer can execute job that is not on the rule of JavaBatch.
-
-        Agent that executes jobs has an exclusive feature. It's No deploy and No configuration.
-        Management console is front-end of Control bus. It has a function only desplay result got from Control bus API.
-        </p>
-    <div>
-  </section>
-
+      <h1><a href="#job-config" name="job-config">Job config</a></h1><h2><a href="#excusive-execution" name="excusive-execution">Excusive execution</a></h2><p>If you don&rsquo;t want to excute job multiple,turn on &ldquo;Excusive execution&rdquo; at jobs-&gt;[job-name]-&gt;setting-&gt;Execution constraints.</p><h2><a href="#monitor-execution" name="monitor-execution">Monitor execution</a></h2><p>You can monitor execution at jobs-&gt;[job-name]-&gt;setting.</p><p><img src="img/notificator_dojob.png" alt="image" /></p><h3><a href="#send-key-to-notificator-in-response-to-batch-status-exit-status" name="send-key-to-notificator-in-response-to-batch-status-exit-status">Send key to notificator in response to Batch status/Exit status</a></h3><p>Select Batch status/Exit status and select status,and input key to send to notificator at jobs-&gt;[job-name]-&gt;setting-&gt;notification.</p><h3><a href="#send-key-to-notificator-in-response-to-elapsed-time" name="send-key-to-notificator-in-response-to-elapsed-time">Send key to notificator in response to elapsed time</a></h3><p>Input elapsed time,select Alert at pulldown and input key at jobs-&gt;[job-name]-&gt;setting-&gt;Execution constraints.</p><h3><a href="#stop-job-execution-in-response-to-elapsed-time" name="stop-job-execution-in-response-to-elapsed-time">Stop job execution in response to elapsed time</a></h3><p>Input elapsed time and select Stop at pulldown at jobs-&gt;[job-name]-&gt;setting-&gt;Execution constraints.</p>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">

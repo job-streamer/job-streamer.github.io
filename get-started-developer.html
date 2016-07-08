@@ -73,27 +73,40 @@
             </a>
          </div>
          <div id="main_content_wrap" class="main grid content full height">
-  <header>
-    <div class="ui one column centered grid">
-      <div class="column">
-        <h1>JobStreamer</h1>
-        <img src="img/overview.png"/>
-      </div>
-    </div>
-  </header>
-  <section class="ui one column centered grid">
-    <div class="column">
-        <h2 class="ui header">Concept</h2>
-        <p>
-        JobStreamer is a distributed executing environment for jobs. 
-        JobStreamer can execute job that is not on the rule of JavaBatch.
-
-        Agent that executes jobs has an exclusive feature. It's No deploy and No configuration.
-        Management console is front-end of Control bus. It has a function only desplay result got from Control bus API.
-        </p>
-    <div>
-  </section>
-
+      <h1><a href="#for-developer" name="for-developer">For Developer</a></h1><h2><a href="#control-bus" name="control-bus">Control bus</a></h2>
+<ol>
+  <li><p>Get datomic-free:</p>
+  <pre><code>% unzip datomic-free-0.9.5130.zip
+% cd datomic-free-0.9.5130
+% bin/transactor config/samples/free-transactor-template.properties
+</code></pre></li>
+  <li><p>Clone control bus:</p>
+  <pre><code>% git clone https://github.com/job-streamer/job-streamer-control-bus.git
+</code></pre></li>
+  <li><p>Run the contorl bus:</p>
+  <pre><code>% lein run
+</code></pre></li>
+</ol><h2><a href="#management-console" name="management-console">Management console</a></h2>
+<ol>
+  <li><p>Clone management console:</p>
+  <pre><code>% git clone http://github.com/job-streamer/job-streamer-console.git
+</code></pre></li>
+  <li><p>Run the management console:</p>
+  <pre><code>% lein ring server
+</code></pre></li>
+</ol><h2><a href="#agent" name="agent">Agent</a></h2>
+<ol>
+  <li><p>Clone agent:</p>
+  <pre><code>% git clone http://github.com/job-streamer/job-streamer-agent.git
+</code></pre></li>
+  <li><p>Build a docker image:</p>
+  <pre><code>% docker build -t job-streamer/agent:0.1.0
+</code></pre></li>
+  <li><p>Run a docker container:</p>
+  <pre><code>% docker run job-streamer/agent:0.1.0
+</code></pre></li>
+  <li><p>If a container has started successfully, it connects the control<br/>bus automatically.</p></li>
+</ol>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">

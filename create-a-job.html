@@ -73,27 +73,13 @@
             </a>
          </div>
          <div id="main_content_wrap" class="main grid content full height">
-  <header>
-    <div class="ui one column centered grid">
-      <div class="column">
-        <h1>JobStreamer</h1>
-        <img src="img/overview.png"/>
-      </div>
-    </div>
-  </header>
-  <section class="ui one column centered grid">
-    <div class="column">
-        <h2 class="ui header">Concept</h2>
-        <p>
-        JobStreamer is a distributed executing environment for jobs. 
-        JobStreamer can execute job that is not on the rule of JavaBatch.
-
-        Agent that executes jobs has an exclusive feature. It's No deploy and No configuration.
-        Management console is front-end of Control bus. It has a function only desplay result got from Control bus API.
-        </p>
-    <div>
-  </section>
-
+      <h1><a href="#create-a-job" name="create-a-job">Create a job</a></h1>
+<ol>
+  <li>Push the &ldquo;new&rdquo; button in job top page(http://{IP address of server}:{console&rsquo;s port number(default 8080)}).</li>
+</ol><p><img src="img/new_job_button.png" alt="image" /></p>
+<ol>
+  <li>Assemble job useing drag and drop like Scratch.</li>
+</ol><p><img src="img/new_job.png" alt="image" /></p><p>You can use Batchlet and ItemReader/ItemWriter/ItemProcessor only deployed on control bus.<br/>When you wanna use your batch components,you must refer <a href="./get-started-developer.html">deploy-batch-components</a>.</p>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
