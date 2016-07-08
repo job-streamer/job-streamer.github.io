@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+   <head>
+      <meta charset="UTF-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <meta name="description" content="JobStreamer : JobStreamer site."/>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.css" type="text/css"/>
+      <link rel="stylesheet" href="css/basic.css" type="text/css"/>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
+   </head>
+   <body>
+<div class="ui sidebar inverted vertical menu">
+   <a class="item" href="get-started-quickly.html">
+   Getting Started
+   </a>
+   <div class="item">
+      <div class="header">�K�C�h</div>
+      <div class="menu">
+         <a class="item" href="deploy-batch-components.html">
+         �o�b�`�R���|�[�l���g�̃f�v���C
+         </a>
+         <a class="item" href="create-a-job.html">
+         �W���u�̍쐬
+         </a>
+         <a class="item" href="execute-the-job.html">
+         �W���u�̎蓮���s
+         </a>
+         <a class="item" href="schedule-job.html">
+         �W���u�̃X�P�W���[�����s
+         </a>
+         <a class="item" href="job-config.html">
+         �W���u�̐ݒ�
+         </a>
+         <a class="item" href="notificator-config.html">
+         Notificator�̐ݒ�
+         </a>
+      </div>
+   </div>
+   <div class="item">
+      <div class="header">�R���|�[�l���g</div>
+      <div class="menu">
+         <a class="item" href="control-bus.html">
+         Control bus
+         </a>
+         <a class="item" href="agent.html">
+         Agent
+         </a>
+         <a class="item" href="console.html">
+         Management console
+         </a>
+         <a class="item" href="notificator.html">
+         Notificator
+         </a>
+      </div>
+   </div>
+   <div class="item">
+      <div class=" header">�J���Ҍ������</div>
+      <div class="menu">
+         <a class="item" href="get-started-developer.html">
+         REPL�R�}���h�W
+         </a>
+         <a class="item" href="developer-guide.html">
+         �f�B�x���b�p�[�K�C�h
+         </a>
+      </div>
+   </div>
+</div>      <div class="pusher">
+         <div class="ui fixed inverted teal menu">
+            <div class="title item"><b>Job Streamer</b></div>
+            <a class="view-ui item" onClick="viewSidebar()">
+              Menu
+            </a>
+         </div>
+         <div id="main_content_wrap" class="main grid content full height">
+      <h1><a href="#ジョブのスケジューリング" name="ジョブのスケジューリング">ジョブのスケジューリング</a></h1><h2><a href="#スケジュールで自動実行する" name="スケジュールで自動実行する">スケジュールで自動実行する</a></h2><p><a href="http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html">cron expressions</a>形式でスケジュールを登録することで、ジョブを自動実行できます。</p><p><img src="_images/schedule_quartz.png" alt="image" /></p><h2><a href="#カレンダーの登録方法" name="カレンダーの登録方法">カレンダーの登録方法</a></h2><p>1.トップページから右側メニューのプルダウン選択によりカレンダーに移動</p><p><img src="img/goto-calendar.png" alt="image" /></p><p>2.newボタン押下</p><p><img src="img/goto-calendar-new.png" alt="image" /></p><p>3.カレンダーを作成</p><p><img src="img/goto-calendar.png" alt="image" /></p><h2><a href="#カレンダーを設定して休日はジョブの実行を抑止する" name="カレンダーを設定して休日はジョブの実行を抑止する">カレンダーを設定して休日はジョブの実行を抑止する</a></h2><p>cron expressionsとともにカレンダーも設定することでカレンダーに休日として登録されている日はジョブの実行を抑止することができます。</p>
+         </div>
+         <div class="ui inverted teal footer vertical segment">
+            <div class="container">
+               <div class="ui stackable divided relaxed grid">
+                  <div class="sixteen wide column">
+                     <p>Copyright @ 2015-2016 kawasima &amp; contributors.</p>
+                     <p>Released under the EPL license.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/prism.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-java.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-bash.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.js"> </script>
+      <script type="text/javascript">
+         function viewSidebar() {
+           $('.sidebar')
+             .sidebar('toggle');
+         }
+      </script>
+   </body>
+</html>

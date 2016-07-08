@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+   <head>
+      <meta charset="UTF-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <meta name="description" content="JobStreamer : JobStreamer site."/>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.css" type="text/css"/>
+      <link rel="stylesheet" href="css/basic.css" type="text/css"/>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
+   </head>
+   <body>
+<div class="ui sidebar inverted vertical menu">
+   <a class="item" href="get-started-quickly.html">
+   Getting Started
+   </a>
+   <div class="item">
+      <div class="header">�K�C�h</div>
+      <div class="menu">
+         <a class="item" href="deploy-batch-components.html">
+         �o�b�`�R���|�[�l���g�̃f�v���C
+         </a>
+         <a class="item" href="create-a-job.html">
+         �W���u�̍쐬
+         </a>
+         <a class="item" href="execute-the-job.html">
+         �W���u�̎蓮���s
+         </a>
+         <a class="item" href="schedule-job.html">
+         �W���u�̃X�P�W���[�����s
+         </a>
+         <a class="item" href="job-config.html">
+         �W���u�̐ݒ�
+         </a>
+         <a class="item" href="notificator-config.html">
+         Notificator�̐ݒ�
+         </a>
+      </div>
+   </div>
+   <div class="item">
+      <div class="header">�R���|�[�l���g</div>
+      <div class="menu">
+         <a class="item" href="control-bus.html">
+         Control bus
+         </a>
+         <a class="item" href="agent.html">
+         Agent
+         </a>
+         <a class="item" href="console.html">
+         Management console
+         </a>
+         <a class="item" href="notificator.html">
+         Notificator
+         </a>
+      </div>
+   </div>
+   <div class="item">
+      <div class=" header">�J���Ҍ������</div>
+      <div class="menu">
+         <a class="item" href="get-started-developer.html">
+         REPL�R�}���h�W
+         </a>
+         <a class="item" href="developer-guide.html">
+         �f�B�x���b�p�[�K�C�h
+         </a>
+      </div>
+   </div>
+</div>      <div class="pusher">
+         <div class="ui fixed inverted teal menu">
+            <div class="title item"><b>Job Streamer</b></div>
+            <a class="view-ui item" onClick="viewSidebar()">
+              Menu
+            </a>
+         </div>
+         <div id="main_content_wrap" class="main grid content full height">
+      <h1><a href="#jobstreamer-ディベロッパーガイド" name="jobstreamer-ディベロッパーガイド">JobStreamer ディベロッパーガイド</a></h1><h2><a href="#フォーマットの方針" name="フォーマットの方針">フォーマットの方針</a></h2>
+<ul>
+  <li>データのやり取りは全て <a href="https://github.com/edn-format/edn">EDN Format</a>で行う。（JSONと比較して、 <code>Date</code> や <code>UUID</code>の型を持つことができるというメリットがある。）</li>
+  <li>EDN中で用いるMapのキーは、エンティティのネームスペース付きのキーワードとする。（データだけを見た時に、そのほうが分かりやすいため。）</li>
+</ul><h2><a href="#インターフェースの方針" name="インターフェースの方針">インターフェースの方針</a></h2>
+<ul>
+  <li>Agent, Control busともにREST APIをインターフェースとして用いる。（コンソール以外でツール開発を可能とするため。）</li>
+  <li>必ずControl-busからAgentのAPIを呼び出すこととする。逆向きの呼び出しは発生させない。</li>
+</ul><h2><a href="#接続の方針" name="接続の方針">接続の方針</a></h2>
+<ul>
+  <li>Agentの応答性を上げるため、AgentからControl-busへはWebSocket接続する。</li>
+  <li>障害時の動作を考慮し、WebSocketではデータの転送は行わず、通知のみとする。</li>
+  <li>Agentの死活や性能モニタリングは、WebSocketを通じて行われる。</li>
+  <li>Agentはノーコンフィギュレーションにするため、Control-busのアドレスを自動的に見つける。
+  <ol>
+    <li>Agentが起動したら自身のアドレスをブロードキャストする。</li>
+    <li>Control-busはAgentからのブロードキャストをキャッチしたら、接続のリクエストをAgentに送る。</li>
+    <li>Control-busへの接続リクエストを受けたAgentは、Control-busに対してWebSocket接続を試みる。</li>
+  </ol></li>
+  <li>AgentからControl-busへの接続が切れると、Agentはブロードキャストを再開するようになるので、Control-busをスタンバイ機に切り替えても自動的に接続し直される。</li>
+</ul><h2><a href="#永続化の方針" name="永続化の方針">永続化の方針</a></h2>
+<ul>
+  <li>Control busに流れている情報は全てDatomicに格納する。</li>
+  <li>DatomicへのアクセスはControl busのみ許可する。</li>
+</ul><h2><a href="#手堅い感じにする" name="手堅い感じにする">手堅い感じにする</a></h2>
+<ul>
+  <li><a href="https://github.com/kawasima/websocket-classloader">WebSocketClassLoader</a>はエキセントリックな仕組みなので、Agentにアプリケーションをデプロイして使うことも可能にする。<br/>この場合、AgentでのClassLoaderの設定をバイパスしてやればAgentローカルのコンテキストクラスローダが使われる。<br/>こうすると、JobStreamerをただのジョブスケジューラとして使うことができる。</li>
+  <li>ジョブの実行ログはデフォルトでWebSocket経由でリアルタイムにControl-busに送信されて、Datomicに格納される。</li>
+  <li>logbackの設定次第で、Agentローカルのファイルにも書き込んだり、Control-busのローカルファイルに書き込んだりすることも可能である。</li>
+</ul>
+         </div>
+         <div class="ui inverted teal footer vertical segment">
+            <div class="container">
+               <div class="ui stackable divided relaxed grid">
+                  <div class="sixteen wide column">
+                     <p>Copyright @ 2015-2016 kawasima &amp; contributors.</p>
+                     <p>Released under the EPL license.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/prism.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-java.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-bash.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.js"> </script>
+      <script type="text/javascript">
+         function viewSidebar() {
+           $('.sidebar')
+             .sidebar('toggle');
+         }
+      </script>
+   </body>
+</html>
