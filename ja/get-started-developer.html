@@ -73,40 +73,7 @@
             </a>
          </div>
          <div id="main_content_wrap" class="main grid content full height">
-      <h1><a href="#replコマンド集" name="replコマンド集">REPLコマンド集</a></h1><h2><a href="#control-bus" name="control-bus">Control bus</a></h2>
-<ol>
-  <li><p>datomic-freeを取得:</p>
-  <pre><code>% unzip datomic-free-0.9.5130.zip
-% cd datomic-free-0.9.5130
-% bin/transactor config/samples/free-transactor-template.properties
-</code></pre></li>
-  <li><p>control busを取得:</p>
-  <pre><code>% git clone https://github.com/job-streamer/job-streamer-control-bus.git
-</code></pre></li>
-  <li><p>contorl busを起動:</p>
-  <pre><code>% lein run
-</code></pre></li>
-</ol><h2><a href="#management-console" name="management-console">Management console</a></h2>
-<ol>
-  <li><p>management consoleを取得:</p>
-  <pre><code>% git clone http://github.com/job-streamer/job-streamer-console.git
-</code></pre></li>
-  <li><p>consoleを起動:</p>
-  <pre><code>% lein ring server
-</code></pre></li>
-</ol><h2><a href="#agent" name="agent">Agent</a></h2>
-<ol>
-  <li><p>agentを取得:</p>
-  <pre><code>% git clone http://github.com/job-streamer/job-streamer-agent.git
-</code></pre></li>
-  <li><p>docker imageをビルド:</p>
-  <pre><code>% docker build -t job-streamer/agent:0.1.0
-</code></pre></li>
-  <li><p>docker containerを起動:</p>
-  <pre><code>% docker run job-streamer/agent:0.1.0
-</code></pre></li>
-  <li><p>コンテナは正常に起動すると、自動的にコントロールバスにコンタクトを取ります。</p></li>
-</ol>
+      <h1><a href="#replコマンド集" name="replコマンド集">REPLコマンド集</a></h1><h2><a href="#共通コマンド" name="共通コマンド">共通コマンド</a></h2><h3>(dev)</h3><p>開発者モードに切り替え</p><h3>(go)</h3><p>サーバー起動</p><h3>(reset)</h3><p>リロード</p><h3>(test)</h3><p>テストの実行</p>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">

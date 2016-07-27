@@ -82,27 +82,25 @@
 </code></pre></li>
   <li><p>最新版 <a href="https://github.com/job-streamer/job-streamer-control-bus/releases">control-bus</a>を取得:</p></li>
   <li><p>contorl busを起動:</p><p>% bin/control_bus</p></li>
-</ol>
-<blockquote><p>デフォルトポート45102で起動します。</p>
-</blockquote><h2><a href="#management-console" name="management-console">Management console</a></h2>
+  <li><p>環境設定<br/>| 環境変数名 | 　　説明 　　 | デフォルト値 |<br/>|:&mdash;&mdash;&mdash;&mdash;&mdash;-:|:&mdash;&mdash;&mdash;&ndash;:|:&mdash;&mdash;&mdash;&mdash;:|<br/>| CONTROL_BUS_PORT |ポート番号 | 45102 |<br/>|DISCOVERY_PORT|実行エージェントからの接続要求をLISTENするためのポート|45100|<br/>|DISCOVERY_ADDRESS|実行エージェントからの接続要求をLISTENするためのマルチキャストIP|(OPTION)|<br/>|NOTIFICATOR_URL|通知サーバのURL|<a href="http://localhost:2121|">http://localhost:2121|</a></p></li>
+</ol><h2><a href="#management-console" name="management-console">Management console</a></h2>
 <ol>
   <li><p>最新版 <a href="https://github.com/job-streamer/job-streamer-console/releases">management console</a><br/>を取得:</p></li>
   <li><p>consoleを起動:</p><p>% bin/console</p></li>
-</ol>
-<blockquote><p>デフォルトポート8080で起動します。</p>
-</blockquote><h2><a href="#agent" name="agent">Agent</a></h2>
+  <li><p>環境設定<br/>| 環境変数名 | 　　説明 　　 | デフォルト値 |<br/>|:&mdash;&mdash;&mdash;&mdash;&mdash;-:|:&mdash;&mdash;&mdash;&ndash;:|:&mdash;&mdash;&mdash;&mdash;:|<br/>| CONSOLE_PORT |ポート番号 | 3000 |<br/>| CONTROL_BUS_URL |Control-busのurl | <a href="http://localhost:45102">http://localhost:45102</a> |</p></li>
+</ol><h2><a href="#agent" name="agent">Agent</a></h2>
 <ol>
   <li><p>最新版<a href="https://github.com/job-streamer/job-streamer-agent/releases">agent</a>を取得:</p></li>
   <li><p>agentを起動:</p><p>% bin/agent</p></li>
-</ol>
-<blockquote><p>デフォルトポート4510で起動します。</p>
-</blockquote><h2><a href="#notificator" name="notificator">Notificator</a></h2>
+  <li><p>環境設定<br/>| 環境変数名 | 　　説明 　　 | デフォルト値 |<br/>|:&mdash;&mdash;&mdash;&mdash;&mdash;-:|:&mdash;&mdash;&mdash;&ndash;:|:&mdash;&mdash;&mdash;&mdash;:|<br/>| AGENT_PORT |ポート番号 | 4510 |<br/>| INSTANCE_NAME | インスタンス名 | (OPTION) |<br/>|DISCOVERY_PORT|接続要求をブロードキャスト(またはマルチキャスト)するためのポート|45100|<br/>|DISCOVERY_ADDRESS|接続要求をマルチキャストするためのIPアドレス。同一ネットワーク内に複数のコントロールバスを起動する場合はこれを指定して下さい。|(OPTION)|</p></li>
+</ol><h2><a href="#notificator" name="notificator">Notificator</a></h2>
 <ol>
   <li><p>最新版<a href="https://github.com/job-streamer/job-streamer-notificator/releases">notificator</a>を取得:</p></li>
-  <li><p>notificatorを起動:</p><p>% bin/notificator {ednファイルのパス}</p></li>
-</ol>
-<blockquote><p>デフォルトポート2121で起動します。<br/>ednファイルについては<a href="./notificator-config.html">notificator config</a>を参照してください。</p>
-</blockquote>
+  <li><p>notificatorを起動:</p><p>% bin/notificator {ednファイルのパス} (hbsファイルのあるディレクトリのパス)</p></li>
+  <li><p>環境設定<br/>| 環境変数名 | 　　説明 　　 | デフォルト値 |<br/>|:&mdash;&mdash;&mdash;&mdash;&mdash;-:|:&mdash;&mdash;&mdash;&ndash;:|:&mdash;&mdash;&mdash;&mdash;:|<br/>| NOTIFICATOR_PORT |ポート番号 | 2121 |<br/>| NOTIFICATOR_RULES|ルール(edn)ファイルのパス| （第一引数） |<br/>| NOTIFICATOR_TEMPLATES_PLEFIX|テンプレート(hbs)のあるディレクトリのパス|templates|</p>
+  <blockquote><p>edn/hbsファイルについては<a href="./notificator-config.html">notificator config</a>を参照してください。</p>
+  </blockquote></li>
+</ol><h2><a href="#バッチ部品のデプロイ" name="バッチ部品のデプロイ">バッチ部品のデプロイ</a></h2><p><a href="./deploy-batch-components.html">バッチ部品のデプロイ</a>を参照してください。</p>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">

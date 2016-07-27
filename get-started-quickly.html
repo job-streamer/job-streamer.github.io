@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <meta charset=utf-8"/>
+      <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
-      <meta name="description" content="JobStreamer : JobStreamer site.">
+      <meta name="description" content="JobStreamer : JobStreamer site."/>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.css" type="text/css"/>
       <link rel="stylesheet" href="css/basic.css" type="text/css"/>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
@@ -73,7 +73,7 @@
             </a>
          </div>
          <div id="main_content_wrap" class="main grid content full height">
-      <h1><a href="#quickly" name="quickly">Quickly</a></h1><h2><a href="#control-bus" name="control-bus">Control bus</a></h2>
+      <h1><a href="#getting-started" name="getting-started">Getting Started</a></h1><h2><a href="#control-bus" name="control-bus">Control bus</a></h2>
 <ol>
   <li><p>Get datomic-free:</p>
   <pre><code>% unzip datomic-free-0.9.5130.zip
@@ -84,27 +84,25 @@
   <li><p>Run the contorl bus:</p>
   <pre><code>% bin/control_bus
 </code></pre></li>
-</ol>
-<blockquote><p>default port 45102</p>
-</blockquote><h2><a href="#management-console" name="management-console">Management console</a></h2>
+  <li><p>Optional embiron setting<br/>|Environment variable|Description|Default |<br/>|:&mdash;&mdash;&mdash;&mdash;&mdash;-:|:&mdash;&mdash;&mdash;&ndash;:|:&mdash;&mdash;&mdash;&mdash;:|<br/>| CONTROL_BUS_PORT |Port Number | 45102 |<br/>|DISCOVERY_PORT|listen port from Agent|45100|<br/>|DISCOVERY_ADDRESS|Multicast IP to listen from Agent|(OPTION)|<br/>|NOTIFICATOR_URL|Notificator&rsquo;s url|<a href="http://localhost:2121|">http://localhost:2121|</a></p></li>
+</ol><h2><a href="#management-console" name="management-console">Management console</a></h2>
 <ol>
   <li><p>Download the latest version <a href="https://github.com/job-streamer/job-streamer-console/releases">management console</a>:</p></li>
   <li><p>Run the management console:</p><p>% bin/console</p></li>
-</ol>
-<blockquote><p>default port 8080</p>
-</blockquote><h2><a href="#agent" name="agent">Agent</a></h2>
+  <li><p>Optional embiron setting<br/>|Environment variable|Description|Default |<br/>|:&mdash;&mdash;&mdash;&mdash;&mdash;-:|:&mdash;&mdash;&mdash;&ndash;:|:&mdash;&mdash;&mdash;&mdash;:|<br/>| CONSOLE_PORT |Port Number | 3000 |<br/>| CONTROL_BUS_URL |Control-bus&rsquo;s url | <a href="http://localhost:45102">http://localhost:45102</a> |</p></li>
+</ol><h2><a href="#agent" name="agent">Agent</a></h2>
 <ol>
   <li><p>Download the latest version <a href="https://github.com/job-streamer/job-streamer-agent/releases">agent</a>:</p></li>
   <li><p>Run the agent:</p><p>% bin/agent</p></li>
-</ol>
-<blockquote><p>default port 4510</p>
-</blockquote><h2><a href="#notificator" name="notificator">Notificator</a></h2>
+  <li><p>Optional embiron setting<br/>|Environment variable|Description|Default |<br/>|:&mdash;&mdash;&mdash;&mdash;&mdash;-:|:&mdash;&mdash;&mdash;&ndash;:|:&mdash;&mdash;&mdash;&mdash;:|<br/>| AGENT_PORT |Port Number | 4510 |<br/>| INSTANCE_NAME |instance name| (OPTION) |<br/>|DISCOVERY_PORT|Port for Multicast|45100|<br/>|DISCOVERY_ADDRESS|IP address for Multicast<br>If you run more than 2 control-bus,youmust set this. |(OPTION)|</p></li>
+</ol><h2><a href="#notificator" name="notificator">Notificator</a></h2>
 <ol>
   <li><p>Download the latest version <a href="https://github.com/job-streamer/job-streamer-notificator/releases">notificator</a>:</p></li>
-  <li><p>Run the notificator:</p><p>% bin/notificator {edn file path}</p></li>
-</ol>
-<blockquote><p>default port 2121<br/>please refer <a href="./notificator-config.html">notificator config</a> about edn file.</p>
-</blockquote>
+  <li><p>Run the notificator:</p><p>% bin/notificator {edn file path} (hbs dir path)</p></li>
+  <li><p>Optional embiron setting<br/>|Environment variable|Description|Default |<br/>|:&mdash;&mdash;&mdash;&mdash;&mdash;-:|:&mdash;&mdash;&mdash;&ndash;:|:&mdash;&mdash;&mdash;&mdash;:|<br/>| NOTIFICATOR_PORT |Port Number | 2121 |<br/>| NOTIFICATOR_RULES|edn file path| [first arg] |<br/>| NOTIFICATOR_TEMPLATES_PLEFIX|template dir path|&ldquo;templates&rdquo;|</p>
+  <blockquote><p>please refer <a href="./notificator-config.html">notificator config</a> about edn and hbs file.</p>
+  </blockquote></li>
+</ol><h2><a href="#batch-component-deployment" name="batch-component-deployment">batch component deployment</a></h2><p>please refer to <a href="./deploy-batch-components.html">deploy batch components</a>.</p>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">

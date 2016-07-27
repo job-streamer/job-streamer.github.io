@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <meta charset=utf-8"/>
+      <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
-      <meta name="description" content="JobStreamer : JobStreamer site.">
+      <meta name="description" content="JobStreamer : JobStreamer site."/>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.css" type="text/css"/>
       <link rel="stylesheet" href="css/basic.css" type="text/css"/>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
@@ -77,7 +77,14 @@
 <pre><code>{ :do-job {:uri &quot;http://localhost:45102/default/job/job2/executions?Exchange.CONTENT_TYPE=application/edn&quot;
            :message &quot;{}&quot;}
 }
-</code></pre><p>This means that if &ldquo;:do-job&rdquo; key was sent to notificator, POST to &ldquo;http://localhost:45102/default/job/success-mail/executions?Exchange.CONTENT_TYPE=application/edn&rdquo;.<br/>So that &ldquo;success-mail&rdquo; job run.</p><p>*It needs that Control-bus and Notificator are in same server.</p>
+</code></pre><p>This means that if &ldquo;:do-job&rdquo; key was sent to notificator, POST to &ldquo;http://localhost:45102/default/job/success-mail/executions?Exchange.CONTENT_TYPE=application/edn&rdquo;.<br/>So that &ldquo;success-mail&rdquo; job run.</p><p>edn format must be this</p>
+<pre><code>｛:key1 {:uri     &quot;xxx&quot;
+         :to      &quot;yyy&quot;
+         :message &quot;zzz&quot;}
+  :key2{...}
+  ...
+  :keyx{...}}
+</code></pre>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
