@@ -75,12 +75,12 @@
          <div id="main_content_wrap" class="main grid content full height">
       <h1><a href="#getting-started" name="getting-started">Getting Started</a></h1><h2><a href="#control-bus" name="control-bus">Control bus</a></h2>
 <ol>
-  <li><p>Get datomic-free:</p>
+  <li><p>Get <a href="https://my.datomic.com/downloads/free">datomic-free</a>:</p>
   <pre><code>% unzip datomic-free-0.9.5130.zip
 % cd datomic-free-0.9.5130
 % bin/transactor config/samples/free-transactor-template.properties
 </code></pre></li>
-  <li><p>Download the latest version <a href="https://github.com/job-streamer/job-streamer-control-bus/releases">control bus</a>:</p></li>
+  <li><p>Download the latest version <a href="https://github.com/job-streamer/job-streamer-control-bus/releases/latest">control bus</a>:</p></li>
   <li><p>Run the contorl bus:</p>
   <pre><code>% bin/control_bus
 </code></pre></li>
@@ -118,7 +118,7 @@
   </tbody>
 </table><h2><a href="#management-console" name="management-console">Management console</a></h2>
 <ol>
-  <li><p>Download the latest version <a href="https://github.com/job-streamer/job-streamer-console/releases">management console</a>:</p></li>
+  <li><p>Download the latest version <a href="https://github.com/job-streamer/job-streamer-console/releases/latest">management console</a>:</p></li>
   <li><p>Run the management console:</p><p>% bin/console</p></li>
   <li><p>Optional embiron setting</p></li>
 </ol>
@@ -144,7 +144,7 @@
   </tbody>
 </table><h2><a href="#agent" name="agent">Agent</a></h2>
 <ol>
-  <li><p>Download the latest version <a href="https://github.com/job-streamer/job-streamer-agent/releases">agent</a>:</p></li>
+  <li><p>Download the latest version <a href="https://github.com/job-streamer/job-streamer-agent/releases/latest">agent</a>:</p></li>
   <li><p>Run the agent:</p><p>% bin/agent</p></li>
   <li><p>Optional embiron setting</p></li>
 </ol>
@@ -164,7 +164,7 @@
     </tr>
     <tr>
       <td align="center">INSTANCE_NAME </td>
-      <td align="center">instance name</td>
+      <td align="center">instance name<br>If you Don&rsquo;t want to change instance id every time Agent wakes up,you must set this.</td>
       <td align="center">(OPTION) </td>
     </tr>
     <tr>
@@ -174,13 +174,13 @@
     </tr>
     <tr>
       <td align="center">DISCOVERY_ADDRESS</td>
-      <td align="center">IP address for Multicast<br>If you run more than 2 control-bus,youmust set this. </td>
+      <td align="center">IP address for Multicast<br>If you run more than 2 control-bus,you must set this. </td>
       <td align="center">(OPTION)</td>
     </tr>
   </tbody>
 </table><h2><a href="#notificator" name="notificator">Notificator</a></h2>
 <ol>
-  <li><p>Download the latest version <a href="https://github.com/job-streamer/job-streamer-notificator/releases">notificator</a>:</p></li>
+  <li><p>Download the latest version <a href="https://github.com/job-streamer/job-streamer-notificator/releases/latest">notificator</a>:</p></li>
   <li><p>Run the notificator:</p><p>% bin/notificator {edn file path} (hbs dir path)</p></li>
   <li><p>Optional embiron setting</p></li>
 </ol>
