@@ -73,17 +73,70 @@
             </a>
          </div>
          <div id="main_content_wrap" class="main grid content full height">
-      <h1><a href="#通知サーバの設定" name="通知サーバの設定">通知サーバの設定</a></h1><h2><a href="#ednファイル" name="ednファイル">ednファイル</a></h2><p>ednファイルを用いてルールの設定を行います。<br/>ednファイルにはコントロールバスからあるキーが送られた時に動作を定義します。<br/>ednファイルはNotificator起動時の第一引数として設定します。</p><p>例 :</p>
-<pre><code>{ :do-job {:uri &quot;http://localhost:45102/default/job/success-mail/executions?Exchange.CONTENT_TYPE=application/edn&quot;}
+      <h1><a href="#通知サーバの設定" name="通知サーバの設定">通知サーバの設定</a></h1><h2><a href="#ednファイル" name="ednファイル">ednファイル</a></h2><p>ednファイルを用いてルールの設定を行います。<br/>ednファイルにはコントロールバスからあるキーが送られた時に動作を定義します。<br/>ednファイルはNotificator起動時の第一引数として設定します。</p><p>例 :成功メールのjobを作成する場合</p>
+<pre><code>{
+  :send-success-email {:uri &quot;http://localhost:45102/default/job/success-mail/executions?Exchange.CONTENT_TYPE=application/edn&quot;}
 }
-</code></pre><p>この設定では&ldquo;:do-job&rdquo;のキーが送られた時&ldquo;http://localhost:45102/default/job/success-mail/executions?Exchange.CONTENT_TYPE=application/edn&rdquo;にPOSTリクエストを送るので、&ldquo;success-mail&rdquo;が実行されます。</p><p>ednファイルは以下の形で記述してください。</p>
-<pre><code>｛:key1 {:uri     &quot;xxx&quot;
+</code></pre><p>この設定では:send-success-emailのキーが送られた時&ldquo;http://localhost:45102/default/job/success-mail/executions?Exchange.CONTENT_TYPE=application/edn&rdquo;にPOSTリクエストを送るので、&ldquo;success-mail&rdquo;というjobが実行されます。</p><p>例：成功したときsmtpリクエストを送りメール送信する場合</p>
+<pre><code>{
+  :send-success-email {
+    :uri &quot;smtp://[smtp-server-ip-address]:25?from=example-from@example.com&amp;to=example-to@example.com&amp;subject=success&quot;
+    :message &quot;success&quot;
+  }
+}
+</code></pre><p>この設定では:send-success-emailのキーが送られた時smtpサーバーに直接メール送信のリクエストが送られます。</p><h3><a href="#ednファイルのフォーマット" name="ednファイルのフォーマット">ednファイルのフォーマット</a></h3><p>ednファイルは以下の形で記述してください。</p>
+<pre><code>｛
+  :key1 {:uri     &quot;xxx&quot;
          :to      &quot;yyy&quot;
          :message &quot;zzz&quot;}
   :key2{...}
   ...
   :keyx{...}}
-</code></pre><p>:uri - Apache CamelのRouteBuilder#fromに相当する。キーが送られてきたときの動作を記述する。<br/> 設定できる動作はhttp://camel.apache.org/components.htmlを参照<br/>:to - Apache CamelのRouteBuilder#toに相当する。<br/>:message - Apache Camelのsetbodyに相当する。</p>
+</code></pre><p>:uri - Apache CamelのRouteBuilder#fromに相当する。キーが送られてきたときの動作を記述する。<br/> 設定できる動作はhttp://camel.apache.org/components.htmlを参照<br/>:to - Apache CamelのRouteBuilder#toに相当する。<br/>:message - Apache Camelのsetbodyに相当する。</p><h2><a href="#handlebars-テンプレート機能-を使う" name="handlebars-テンプレート機能-を使う">Handlebars（テンプレート機能）を使う</a></h2><p>Handlebarsを使うことでメッセージ等のテンプレートを作成することができます。<br/>例えば、以下のようなhbsファイル(success.hbs)を作成します。</p>
+<pre><code>Hello, your batch is {{exit-status}}!
+end time is {{end-time}}
+</code></pre><p>hbsファイル内では以下のキーが指定できます。</p>
+<table>
+  <thead>
+    <tr>
+      <th>キー名</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>job-name</td>
+      <td>job名</td>
+    </tr>
+    <tr>
+      <td>start-time</td>
+      <td>開始時刻</td>
+    </tr>
+    <tr>
+      <td>end-time</td>
+      <td>終了時刻</td>
+    </tr>
+    <tr>
+      <td>batch-status</td>
+      <td>batch status</td>
+    </tr>
+    <tr>
+      <td>exit-status</td>
+      <td>exit status</td>
+    </tr>
+  </tbody>
+</table><p>ednファイルでは以下のように&ldquo;message-template&rdquo; というキーでhbsファイルのファイル名を指定します。</p>
+<pre><code>{
+  :send-success-email {
+    :uri &quot;smtp://[smtp-server-ip-address]:25?from=example-from@example.com&amp;to=example-to@example.com&amp;subject=success&quot;
+    :message-template &quot;success&quot;
+  }
+}
+</code></pre><p>:send-success-emailのキーが送られると以下のような本文のメールが送信されます。</p>
+<pre><code>Hello, your batch is COMPLETED!end time is Sat Sep 17 01:09:29 JST 2016
+</code></pre><h2><a href="#notificatorの起動" name="notificatorの起動">notificatorの起動</a></h2><p>以下のように起動します。</p>
+<pre><code>bin/notificator [edn file] [hbs file dir]
+</code></pre><p>hbsファイルを複数用いる場合は同一ディレクトリないにおいてください。<br/>hbsファイルを用いない場合第二引数は省略可能です。</p>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
