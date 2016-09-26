@@ -92,7 +92,7 @@
   :key2{...}
   ...
   :keyx{...}}
-</code></pre><p>:uri - Apache CamelのRouteBuilder#fromに相当する。キーが送られてきたときの動作を記述する。<br/> 設定できる動作はhttp://camel.apache.org/components.htmlを参照<br/>:to - Apache CamelのRouteBuilder#toに相当する。<br/>:message - Apache Camelのsetbodyに相当する。</p><h2><a href="#handlebars-テンプレート機能-を使う" name="handlebars-テンプレート機能-を使う">Handlebars（テンプレート機能）を使う</a></h2><p>Handlebarsを使うことでメッセージ等のテンプレートを作成することができます。<br/>例えば、以下のようなhbsファイル(success.hbs)を作成します。</p>
+</code></pre><p>:uri - Apache CamelのRouteBuilder#fromに相当する。キーが送られてきたときの動作を記述する。<br/> 設定できる動作は<a href="http://camel.apache.org/components.html">http://camel.apache.org/components.html</a>を参照<br/>:to - Apache CamelのRouteBuilder#toに相当する。<br/>:message - Apache Camelのsetbodyに相当する。</p><h2><a href="#handlebars-テンプレート機能-を使う" name="handlebars-テンプレート機能-を使う">Handlebars（テンプレート機能）を使う</a></h2><p>Handlebarsを使うことでメッセージ等のテンプレートを作成することができます。<br/>例えば、以下のようなhbsファイル(success.hbs)を作成します。</p>
 <pre><code>Hello, your batch is {{exit-status}}!
 end time is {{end-time}}
 </code></pre><p>hbsファイル内では以下のキーが指定できます。</p>
