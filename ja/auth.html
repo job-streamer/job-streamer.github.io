@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+   <head>
+      <meta charset="UTF-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <meta name="description" content="JobStreamer : JobStreamer site."/>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.css" type="text/css"/>
+      <link rel="stylesheet" href="css/basic.css" type="text/css"/>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
+   </head>
+   <body>
+<div class="ui sidebar inverted vertical menu">
+   <a class="item" href="get-started-quickly.html">
+   Getting Started
+   </a>
+   <div class="item">
+      <div class="header">ガイド</div>
+      <div class="menu">
+         <a class="item" href="deploy-batch-components.html">
+         バッチコンポーネントのデプロイ
+         </a>
+         <a class="item" href="create-a-job.html">
+         ジョブの作成
+         </a>
+         <a class="item" href="execute-the-job.html">
+         ジョブの手動実行
+         </a>
+         <a class="item" href="schedule-job.html">
+         ジョブのスケジュール実行
+         </a>
+         <a class="item" href="job-config.html">
+         ジョブの設定
+         </a>
+         <a class="item" href="notificator-config.html">
+         Notificatorの設定
+         </a>
+      </div>
+   </div>
+   <div class="item">
+      <div class="header">コンポーネント</div>
+      <div class="menu">
+         <a class="item" href="control-bus.html">
+         Control bus
+         </a>
+         <a class="item" href="agent.html">
+         Agent
+         </a>
+         <a class="item" href="console.html">
+         Management console
+         </a>
+         <a class="item" href="notificator.html">
+         Notificator
+         </a>
+      </div>
+   </div>
+   <div class="item">
+      <div class=" header">開発者向け情報</div>
+      <div class="menu">
+         <a class="item" href="get-started-developer.html">
+         REPLコマンド集
+         </a>
+         <a class="item" href="developer-guide.html">
+         ディベロッパーガイド
+         </a>
+      </div>
+   </div>
+</div>      <div class="pusher">
+         <div class="ui fixed inverted teal menu">
+            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
+            <a class="view-ui item" onClick="viewSidebar()">
+              Menu
+            </a>
+         </div>
+         <div id="main_content_wrap" class="main grid content full height">
+      <h1><a href="#認証認可" name="認証認可">認証認可</a></h1><h2><a href="#認証" name="認証">認証</a></h2><p>全てのAPIを利用するために認証（ログイン）情報が必要となります。<br/>ログインしていない状態で console のいずれかの URL を開くとログイン画面に遷移します。<br/><a href="http://localhost:3000/login">http://localhost:3000/login</a></p><p>ログイン画面からデフォルトの下記ユーザのID/Passwordを使ってログインしてください。</p><p>ID : admin<br/>Password : password123</p><p>ログイン後はこれまでと同様に console での操作を行えるようになります。<br/>ログアウトする場合はヘッダー右のメニューから「Logout」を選択して下さい。</p><h2><a href="#認可" name="認可">認可</a></h2><p>ログインユーザにはジョブに対して三つの権限が存在します。</p>
+<ul>
+  <li>admin : 全ての操作が可能</li>
+  <li>operator : ジョブの実行は可能だがジョブの編集は不可</li>
+  <li>watcher : ジョブの実行も編集も不可</li>
+</ul><p>ジョブの実行、編集にはそれぞれ下記の操作が含まれます。</p>
+<ul>
+  <li>ジョブの編集
+  <ul>
+    <li>ジョブ定義の変更</li>
+    <li>ジョブ設定の変更</li>
+    <li>ジョブの削除</li>
+  </ul></li>
+  <li>ジョブの実行
+  <ul>
+    <li>ジョブの実行・停止・再開・破棄</li>
+    <li>ジョブスケジュールの変更</li>
+  </ul></li>
+</ul><p>console 上で権限のない操作を行った場合にはエラーメッセージが表示されて実行されません。<br/>デフォルトで存在する &ldquo;admin&rdquo; というユーザには &ldquo;admin&rdquo; 権限が付与されています。<br/>それ以外の権限を持つユーザを作成する場合は以下の「ユーザ管理」を参照してください。</p><h2><a href="#ユーザ管理" name="ユーザ管理">ユーザ管理</a></h2><p>現状、ログインユーザ作成・削除機能をAPIのみで提供しております。<br/>下記のサンプルを基に実行してください。</p>
+<pre><code># &quot;operator&quot; 権限を持った、&quot;test-user&quot; というログインユーザを &quot;password123&quot; というパスワードで作成
+curl -XPOST localhost:45102/user -H &#39;Content-Type: application/edn&#39; -d &#39;{:user/id &quot;test-user&quot; :user/password &quot;password123&quot; :roll &quot;operator&quot;}&#39;
+# &quot;test-user&quot; という ID のログインユーザを削除
+curl -XDELETE localhost:45102/user/test-user
+</code></pre><h2><a href="#api実行時の認証" name="api実行時の認証">API実行時の認証</a></h2><p>control-bus の API を利用するためにも認証処理が必要となります。<br/>まず下記の通りログイン API を実行して認証トークンを取得します。</p>
+<pre><code># username : ログインユーザID
+# password : ログインユーザパスワード
+# appname : &quot;default&quot;を指定
+# next : ログイン成功時の表示画面のURLを指定
+# back : ログイン失敗時の表示画面のURLを指定
+curl -XPOST &quot;http://localhost:45102/login?username=admin&amp;password=password123&amp;appname=default&amp;next=http://localhost:3000&amp;back=http://localhost:3000/login&quot;
+{:token &quot;5f080f9c-3023-4a6a-89fb-de983f768c4d&quot;}
+</code></pre><p>この場合、5f080f9c-3023-4a6a-89fb-de983f768c4dが認証トークンです。<br/>次にこのトークンを使って、&ldquo;Authorization: Token 5f080f9c-3023-4a6a-89fb-de983f768c4d&rdquo;ヘッダを付与してリクエストすると、認証ユーザが権限を持つ任意の API を実行することが出来ます。</p>
+<pre><code>curl -XGET -H &#39;Content-Type: application/edn&#39; -H &#39;Authorization: Token 5f080f9c-3023-4a6a-89fb-de983f768c4d&#39; http://localhost:45102/default/jobs
+{:results [...]}
+</code></pre>
+         </div>
+         <div class="ui inverted teal footer vertical segment">
+            <div class="container">
+               <div class="ui stackable divided relaxed grid">
+                  <div class="sixteen wide column">
+                     <p>Copyright @ 2015-2016 kawasima &amp; contributors.</p>
+                     <p>Released under the EPL license.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/prism.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-java.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-bash.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.js"> </script>
+      <script type="text/javascript">
+         function viewSidebar() {
+           $('.sidebar')
+             .sidebar('toggle');
+         }
+      </script>
+   </body>
+</html>
