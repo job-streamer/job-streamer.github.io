@@ -107,9 +107,9 @@ curl -XPOST &quot;http://localhost:45102/login?username=admin&amp;password=passw
 </code></pre><p>この場合、5f080f9c-3023-4a6a-89fb-de983f768c4dが認証トークンです。<br/>次にこのトークンを使って、&ldquo;Authorization: Token 5f080f9c-3023-4a6a-89fb-de983f768c4d&rdquo;ヘッダを付与してリクエストすると、認証ユーザが権限を持つ任意の API を実行することが出来ます。</p>
 <pre><code>curl -XGET -H &#39;Content-Type: application/edn&#39; -H &#39;Authorization: Token 5f080f9c-3023-4a6a-89fb-de983f768c4d&#39; http://localhost:45102/default/jobs
 {:results [...]}
-</code></pre><h2><a href="#環境変数" name="環境変数">環境変数</a></h2><p>control-busでAPIリクエスト送信元の認証を行う必要上、環境変数を一つ追加しております。<br/>control-busとconsoleが別サーバで起動している場合、control-bus側の環境変数にACCESS_CONTROL_ALLOW_ORIGINという環境変数を追加してください。</p>
-<pre><code>export ACCESS_CONTROL_ALLOW_ORIGIN=http://[CONSOLE_ADDRESS]:[CONSOLE_PORT]
-</code></pre><p>同一サーバで起動している場合は不要です。</p>
+</code></pre><h2><a href="#環境変数" name="環境変数">環境変数</a></h2><p>control-busでAPIリクエスト送信元の認証を行う必要上、環境変数を一つ追加しております。<br/>control-busの環境変数にACCESS_CONTROL_ALLOW_ORIGINという環境変数を追加してください。</p>
+<pre><code>export ACCESS_CONTROL_ALLOW_ORIGIN=http://[CONSOLE_IP_ADDRESS]:[CONSOLE_PORT]
+</code></pre>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
