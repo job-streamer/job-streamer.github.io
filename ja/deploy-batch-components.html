@@ -88,7 +88,14 @@
 </code></pre></li>
 </ol>
 <blockquote><p>デプロイを行うにはデプロイ資源とcontrol-busが同じサーバーに存在する必要があります。</p>
-</blockquote>
+</blockquote><h2><a href="#consoleからデプロイを行う" name="consoleからデプロイを行う">Consoleからデプロイを行う</a></h2>
+<ol>
+  <li><p>with-dependencies.jarを作成する</p>
+  <pre><code>% mvn compile assembly:single
+</code></pre></li>
+  <li><p>右メニューから「Upload Batch Components」に遷移</p></li>
+  <li>ドラッグアンドドロップで1.で作成したjarをアップロードする</li>
+</ol>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
