@@ -35,6 +35,10 @@
          <a class="item" href="notificator-config.html">
          Notificatorの設定
          </a>
+         </a>
+         <a class="item" href="auth.html">
+         認証認可
+         </a>
       </div>
    </div>
    <div class="item">
@@ -73,7 +77,16 @@
             </a>
          </div>
          <div id="main_content_wrap" class="main grid content full height">
-      <h1><a href="#ジョブのスケジューリング" name="ジョブのスケジューリング">ジョブのスケジューリング</a></h1><h2><a href="#スケジュールで自動実行する" name="スケジュールで自動実行する">スケジュールで自動実行する</a></h2><p><a href="http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html">cron expressions</a>形式でスケジュールを登録することで、ジョブを自動実行できます。</p><p><img src="img/schedule_quartz.png" alt="image" /></p><h2><a href="#カレンダーの登録方法" name="カレンダーの登録方法">カレンダーの登録方法</a></h2><p>1.トップページから右側メニューのプルダウン選択によりカレンダーに移動</p><p><img src="img/goto-calendar.png" alt="image" /></p><p>2.newボタン押下</p><p><img src="img/goto-calendar-new.png" alt="image" /></p><p>3.カレンダーを作成</p><p><img src="img/create-calendar.png" alt="image" /></p><h2><a href="#カレンダーを設定して休日はジョブの実行を抑止する" name="カレンダーを設定して休日はジョブの実行を抑止する">カレンダーを設定して休日はジョブの実行を抑止する</a></h2><p>cron expressionsとともにカレンダーも設定することでカレンダーに休日として登録されている日はジョブの実行を抑止することができます。</p>
+      <h1><a href="#ジョブのスケジューリング" name="ジョブのスケジューリング">ジョブのスケジューリング</a></h1><h2><a href="#スケジュールで自動実行する" name="スケジュールで自動実行する">スケジュールで自動実行する</a></h2><p><a href="http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html">cron expressions</a>形式でスケジュールを登録することで、ジョブを自動実行できます。</p><p><img src="img/schedule_quartz.png" alt="image" /></p><h3><a href="#スケジュールの簡易登録" name="スケジュールの簡易登録">スケジュールの簡易登録</a></h3>
+<ol>
+  <li>スケジュールのパターン（日次・週次・月次）を選択します。</li>
+</ol><p><img src="img/select-pattern-of-schedule.png" alt="image" /></p>
+<ol>
+  <li>発火時間を入力します。</li>
+</ol><p><img src="img/input-fire-time.png" alt="image" /></p>
+<ol>
+  <li>cron expressionsが出力されます。</li>
+</ol><p><img src="img/output-cron.png" alt="image" /></p><h2><a href="#カレンダーの登録方法" name="カレンダーの登録方法">カレンダーの登録方法</a></h2><p>1.トップページから右側メニューのプルダウン選択によりカレンダーに移動</p><p><img src="img/goto-calendar.png" alt="image" /></p><p>2.newボタン押下</p><p><img src="img/goto-calendar-new.png" alt="image" /></p><p>3.カレンダーを作成</p><p><img src="img/create-calendar.png" alt="image" /></p><h2><a href="#カレンダーを設定して休日はジョブの実行を抑止する" name="カレンダーを設定して休日はジョブの実行を抑止する">カレンダーを設定して休日はジョブの実行を抑止する</a></h2><p>cron expressionsとともにカレンダーも設定することでカレンダーに休日として登録されている日はジョブの実行を抑止することができます。</p>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
