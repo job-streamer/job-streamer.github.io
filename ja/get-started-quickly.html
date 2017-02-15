@@ -10,7 +10,13 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
    </head>
    <body>
-<div class="ui sidebar inverted vertical menu">
+         <div class="ui fixed inverted teal menu">
+            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
+         </div>
+         <div/>
+         <div id="main_content_wrap" class="main ui grid content">
+         <div class="four wide column">
+<div class="ui vertical fluid tabular menu">
    <a class="item" href="get-started-quickly.html">
    Getting Started
    </a>
@@ -69,14 +75,8 @@
          </a>
       </div>
    </div>
-</div>      <div class="pusher">
-         <div class="ui fixed inverted teal menu">
-            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
-            <a class="view-ui item" onClick="viewSidebar()">
-              Menu
-            </a>
-         </div>
-         <div id="main_content_wrap" class="main grid content full height">
+</div>         </div>
+         <div class="twelve wide stretched column">
       <h1><a href="#クイックスタート" name="クイックスタート">クイックスタート</a></h1><h2><a href="#control-bus" name="control-bus">Control bus</a></h2>
 <ol>
   <li><p><a href="https://my.datomic.com/downloads/free">datomic-free</a>を取得:</p>
@@ -230,6 +230,7 @@
 <blockquote><p>edn/hbsファイルについては<a href="./notificator-config.html">notificator config</a>を参照してください。</p>
 </blockquote><h2><a href="#バッチ部品のデプロイ" name="バッチ部品のデプロイ">バッチ部品のデプロイ</a></h2><p><a href="./deploy-batch-components.html">バッチ部品のデプロイ</a>を参照してください。</p><h2><a href="#ログの取得" name="ログの取得">ログの取得</a></h2><p>環境変数CONTROL_BUS_RESOURCE_PATH, AGENT_RESOURCE_PATHを設定し、そこに<a href="https://logback.qos.ch/manual/configuration_ja.html">logback.xml</a>を配置することでlogの定義を独自定義することが可能です。</p>
          </div>
+         </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
                <div class="ui stackable divided relaxed grid">
@@ -240,18 +241,11 @@
                </div>
             </div>
          </div>
-      </div>
       <script src="https://cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/prism.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-java.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-bash.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
       <script src="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.js"> </script>
-      <script type="text/javascript">
-         function viewSidebar() {
-           $('.sidebar')
-             .sidebar('toggle');
-         }
-      </script>
    </body>
 </html>

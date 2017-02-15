@@ -10,7 +10,13 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
    </head>
    <body>
-<div class="ui sidebar inverted vertical menu">
+         <div class="ui fixed inverted teal menu">
+            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
+         </div>
+         <div/>
+         <div id="main_content_wrap" class="main ui grid content">
+         <div class="four wide column">
+<div class="ui vertical fluid tabular menu">
    <a class="item" href="get-started-quickly.html">
    Getting Started
    </a>
@@ -69,15 +75,10 @@
          </a>
       </div>
    </div>
-</div>      <div class="pusher">
-         <div class="ui fixed inverted teal menu">
-            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
-            <a class="view-ui item" onClick="viewSidebar()">
-              Menu
-            </a>
-         </div>
-         <div id="main_content_wrap" class="main grid content full height">
+</div>         </div>
+         <div class="twelve wide stretched column">
       <h1><a href="#notificatorとは-" name="notificatorとは-">notificatorとは？</a></h1><p>notificatorはcontrol-busから命令を受け取り、任意のAPIを呼び出すサーバです。<a href="http://camel.apache.org/">Apatche Camel</a>のラッパークラスとして実装されており具体的な仕様はApatche Camelに基づきます。</p><h1><a href="#notificatorでできること" name="notificatorでできること">notificatorでできること</a></h1><p>notificatorを用いると「あるジョブが終わったときメールを送信したい」などのニーズに応えることが可能です。<br/>詳細は<a href="./notificator-config.html">notificatorの設定</a>を参照してください。<br/><a href="http://camel.apache.org/">Apatche Camel</a>を参照すると更に多くのことができます。</p><h1><a href="#github" name="github">GitHub</a></h1><p><a href="https://github.com/job-streamer/job-streamer-notificator">https://github.com/job-streamer/job-streamer-notificator</a></p>
+         </div>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
@@ -89,18 +90,11 @@
                </div>
             </div>
          </div>
-      </div>
       <script src="https://cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/prism.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-java.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-bash.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
       <script src="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.js"> </script>
-      <script type="text/javascript">
-         function viewSidebar() {
-           $('.sidebar')
-             .sidebar('toggle');
-         }
-      </script>
    </body>
 </html>

@@ -10,7 +10,13 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
    </head>
    <body>
-<div class="ui sidebar inverted vertical menu">
+         <div class="ui fixed inverted teal menu">
+            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
+         </div>
+         <div/>
+         <div id="main_content_wrap" class="main ui grid content">
+         <div class="four wide column">
+<div class="ui vertical fluid tabular menu">
    <a class="item" href="get-started-quickly.html">
    Getting Started
    </a>
@@ -69,14 +75,8 @@
          </a>
       </div>
    </div>
-</div>      <div class="pusher">
-         <div class="ui fixed inverted teal menu">
-            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
-            <a class="view-ui item" onClick="viewSidebar()">
-              Menu
-            </a>
-         </div>
-         <div id="main_content_wrap" class="main grid content full height">
+</div>         </div>
+         <div class="twelve wide stretched column">
       <h1><a href="#ジョブのスケジューリング" name="ジョブのスケジューリング">ジョブのスケジューリング</a></h1><h2><a href="#スケジュールで自動実行する" name="スケジュールで自動実行する">スケジュールで自動実行する</a></h2><p><a href="http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html">cron expressions</a>形式でスケジュールを登録することで、ジョブを自動実行できます。</p><p><img src="img/schedule_quartz.png" alt="image" /></p><h3><a href="#スケジュールの簡易登録" name="スケジュールの簡易登録">スケジュールの簡易登録</a></h3>
 <ol>
   <li>スケジュールのパターン（日次・週次・月次）を選択します。</li>
@@ -88,6 +88,7 @@
   <li>cron expressionsが出力されます。</li>
 </ol><p><img src="img/output-cron.png" alt="image" /></p><h2><a href="#カレンダーの登録方法" name="カレンダーの登録方法">カレンダーの登録方法</a></h2><p>1.トップページから右側メニューのプルダウン選択によりカレンダーに移動</p><p><img src="img/goto-calendar.png" alt="image" /></p><p>2.newボタン押下</p><p><img src="img/goto-calendar-new.png" alt="image" /></p><p>3.カレンダーを作成</p><p><img src="img/create-calendar.png" alt="image" /></p><h2><a href="#業務日付に合わせたカレンダーを設定する" name="業務日付に合わせたカレンダーを設定する">業務日付に合わせたカレンダーを設定する</a></h2><p>夜間バッチなどで、実際の日付とは異なった日付で処理したい場合があります。<br/>（ex. 1/2 01:00を1/1 25:00とみなす)<br/>そういうときは実際の日付での何時からを1日とみなすのかを「Day start」の項目に入力してください。</p><h2><a href="#カレンダーを設定して休日はジョブの実行を抑止する" name="カレンダーを設定して休日はジョブの実行を抑止する">カレンダーを設定して休日はジョブの実行を抑止する</a></h2><p>cron expressionsとともにカレンダーも設定することでカレンダーに休日として登録されている日はジョブの実行を抑止することができます。</p>
          </div>
+         </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
                <div class="ui stackable divided relaxed grid">
@@ -98,18 +99,11 @@
                </div>
             </div>
          </div>
-      </div>
       <script src="https://cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/prism.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-java.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-bash.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
       <script src="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.js"> </script>
-      <script type="text/javascript">
-         function viewSidebar() {
-           $('.sidebar')
-             .sidebar('toggle');
-         }
-      </script>
    </body>
 </html>

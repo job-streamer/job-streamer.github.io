@@ -10,7 +10,13 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
    </head>
    <body>
-<div class="ui sidebar inverted vertical menu">
+         <div class="ui fixed inverted teal menu">
+            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
+         </div>
+         <div/>
+         <div id="main_content_wrap" class="main ui grid content">
+         <div class="four wide column">
+<div class="ui vertical fluid tabular menu">
    <a class="item" href="get-started-quickly.html">
    Getting Started
    </a>
@@ -69,14 +75,8 @@
          </a>
       </div>
    </div>
-</div>      <div class="pusher">
-         <div class="ui fixed inverted teal menu">
-            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
-            <a class="view-ui item" onClick="viewSidebar()">
-              Menu
-            </a>
-         </div>
-         <div id="main_content_wrap" class="main grid content full height">
+</div>         </div>
+         <div class="twelve wide stretched column">
       <h1><a href="#console" name="console">console</a></h1><h2><a href="#consoleとは-" name="consoleとは-">consoleとは？</a></h2><p>Management consoleはControl busのフロントエンドで、Control busの提供するAPIから取得した結果を表示する機能だけを持ちます。</p><h2><a href="#consoleでできること" name="consoleでできること">consoleでできること</a></h2>
 <ul>
   <li>ジョブ/カレンダーの新規作成/変更/削除</li>
@@ -84,6 +84,7 @@
   <li>agentの使用率測定</li>
   <li>ジョブのインポート/エクスポート</li>
 </ul><p>などが行えます。</p><h2><a href="#github" name="github">GitHub</a></h2><p><a href="https://github.com/job-streamer/job-streamer-console">https://github.com/job-streamer/job-streamer-console</a></p>
+         </div>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
@@ -95,18 +96,11 @@
                </div>
             </div>
          </div>
-      </div>
       <script src="https://cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/prism.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-java.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-bash.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
       <script src="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.js"> </script>
-      <script type="text/javascript">
-         function viewSidebar() {
-           $('.sidebar')
-             .sidebar('toggle');
-         }
-      </script>
    </body>
 </html>

@@ -10,7 +10,13 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
    </head>
    <body>
-<div class="ui sidebar inverted vertical menu">
+         <div class="ui fixed inverted teal menu">
+            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
+         </div>
+         <div/>
+         <div id="main_content_wrap" class="main ui grid content">
+         <div class="four wide column">
+<div class="ui vertical fluid tabular menu">
    <a class="item" href="get-started-quickly.html">
    Getting Started
    </a>
@@ -69,14 +75,8 @@
          </a>
       </div>
    </div>
-</div>      <div class="pusher">
-         <div class="ui fixed inverted teal menu">
-            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
-            <a class="view-ui item" onClick="viewSidebar()">
-              Menu
-            </a>
-         </div>
-         <div id="main_content_wrap" class="main grid content full height">
+</div>         </div>
+         <div class="twelve wide stretched column">
       <h1><a href="#認証認可" name="認証認可">認証認可</a></h1><h2><a href="#認証" name="認証">認証</a></h2><p>全てのAPIを利用するために認証（ログイン）情報が必要となります。<br/>ログインしていない状態で console のいずれかの URL を開くとログイン画面に遷移します。<br/><a href="http://localhost:3000/login">http://localhost:3000/login</a></p><p>ログイン画面からデフォルトの下記ユーザのID/Passwordを使ってログインしてください。</p><p>ID : admin<br/>Password : password123</p><p>ログイン後はこれまでと同様に console での操作を行えるようになります。<br/>ログアウトする場合はヘッダー右のメニューから「Logout」を選択して下さい。</p><h2><a href="#認可" name="認可">認可</a></h2><p>ログインユーザにはジョブに対して三つの権限が存在します。</p>
 <ul>
   <li>admin : 全ての操作が可能</li>
@@ -110,6 +110,7 @@ curl -XPOST localhost:45102/auth -H &quot;Content-Type: application/edn&quot; -d
 <pre><code>export ACCESS_CONTROL_ALLOW_ORIGIN=http://[CONSOLE_IP_ADDRESS]:[CONSOLE_PORT]
 </code></pre>
          </div>
+         </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
                <div class="ui stackable divided relaxed grid">
@@ -120,18 +121,11 @@ curl -XPOST localhost:45102/auth -H &quot;Content-Type: application/edn&quot; -d
                </div>
             </div>
          </div>
-      </div>
       <script src="https://cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/prism.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-java.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-bash.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
       <script src="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.js"> </script>
-      <script type="text/javascript">
-         function viewSidebar() {
-           $('.sidebar')
-             .sidebar('toggle');
-         }
-      </script>
    </body>
 </html>

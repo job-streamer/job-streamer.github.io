@@ -10,7 +10,13 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
    </head>
    <body>
-<div class="ui sidebar inverted vertical menu">
+         <div class="ui fixed inverted teal menu">
+            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
+         </div>
+         <div/>
+         <div id="main_content_wrap" class="main ui grid content">
+         <div class="four wide column">
+<div class="ui vertical fluid tabular menu">
    <a class="item" href="get-started-quickly.html">
    Getting Started
    </a>
@@ -69,15 +75,10 @@
          </a>
       </div>
    </div>
-</div>      <div class="pusher">
-         <div class="ui fixed inverted teal menu">
-            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
-            <a class="view-ui item" onClick="viewSidebar()">
-              Menu
-            </a>
-         </div>
-         <div id="main_content_wrap" class="main grid content full height">
+</div>         </div>
+         <div class="twelve wide stretched column">
       <h2><a href="#ジョブの設定" name="ジョブの設定">ジョブの設定</a></h2><h2><a href="#ジョブの同時起動制御" name="ジョブの同時起動制御">ジョブの同時起動制御</a></h2><p>ジョブを同時に実行すると都合の悪い場合があります。同時実行をさせないためには、ジョブのSettingsタブでExclusive<br/>executionをオンにしてください。<br/>#本設定を有効にするとスケジューリング実行時も多重実行であれば実行されなくなってしまうので注意してください。<br/>#前のジョブが終わり次第再度ディスパッチするような機能は未実装です。</p><h2><a href="#ジョブの監視" name="ジョブの監視">ジョブの監視</a></h2><p>同じくSettingsタブで監視の設定が可能です。</p><p><img src="img/notificator_dojob.png" alt="image" /></p><h3><a href="#バッチステータス-終了ステータスの値に応じてメールを送信する" name="バッチステータス-終了ステータスの値に応じてメールを送信する">バッチステータス、終了ステータスの値に応じてメールを送信する</a></h3><p>Batch statusの場合は、プルダウンからステータスを選択します。Exit statusの場合は、ステータスを入力してください。<br/>そして通知内容を設定しますが、これは通知サーバに設定した通知項目のキーを入力してください。</p><h3><a href="#一定時間以上ジョブが実行されていたらメールを送る" name="一定時間以上ジョブが実行されていたらメールを送る">一定時間以上ジョブが実行されていたらメールを送る</a></h3><p>Execution constraints<br/>で経過分数を入力し、プルダウンでAlertを選択してください。<br/>通知内容の設定は、通知サーバに設定した通知項目のキーを入力してください。</p><h3><a href="#一定時間以上ジョブが実行されていたらジョブを停止する" name="一定時間以上ジョブが実行されていたらジョブを停止する">一定時間以上ジョブが実行されていたらジョブを停止する</a></h3><p>Execution constraints<br/>で経過分数を入力し、プルダウンでStopを選択してください。</p>
+         </div>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
@@ -89,18 +90,11 @@
                </div>
             </div>
          </div>
-      </div>
       <script src="https://cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/prism.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-java.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-bash.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
       <script src="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.js"> </script>
-      <script type="text/javascript">
-         function viewSidebar() {
-           $('.sidebar')
-             .sidebar('toggle');
-         }
-      </script>
    </body>
 </html>
