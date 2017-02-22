@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+   <head>
+      <meta charset="UTF-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <meta name="description" content="JobStreamer : JobStreamer site."/>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.css" type="text/css"/>
+      <link rel="stylesheet" href="css/basic.css" type="text/css"/>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
+   </head>
+   <body>
+         <div class="ui fixed inverted teal menu">
+            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
+         </div>
+         <div/>
+         <div id="main_content_wrap" class="main ui grid content">
+         <div class="four wide column">
+<div class="ui vertical fluid tabular menu">
+   <a class="item" href="get-started-quickly.html">
+   Getting Started
+   </a>
+   <div class="item">
+      <div class="header">ガイド</div>
+      <div class="menu">
+         <a class="item" href="deploy-batch-components.html">
+         バッチコンポーネントのデプロイ
+         </a>
+         <a class="item" href="create-a-job.html">
+         ジョブの作成
+         </a>
+         <a class="item" href="execute-the-job.html">
+         ジョブの手動実行
+         </a>
+         <a class="item" href="schedule-job.html">
+         ジョブのスケジュール実行
+         </a>
+         <a class="item" href="job-config.html">
+         ジョブの設定
+         </a>
+         <a class="item" href="notificator-config.html">
+         Notificatorの設定
+         </a>
+         </a>
+         <a class="item" href="auth.html">
+         認証認可
+         </a>
+      </div>
+   </div>
+   <div class="item">
+      <div class="header">コンポーネント</div>
+      <div class="menu">
+         <a class="item" href="control-bus.html">
+         Control bus
+         </a>
+         <a class="item" href="agent.html">
+         Agent
+         </a>
+         <a class="item" href="console.html">
+         Management console
+         </a>
+         <a class="item" href="notificator.html">
+         Notificator
+         </a>
+      </div>
+   </div>
+   <div class="item">
+      <div class=" header">開発者向け情報</div>
+      <div class="menu">
+         <a class="item" href="get-started-developer.html">
+         REPLコマンド集
+         </a>
+         <a class="item" href="developer-guide.html">
+         ディベロッパーガイド
+         </a>
+      </div>
+   </div>
+</div>         </div>
+         <div class="twelve wide stretched column">
+      <h1><a href="#インポート-エクスポート" name="インポート-エクスポート">インポート/エクスポート</a></h1><p>登録してあるジョブ・カレンダーをエクスポート/インポートすることができ、移行/復旧がスムーズに行えます。<br/>インポート/エクスポートは右上メニューから行うことができます。<br/>エクスポートしたファイルはednファイルとして保存されます。</p><h1><a href="#jobのインポート-エクスポート" name="jobのインポート-エクスポート">jobのインポート/エクスポート</a></h1><p>jobのインポート/エクスポートでは、jobの実行履歴以外のすべての情報を引き継ぐことができます。</p><h1><a href="#calendarのインポート-エクスポート" name="calendarのインポート-エクスポート">calendarのインポート/エクスポート</a></h1><p>calendarのインポート/エクスポートでは、calendarのすべての情報を引き継ぐことができます。</p><h1><a href="#注意事項" name="注意事項">注意事項</a></h1>
+<ul>
+  <li>ジョブ・カレンダーのインポート時に同名のジョブ・カレンダーが存在した場合は警告なく上書きされます。</li>
+  <li>InternetExplorer10/11でインポートを行ったとき、インポートに使用したファイルを一時的に削除できなくなります。ブラウザ自体を閉じた後削除可能となりますので、インポートに使用したファイルを削除する場合は、一度ブラウザを閉じてから削除を行ってください。</li>
+</ul>
+         </div>
+         </div>
+         <div class="ui inverted teal footer vertical segment">
+            <div class="container">
+               <div class="ui stackable divided relaxed grid">
+                  <div class="sixteen wide column">
+                     <p>Copyright @ 2015-2016 kawasima &amp; contributors.</p>
+                     <p>Released under the EPL license.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      <script src="https://cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/prism.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-java.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-bash.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.js"> </script>
+   </body>
+</html>
