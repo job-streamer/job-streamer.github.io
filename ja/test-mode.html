@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+   <head>
+      <meta charset="UTF-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <meta name="description" content="JobStreamer : JobStreamer site."/>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.css" type="text/css"/>
+      <link rel="stylesheet" href="css/basic.css" type="text/css"/>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
+   </head>
+   <body>
+         <div class="ui fixed inverted teal menu">
+            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
+         </div>
+         <div/>
+         <div id="main_content_wrap" class="main ui grid content">
+         <div class="four wide column">
+<div class="ui vertical fluid tabular menu">
+   <a class="item" href="get-started-quickly.html">
+   Getting Started
+   </a>
+   <div class="item">
+      <div class="header">ガイド</div>
+      <div class="menu">
+         <a class="item" href="deploy-batch-components.html">
+         バッチコンポーネントのデプロイ
+         </a>
+         <a class="item" href="create-a-job.html">
+         ジョブの作成
+         </a>
+         <a class="item" href="execute-the-job.html">
+         ジョブの手動実行
+         </a>
+         <a class="item" href="schedule-job.html">
+         ジョブのスケジュール実行
+         </a>
+         <a class="item" href="job-config.html">
+         ジョブの設定
+         </a>
+         <a class="item" href="notificator-config.html">
+         Notificatorの設定
+         </a>
+         </a>
+         <a class="item" href="auth.html">
+         認証認可
+         </a>
+         <a class="item" href="import-export.html">
+         インポート・エクスポート
+         </a>
+         <a class="item" href="test-mode.html">
+         テストモード
+         </a>
+      </div>
+   </div>
+   <div class="item">
+      <div class="header">コンポーネント</div>
+      <div class="menu">
+         <a class="item" href="control-bus.html">
+         Control bus
+         </a>
+         <a class="item" href="agent.html">
+         Agent
+         </a>
+         <a class="item" href="console.html">
+         Management console
+         </a>
+         <a class="item" href="notificator.html">
+         Notificator
+         </a>
+      </div>
+   </div>
+   <div class="item">
+      <div class=" header">開発者向け情報</div>
+      <div class="menu">
+         <a class="item" href="get-started-developer.html">
+         REPLコマンド集
+         </a>
+         <a class="item" href="developer-guide.html">
+         ディベロッパーガイド
+         </a>
+      </div>
+   </div>
+</div>         </div>
+         <div class="twelve wide stretched column">
+      <h1><a href="#テストモード" name="テストモード">テストモード</a></h1><p>テストモードとはjob作成時にjobの構造が正しいのかテストするための機能です</p><h2><a href="#用途" name="用途">用途</a></h2><p>テストモードでは例えば以下のようなjobを精査してくれます。</p>
+<ul>
+  <li>stepがループしている</li>
+  <li>step名が同じものが存在している</li>
+</ul><h2><a href="#使用方法" name="使用方法">使用方法</a></h2><p>1.job作成画面にてテスト実行ボタンを押下<br/><img src="img/execute-test-mode.png" alt="image" /><br/>2.すべてのstepがモックに置き換えられ実行される<br/>3.成功した場合はプログレスバーが緑色になり、失敗した場合はプログレスバーが赤色になり、エラーログがconsoleに出力される<br/><img src="img/test-success.png" alt="image" /><br/><img src="img/fail-test.png" alt="image" /></p><h2><a href="#api" name="api">API</a></h2><h3><a href="#新規テスト実行" name="新規テスト実行">新規テスト実行</a></h3>
+<pre><code>POST /test-executions
+</code></pre><h4><a href="#request" name="request">Request</a></h4>
+<pre><code class="clojure">{
+:bpom &quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;UTF-8\&quot;?&gt;\n&lt;bpmn:definitions xmlns:xsi=\&quot;http://www.w3.org/2001/XMLSchema-instance\&quot; xmlns:bpmn=\&quot;http://www.omg.org/spec/BPMN/20100524/MODEL\&quot; xmlns:jsr352=\&quot;http://jsr352/\&quot; xmlns:bpmndi=\&quot;http://www.omg.org/spec/BPMN/20100524/DI\&quot; xmlns:dc=\&quot;http://www.omg.org/spec/DD/20100524/DC\&quot; xmlns:di=\&quot;http://www.omg.org/spec/DD/20100524/DI\&quot; id=\&quot;Definitions_1\&quot; targetNamespace=\&quot;http://bpmn.io/schema/bpmn\&quot;&gt;\n  &lt;jsr352:job id=\&quot;Job_1\&quot; isExecutable=\&quot;false\&quot;&gt;\n    &lt;jsr352:start id=\&quot;Start_1\&quot;&gt;\n      &lt;bpmn:outgoing&gt;Transition_0qj68gv&lt;/bpmn:outgoing&gt;\n    &lt;/jsr352:start&gt;\n    &lt;jsr352:step id=\&quot;Step_0wzrzrb\&quot;&gt;\n      &lt;bpmn:incoming&gt;Transition_1isxcy1&lt;/bpmn:incoming&gt;\n      &lt;bpmn:incoming&gt;Transition_0qj68gv&lt;/bpmn:incoming&gt;\n      &lt;bpmn:outgoing&gt;Transition_18mid3w&lt;/bpmn:outgoing&gt;\n    &lt;/jsr352:step&gt;\n    &lt;jsr352:step id=\&quot;Step_0szv8t7\&quot;&gt;\n      &lt;bpmn:incoming&gt;Transition_18mid3w&lt;/bpmn:incoming&gt;\n      &lt;bpmn:outgoing&gt;Transition_1isxcy1&lt;/bpmn:outgoing&gt;\n    &lt;/jsr352:step&gt;\n    &lt;jsr352:transition id=\&quot;Transition_18mid3w\&quot; sourceRef=\&quot;Step_0wzrzrb\&quot; targetRef=\&quot;Step_0szv8t7\&quot; /&gt;\n    &lt;jsr352:transition id=\&quot;Transition_1isxcy1\&quot; sourceRef=\&quot;Step_0szv8t7\&quot; targetRef=\&quot;Step_0wzrzrb\&quot; /&gt;\n    &lt;jsr352:transition id=\&quot;Transition_0qj68gv\&quot; sourceRef=\&quot;Start_1\&quot; targetRef=\&quot;Step_0wzrzrb\&quot; /&gt;\n  &lt;/jsr352:job&gt;\n  &lt;bpmndi:BPMNDiagram id=\&quot;BPMNDiagram_1\&quot;&gt;\n    &lt;bpmndi:BPMNPlane id=\&quot;BPMNPlane_1\&quot; bpmnElement=\&quot;Job_1\&quot;&gt;\n      &lt;bpmndi:BPMNShape id=\&quot;_BPMNShape_Start_2\&quot; bpmnElement=\&quot;Start_1\&quot;&gt;\n        &lt;dc:Bounds x=\&quot;173\&quot; y=\&quot;102\&quot; width=\&quot;36\&quot; height=\&quot;36\&quot; /&gt;\n      &lt;/bpmndi:BPMNShape&gt;\n      &lt;bpmndi:BPMNShape id=\&quot;Step_0wzrzrb_di\&quot; bpmnElement=\&quot;Step_0wzrzrb\&quot;&gt;\n        &lt;dc:Bounds x=\&quot;249\&quot; y=\&quot;136\&quot; width=\&quot;120\&quot; height=\&quot;100\&quot; /&gt;\n      &lt;/bpmndi:BPMNShape&gt;\n      &lt;bpmndi:BPMNShape id=\&quot;Step_0szv8t7_di\&quot; bpmnElement=\&quot;Step_0szv8t7\&quot; isExpanded=\&quot;true\&quot;&gt;\n        &lt;dc:Bounds x=\&quot;572\&quot; y=\&quot;166\&quot; width=\&quot;120\&quot; height=\&quot;100\&quot; /&gt;\n      &lt;/bpmndi:BPMNShape&gt;\n      &lt;bpmndi:BPMNEdge id=\&quot;Transition_18mid3w_di\&quot; bpmnElement=\&quot;Transition_18mid3w\&quot;&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;369\&quot; y=\&quot;186\&quot; /&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;471\&quot; y=\&quot;186\&quot; /&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;471\&quot; y=\&quot;216\&quot; /&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;572\&quot; y=\&quot;216\&quot; /&gt;\n        &lt;bpmndi:BPMNLabel&gt;\n          &lt;dc:Bounds x=\&quot;486\&quot; y=\&quot;191\&quot; width=\&quot;0\&quot; height=\&quot;0\&quot; /&gt;\n        &lt;/bpmndi:BPMNLabel&gt;\n      &lt;/bpmndi:BPMNEdge&gt;\n      &lt;bpmndi:BPMNEdge id=\&quot;Transition_1isxcy1_di\&quot; bpmnElement=\&quot;Transition_1isxcy1\&quot;&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;572\&quot; y=\&quot;216\&quot; /&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;471\&quot; y=\&quot;216\&quot; /&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;471\&quot; y=\&quot;212\&quot; /&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;369\&quot; y=\&quot;212\&quot; /&gt;\n        &lt;bpmndi:BPMNLabel&gt;\n          &lt;dc:Bounds x=\&quot;486\&quot; y=\&quot;204\&quot; width=\&quot;0\&quot; height=\&quot;0\&quot; /&gt;\n        &lt;/bpmndi:BPMNLabel&gt;\n      &lt;/bpmndi:BPMNEdge&gt;\n      &lt;bpmndi:BPMNEdge id=\&quot;Transition_0qj68gv_di\&quot; bpmnElement=\&quot;Transition_0qj68gv\&quot;&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;209\&quot; y=\&quot;120\&quot; /&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;229\&quot; y=\&quot;120\&quot; /&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;229\&quot; y=\&quot;177\&quot; /&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;249\&quot; y=\&quot;177\&quot; /&gt;\n        &lt;bpmndi:BPMNLabel&gt;\n          &lt;dc:Bounds x=\&quot;244\&quot; y=\&quot;138.5\&quot; width=\&quot;0\&quot; height=\&quot;0\&quot; /&gt;\n        &lt;/bpmndi:BPMNLabel&gt;\n      &lt;/bpmndi:BPMNEdge&gt;\n    &lt;/bpmndi:BPMNPlane&gt;\n  &lt;/bpmndi:BPMNDiagram&gt;\n&lt;/bpmn:definitions&gt;\n&quot;
+}
+</code></pre><h4><a href="#input" name="input">input</a></h4>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>bpmn</td>
+      <td>String</td>
+      <td>テスト実行したいbpmnファイル</td>
+    </tr>
+  </tbody>
+</table><h4><a href="#response" name="response">Response</a></h4>
+<pre><code class="clojure">{:state-id 1}
+</code></pre><h3><a href="#テスト実行状況取得" name="テスト実行状況取得">テスト実行状況取得</a></h3>
+<pre><code>GET /test-execution/:state-id
+</code></pre><h4><a href="#response" name="response">Response</a></h4>
+<pre><code class="clojure">{:log-message &quot;JBERET000007: Failed to run job Job_1, Step_1wdp5if, org.jberet.job.model.Step@762a8334&quot;, :log-exception &quot;java.lang.IllegalStateException: JBERET000607: The step Step_1wdp5if would form a loopback in sequence: [Step_1wdp5if, Step_0mjwgb4]\n\tat org.jberet.runtime.runner.StepExecutionRunner.run(StepExecutionRunner.java:108)\n\tat org.jberet.runtime.runner.CompositeExecutionRunner.runStep(CompositeExecutionRunner.java:164)\n\tat org.jberet.runtime.runner.CompositeExecutionRunner.runJobElement(CompositeExecutionRunner.java:128)\n\tat org.jberet.runtime.runner.StepExecutionRunner.run(StepExecutionRunner.java:196)\n\tat org.jberet.runtime.runner.CompositeExecutionRunner.runStep(CompositeExecutionRunner.java:164)\n\tat org.jberet.runtime.runner.CompositeExecutionRunner.runJobElement(CompositeExecutionRunner.java:128)\n\tat org.jberet.runtime.runner.StepExecutionRunner.run(StepExecutionRunner.java:196)\n\tat org.jberet.runtime.runner.CompositeExecutionRunner.runStep(CompositeExecutionRunner.java:164)\n\tat org.jberet.runtime.runner.CompositeExecutionRunner.runFromHeadOrRestartPoint(CompositeExecutionRunner.java:88)\n\tat org.jberet.runtime.runner.JobExecutionRunner.run(JobExecutionRunner.java:59)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)\n\tat java.lang.Thread.run(Thread.java:745)\n&quot;, :batch-status :batch-status/failed}
+</code></pre>
+         </div>
+         </div>
+         <div class="ui inverted teal footer vertical segment">
+            <div class="container">
+               <div class="ui stackable divided relaxed grid">
+                  <div class="sixteen wide column">
+                     <p>Copyright @ 2015-2016 kawasima &amp; contributors.</p>
+                     <p>Released under the EPL license.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      <script src="https://cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/prism.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-java.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-bash.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/prism/1.5.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.js"> </script>
+   </body>
+</html>
