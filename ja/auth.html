@@ -23,6 +23,9 @@
    <div class="item">
       <div class="header">ガイド</div>
       <div class="menu">
+         <a class="item" href="auth.html">
+         認証認可
+         </a>
          <a class="item" href="deploy-batch-components.html">
          バッチコンポーネントのデプロイ
          </a>
@@ -39,11 +42,8 @@
          ジョブの設定
          </a>
          <a class="item" href="notificator-config.html">
-         Notificatorの設定
+         通知サーバの設定
          </a>
-         </a>
-         <a class="item" href="auth.html">
-         認証認可
          </a>
          <a class="item" href="import-export.html">
          インポート・エクスポート
@@ -71,24 +71,30 @@
       </div>
    </div>
    <div class="item">
-      <div class=" header">開発者向け情報</div>
+      <div class=" header">コントリビューター向け情報</div>
       <div class="menu">
          <a class="item" href="get-started-developer.html">
-         REPLコマンド集
+         コントリビューター向け Getting Started
          </a>
          <a class="item" href="developer-guide.html">
-         ディベロッパーガイド
+         コントリビューター向けガイドライン
          </a>
       </div>
    </div>
 </div>         </div>
          <div class="twelve wide stretched column">
-      <h1><a href="#認証認可" name="認証認可">認証認可</a></h1><h2><a href="#認証" name="認証">認証</a></h2><p>全てのAPIを利用するために認証（ログイン）情報が必要となります。<br/>ログインしていない状態で console のいずれかの URL を開くとログイン画面に遷移します。<br/><a href="http://localhost:3000/login">http://localhost:3000/login</a></p><p>ログイン画面からデフォルトの下記ユーザのID/Passwordを使ってログインしてください。</p><p>ID : admin<br/>Password : password123</p><p>ログイン後はこれまでと同様に console での操作を行えるようになります。<br/>ログアウトする場合はヘッダー右のメニューから「Logout」を選択して下さい。</p><h2><a href="#認可" name="認可">認可</a></h2><p>ログインユーザにはジョブに対して三つの権限が存在します。</p>
+      <h1><a href="#認証認可" name="認証認可">認証認可</a></h1><h2><a href="#認証" name="認証">認証</a></h2><p>JobStreamer を利用するために認証（ログイン）情報が必要です。<br/>ログインしていない状態で Console のいずれかの URL を開くとログイン画面に遷移します。<br/><a href="http://localhost:3000/login">http://localhost:3000/login</a></p><p>ログイン画面からデフォルトの下記ユーザのID/Passwordを使ってログインしてください。</p>
+<ul>
+  <li>ID : admin</li>
+  <li>Password : password123</li>
+</ul><p>ログアウトする場合はヘッダー右のメニューから「Logout」を選択して下さい。</p><h2><a href="#認可" name="認可">認可</a></h2><p>ログインユーザにはジョブに対して三つの権限が存在します。</p>
 <ul>
   <li>admin : 全ての操作が可能</li>
-  <li>operator : ジョブの実行は可能だがジョブの編集は不可</li>
-  <li>watcher : ジョブの実行も編集も不可<br/>ジョブの実行、編集にはそれぞれ下記の操作が含まれます。</li>
-  <li><p>ジョブの編集</p>
+  <li>operator : ジョブの情報参照、実行は可能だがジョブの編集は不可</li>
+  <li>watcher : ジョブの情報参照のみ可能</li>
+</ul><p>ジョブの実行、編集にはそれぞれ下記の操作が含まれます。</p>
+<ul>
+  <li>ジョブの編集
   <ul>
     <li>ジョブ定義の変更</li>
     <li>ジョブ設定の変更</li>
@@ -99,21 +105,19 @@
     <li>ジョブの実行・停止・再開・破棄</li>
     <li>ジョブスケジュールの変更</li>
   </ul></li>
-</ul><p>console 上で権限のない操作を行った場合にはエラーメッセージが表示されて実行されません。<br/>デフォルトで存在する “admin” というユーザには “admin” 権限が付与されています。<br/>それ以外の権限を持つユーザを作成する場合は以下の「ユーザ管理」を参照してください。</p><h2><a href="#ユーザ管理" name="ユーザ管理">ユーザ管理</a></h2><p>現状、ログインユーザ作成・削除機能をAPIのみで提供しております。<br/>下記のサンプルを基に実行してください。</p>
-<pre><code># &quot;operator&quot; 権限を持った、&quot;test-user&quot; というログインユーザを &quot;password123&quot; というパスワードで作成
+</ul><p>Console 上で権限のない操作を行った場合にはエラーメッセージが表示されて実行されません。<br/>デフォルトで存在する &ldquo;admin&rdquo; というユーザには &ldquo;admin&rdquo; 権限が付与されています。<br/>それ以外の権限を持つユーザを作成する場合は以下の「ユーザ管理」を参照してください。</p><h2><a href="#ユーザ管理" name="ユーザ管理">ユーザ管理</a></h2><p>現状、ログインユーザ作成・削除機能をAPIのみで提供してます。<br/>下記のサンプルを基に実行してください。</p>
+<pre><code class="sh"># &quot;operator&quot; 権限を持った、&quot;test-user&quot; というログインユーザを &quot;password123&quot; というパスワードで作成
 curl -XPOST localhost:45102/user -H &#39;Content-Type: application/edn&#39; -d &#39;{:user/id &quot;test-user&quot; :user/password &quot;password123&quot; :roll &quot;operator&quot;}&#39;
 # &quot;test-user&quot; という ID のログインユーザを削除
 curl -XDELETE localhost:45102/user/test-user
-</code></pre><h3><a href="#api実行時の認証" name="api実行時の認証">API実行時の認証</a></h3><p>control-bus の API を利用するためにも認証処理が必要となります。<br/>まず下記の通りログイン API を実行して認証トークンを取得します。</p>
-<pre><code># username : ログインユーザID
+</code></pre><h3><a href="#api-実行時の認証" name="api-実行時の認証">API 実行時の認証</a></h3><p>Control-bus の API を利用するためにも認証処理が必要となります。<br/>まず下記の通りログイン API を実行して認証トークンを取得します。</p>
+<pre><code class="sh"># username : ログインユーザID
 # password : ログインユーザパスワード
 curl -XPOST localhost:45102/auth -H &quot;Content-Type: application/edn&quot; -d &#39;{:user/id &quot;admin&quot; :user/password &quot;password123&quot;}&#39; -v
 {:token &quot;5f080f9c-3023-4a6a-89fb-de983f768c4d&quot;}
-</code></pre><p>この場合、5f080f9c-3023-4a6a-89fb-de983f768c4dが認証トークンです。<br/>次にこのトークンを使って、“Authorization: Token 5f080f9c-3023-4a6a-89fb-de983f768c4d”ヘッダを付与してリクエストすると、認証ユーザが権限を持つ任意の API を実行することが出来ます。</p>
-<pre><code>curl -XGET -H &#39;Content-Type: application/edn&#39; -H &#39;Authorization: Token 5f080f9c-3023-4a6a-89fb-de983f768c4d&#39; http://localhost:45102/default/jobs
+</code></pre><p>この場合、 5f080f9c-3023-4a6a-89fb-de983f768c4d が認証トークンです。<br/>次にこのトークンを使って、&ldquo;Authorization: Token 5f080f9c-3023-4a6a-89fb-de983f768c4d&rdquo; ヘッダを付与してリクエストすると、認証ユーザが権限を持つ任意の API を実行することが出来ます。</p>
+<pre><code class="sh">curl -XGET -H &#39;Content-Type: application/edn&#39; -H &#39;Authorization: Token 5f080f9c-3023-4a6a-89fb-de983f768c4d&#39; http://localhost:45102/default/jobs
 {:results [...]}
-</code></pre><h3><a href="#環境変数" name="環境変数">環境変数</a></h3><p>control-busでAPIリクエスト送信元の認証を行う必要上、環境変数を一つ追加しております。<br/>control-busの環境変数にACCESS_CONTROL_ALLOW_ORIGINという環境変数を追加してください。</p>
-<pre><code>export ACCESS_CONTROL_ALLOW_ORIGIN=http://[CONSOLE_IP_ADDRESS]:[CONSOLE_PORT]
 </code></pre>
          </div>
          </div>

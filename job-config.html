@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <meta charset="UTF-8">
+      <meta charset="UTF-8"/>
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <meta name="description" content="JobStreamer : JobStreamer site."/>
@@ -10,21 +10,30 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
    </head>
    <body>
-<div class="ui sidebar inverted vertical menu">
+         <div class="ui fixed inverted teal menu">
+            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
+         </div>
+         <div/>
+         <div id="main_content_wrap" class="main ui grid content">
+         <div class="four wide column">
+<div class="ui vertical fluid tabular menu">
    <a class="item" href="get-started-quickly.html">
    Getting Started
    </a>
    <div class="item">
       <div class="header">Guide</div>
       <div class="menu">
+         <a class="item" href="auth.html">
+         Authentication and authorization
+         </a>
          <a class="item" href="deploy-batch-components.html">
          Deploy batch components
          </a>
          <a class="item" href="create-a-job.html">
-         Create a job
+         Create job
          </a>
          <a class="item" href="execute-the-job.html">
-         Execute the job
+         Execute job
          </a>
          <a class="item" href="schedule-job.html">
          Schedule job
@@ -34,6 +43,12 @@
          </a>
          <a class="item" href="notificator-config.html">
          Notificator config
+         </a>
+         <a class="item" href="import-export.html">
+         Import and export
+         </a>
+         <a class="item" href="test-mode.html">
+         Test mode
          </a>
       </div>
    </div>
@@ -55,25 +70,20 @@
       </div>
    </div>
    <div class="item">
-      <div class=" header">For Developper</div>
+      <div class=" header">For contributers</div>
       <div class="menu">
          <a class="item" href="get-started-developer.html">
-         REPL commands
+         Getting Started for contributers
          </a>
          <a class="item" href="developer-guide.html">
-         Developer guide
+         Developer guide for contributers
          </a>
       </div>
    </div>
-</div>      <div class="pusher">
-         <div class="ui fixed inverted teal menu">
-            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
-            <a class="view-ui item" onClick="viewSidebar()">
-              Menu
-            </a>
+</div>         </div>
+         <div class="twelve wide stretched column">
+      <h1><a href="#job-config" name="job-config">Job config</a></h1><h2><a href="#exclusive-execution" name="exclusive-execution">Exclusive execution</a></h2><p>There are cases where it is incovinient for a job to be executed simultaneously.<br/>In order not to be execute a job simultaneously,<br/>turn on &ldquo;Exclusive execution&rdquo; in the &ldquo;Shedule settings&rdquo; panel of the &ldquo;Settings&rdquo; tab of the job details page.<br/># Notice that if you turn on this setting, multiple executions will not be fired even if they are scheduled.<br/># A function, that dispatch a job again as soon as previous job is over, has not been inplemented.</p><h2><a href="#monitor-job-execution" name="monitor-job-execution">Monitor job execution</a></h2><p>You can configure job execution monitoring in the &ldquo;Settings&rdquo; tab.</p><p><img src="img/notificator_dojob.png" alt="image" /></p><h3>1. Send mail according to batch status or exit status.</h3><p>Set this in the &ldquo;Notification&rdquo; panel.<br/>If you monitor batch status, select the batch status used for condition from the pull-down.<br/>If you monitor exit status, enter the exit status used for condition.<br/>Enter the notification key set in the notification server in the &ldquo;Notification&rdquo;.</p><h3>2. Send mail if a job is being executed for more than a certain period of time.</h3><p>Set this in the &ldquo;Shedule settings&rdquo; panel.<br/>Enter &ldquo;a certain period of time&rdquo; in the &ldquo;Execution constraints&rdquo; form, and select &ldquo;Alert&rdquo; in the pull-down.<br/>Enter the notification key set in the notification server in the &ldquo;Notification&rdquo;.</p><h3>3. Stop job if it is being executed for more than a certain period of time.</h3><p>Set this in the &ldquo;Shedule settings&rdquo; panel.<br/>Enter &ldquo;a certain period of time&rdquo; in the &ldquo;Execution constraints&rdquo; form, and select &ldquo;Stop&rdquo; in the pull-down.<br/>Target job needs to be restartable (it means all batchlets making up the job implement javax.batch.api.AbstractBatchlet.stop).</p><h2><a href="#about-notification-server" name="about-notification-server">About notification server</a></h2><p>Please refer to <a href="./notificator-config.html">Notificator config</a> for details.</p>
          </div>
-         <div id="main_content_wrap" class="main grid content full height">
-      <h1><a href="#job-config" name="job-config">Job config</a></h1><h2><a href="#excusive-execution" name="excusive-execution">Excusive execution</a></h2><p>If you don&rsquo;t want to excute job multiple,turn on &ldquo;Excusive execution&rdquo; at jobs-&gt;[job-name]-&gt;setting-&gt;Execution constraints.</p><h2><a href="#monitor-execution" name="monitor-execution">Monitor execution</a></h2><p>You can monitor execution at jobs-&gt;[job-name]-&gt;setting.</p><p><img src="img/notificator_dojob.png" alt="image" /></p><h3><a href="#send-key-to-notificator-in-response-to-batch-status-exit-status" name="send-key-to-notificator-in-response-to-batch-status-exit-status">Send key to notificator in response to Batch status/Exit status</a></h3><p>Select Batch status/Exit status and select status,and input key to send to notificator at jobs-&gt;[job-name]-&gt;setting-&gt;notification.</p><h3><a href="#send-key-to-notificator-in-response-to-elapsed-time" name="send-key-to-notificator-in-response-to-elapsed-time">Send key to notificator in response to elapsed time</a></h3><p>Input elapsed time,select Alert at pulldown and input key at jobs-&gt;[job-name]-&gt;setting-&gt;Execution constraints.</p><h3><a href="#stop-job-execution-in-response-to-elapsed-time" name="stop-job-execution-in-response-to-elapsed-time">Stop job execution in response to elapsed time</a></h3><p>Input elapsed time and select Stop at pulldown at jobs-&gt;[job-name]-&gt;setting-&gt;Execution constraints.</p>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
@@ -85,18 +95,11 @@
                </div>
             </div>
          </div>
-      </div>
       <script src="https://cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/prism.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-java.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-bash.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
       <script src="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.js"> </script>
-      <script type="text/javascript">
-         function viewSidebar() {
-           $('.sidebar')
-             .sidebar('toggle');
-         }
-      </script>
    </body>
 </html>

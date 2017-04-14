@@ -82,14 +82,42 @@
    </div>
 </div>         </div>
          <div class="twelve wide stretched column">
-      <h1><a href="#create-job" name="create-job">Create job</a></h1><h2>1. Open the login page of job-streamer-console.</h2><p>http://[IP address of the server]:[port number of Console(default: 8080)]</p><h2>2. Enter id/password of the login user and login.</h2><p>Built-in admin user is admin/password123</p><h2>3. Press the &ldquo;New&rdquo; button on the top page.</h2><p><img src="img/new_job_button.png" alt="image" /></p><h2>4. Create a job.</h2><p>For example, we create a simple job that has only one step as following.</p><p><img src="img/make-step.png" alt="image" /><br/><img src="img/make-batchlet.png" alt="image" /><br/><img src="img/select-batchlet-ref.png" alt="image" /><br/><img src="img/type-job-name.png" alt="image" /></p>
+      <h1><a href="#authentification-and-authorization" name="authentification-and-authorization">Authentification and authorization</a></h1><h2><a href="#authentification" name="authentification">Authentification</a></h2><p>Authentification is required when you use JobStreamer.<br/>If you open any URL of Console without authentification, you will be redirected to login page.<br/><a href="http://localhost:3000/login">http://localhost:3000/login</a></p><p>Login with following default ID and Passwod.</p>
 <ul>
-  <li>Set attributes.<br/><img src="img/set-attr.png" alt="image" /></li>
-  <li>Set properties.
+  <li>ID : admin</li>
+  <li>Password : password123</li>
+</ul><p>If you want to logout, click Logout link in the menu located in the right-hand side of header.</p><h2><a href="#authorization" name="authorization">Authorization</a></h2><p>JobStreamer has three authorities to a job for a login user.</p>
+<ul>
+  <li>admin : All operations for job are allowed.</li>
+  <li>operator : Reference of job information and execution of job are allowed. But editing of job is not allowed.</li>
+  <li>watcher : Only reference of job information is allowed.</li>
+</ul><p>Reference of job and editing of job include following operations respectively.</p>
+<ul>
+  <li>Reference of job
   <ul>
-    <li>You can specify a job parameter here in the following format (EL: Expression Language).<br/>#{jobParameters[&lsquo;ParameterName&rsquo;]}</li>
+    <li>Change job definition.</li>
+    <li>Change job configuration.</li>
+    <li>Delete job.</li>
   </ul></li>
-</ul><p><img src="img/set-properties.png" alt="image" /></p><p>You can use only batch components (Batchlet/ItemReader/ItemWriter/ItemProcessor etc.) that was deployed to the Control-bus.<br/>If you want to use new batch components, please refer to <a href="./deploy-batch-components.html">Deploy batch components</a>.</p>
+  <li>Editing of job
+  <ul>
+    <li>Execute and stop, restart, abandon job.</li>
+    <li>Change job schedule.</li>
+  </ul></li>
+</ul><p>If you do an unallowed operation on the Console, an error message will appear and the operation will be canceled.<br/>Default user, &ldquo;admin&rdquo; has &ldquo;admin&rdquo; authority.<br/>Please refer to following &ldquo;User management&rdquo; section, if you want to create other users who have other authority.</p><h2><a href="#user-management" name="user-management">User management</a></h2><p>Currently, login user creation and deletion are provided by API.<br/>Please execute it like following example.</p>
+<pre><code class="sh"># Create login user named &quot;test-user&quot; with &quot;operator&quot; authority and password &quot;password123&quot;
+curl -XPOST localhost:45102/user -H &#39;Content-Type: application/edn&#39; -d &#39;{:user/id &quot;test-user&quot; :user/password &quot;password123&quot; :roll &quot;operator&quot;}&#39;
+# Delete login user whose id is &quot;test-user&quot;.
+curl -XDELETE localhost:45102/user/test-user
+</code></pre><h3><a href="#authentification-in-api-execution" name="authentification-in-api-execution">Authentification in API execution</a></h3><p>You also need authentification when you use Control-bus REST API.<br/>At first you need to get authentification token by executing login API.</p>
+<pre><code class="sh"># username : Login user id
+# password : Login user password
+curl -XPOST localhost:45102/auth -H &quot;Content-Type: application/edn&quot; -d &#39;{:user/id &quot;admin&quot; :user/password &quot;password123&quot;}&#39; -v
+{:token &quot;5f080f9c-3023-4a6a-89fb-de983f768c4d&quot;}
+</code></pre><p>In this case, 5f080f9c-3023-4a6a-89fb-de983f768c4d is the authentification token.<br/>Next, request with &ldquo;Authorization: Token 5f080f9c-3023-4a6a-89fb-de983f768c4d&rdquo; header and you can execute any APIs you are allowed.</p>
+<pre><code class="sh">curl -XGET -H &#39;Content-Type: application/edn&#39; -H &#39;Authorization: Token 5f080f9c-3023-4a6a-89fb-de983f768c4d&#39; http://localhost:45102/default/jobs
+{:results [...]}
+</code></pre>
          </div>
          </div>
          <div class="ui inverted teal footer vertical segment">

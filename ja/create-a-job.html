@@ -23,6 +23,9 @@
    <div class="item">
       <div class="header">ガイド</div>
       <div class="menu">
+         <a class="item" href="auth.html">
+         認証認可
+         </a>
          <a class="item" href="deploy-batch-components.html">
          バッチコンポーネントのデプロイ
          </a>
@@ -39,11 +42,8 @@
          ジョブの設定
          </a>
          <a class="item" href="notificator-config.html">
-         Notificatorの設定
+         通知サーバの設定
          </a>
-         </a>
-         <a class="item" href="auth.html">
-         認証認可
          </a>
          <a class="item" href="import-export.html">
          インポート・エクスポート
@@ -71,29 +71,26 @@
       </div>
    </div>
    <div class="item">
-      <div class=" header">開発者向け情報</div>
+      <div class=" header">コントリビューター向け情報</div>
       <div class="menu">
          <a class="item" href="get-started-developer.html">
-         REPLコマンド集
+         コントリビューター向け Getting Started
          </a>
          <a class="item" href="developer-guide.html">
-         ディベロッパーガイド
+         コントリビューター向けガイドライン
          </a>
       </div>
    </div>
 </div>         </div>
          <div class="twelve wide stretched column">
-      <h1><a href="#ジョブの作成" name="ジョブの作成">ジョブの作成</a></h1>
-<ol>
-  <li>トップページ(http://{サーバ機のIPアドレス}:{コンソールの立ち上げポート番号（デフォルトは8080)})にて&ldquo;new&rdquo;ボタンを押下</li>
-</ol><p><img src="img/new_job_button.png" alt="image" /></p>
-<ol>
-  <li>ジョブを作成<br/>Ex. Batchlet一つのStepだけを持つ簡単なjobを作成する</li>
-</ol><p><img src="img/make-step.png" alt="image" /><br/><img src="img/make-batchlet.png" alt="image" /><br/><img src="img/select-batchlet-ref.png" alt="image" /><br/><img src="img/type-job-name.png" alt="image" /></p>
+      <h1><a href="#ジョブの作成" name="ジョブの作成">ジョブの作成</a></h1><h2>1. job-streamer-console のログイン画面を開く</h2><p><a href="http://[サーバ機のIPアドレス]:[コンソールの立ち上げポート番号（デフォルト:8080)">http://[サーバ機のIPアドレス]:[コンソールの立ち上げポート番号（デフォルト:8080)</a>]</p><h2>2. User name / password を入力してログイン</h2><p>built-in の管理者ユーザは admin / password123</p><h2>3. トップページにて &ldquo;New&rdquo; ボタンを押下</h2><p><img src="img/new_job_button.png" alt="image" /></p><h2>4. ジョブを作成</h2><p>Ex. Batchlet一つのStepだけを持つ簡単なjobを作成する</p><p><img src="img/make-step.png" alt="image" /><br/><img src="img/make-batchlet.png" alt="image" /><br/><img src="img/select-batchlet-ref.png" alt="image" /><br/><img src="img/type-job-name.png" alt="image" /></p>
 <ul>
-  <li>Attributeの設定<br/><img src="img/set-attr.png" alt="image" /></li>
-  <li>Propertyの設定<br/><img src="img/set-properties.png" alt="image" /></li>
-</ul><p>BatchletやItemReader/ItemWriter/ItemProcessorはコントロールバスにデプロイされているものだけが使用できます。<br/>新しいバッチ部品を使用したい場合は <a href="./get-started-developer.html">ジョブ部品のデプロイ</a>を参照してください。</p>
+  <li>Attribute の設定<br/><img src="img/set-attr.png" alt="image" /></li>
+  <li>Property の設定
+  <ul>
+    <li>Property の Value には下記の形式 (EL式) でジョブ自体のパラメータを指定することが可能<br/>#{jobParameters[&lsquo;パラメータ名&rsquo;]}</li>
+  </ul></li>
+</ul><p><img src="img/set-properties.png" alt="image" /></p><p>バッチ部品 (Batchlet/ItemReader/ItemWriter/ItemProcessor 等) はコントロールバスにデプロイされているものだけが使用できます。<br/>新しいバッチ部品を使用したい場合は <a href="./deploy-batch-components.html">ジョブ部品のデプロイ</a> を参照してください。</p>
          </div>
          </div>
          <div class="ui inverted teal footer vertical segment">

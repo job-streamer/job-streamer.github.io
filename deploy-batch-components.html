@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <meta charset="UTF-8">
+      <meta charset="UTF-8"/>
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <meta name="description" content="JobStreamer : JobStreamer site."/>
@@ -10,21 +10,30 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
    </head>
    <body>
-<div class="ui sidebar inverted vertical menu">
+         <div class="ui fixed inverted teal menu">
+            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
+         </div>
+         <div/>
+         <div id="main_content_wrap" class="main ui grid content">
+         <div class="four wide column">
+<div class="ui vertical fluid tabular menu">
    <a class="item" href="get-started-quickly.html">
    Getting Started
    </a>
    <div class="item">
       <div class="header">Guide</div>
       <div class="menu">
+         <a class="item" href="auth.html">
+         Authentication and authorization
+         </a>
          <a class="item" href="deploy-batch-components.html">
          Deploy batch components
          </a>
          <a class="item" href="create-a-job.html">
-         Create a job
+         Create job
          </a>
          <a class="item" href="execute-the-job.html">
-         Execute the job
+         Execute job
          </a>
          <a class="item" href="schedule-job.html">
          Schedule job
@@ -34,6 +43,12 @@
          </a>
          <a class="item" href="notificator-config.html">
          Notificator config
+         </a>
+         <a class="item" href="import-export.html">
+         Import and export
+         </a>
+         <a class="item" href="test-mode.html">
+         Test mode
          </a>
       </div>
    </div>
@@ -55,36 +70,32 @@
       </div>
    </div>
    <div class="item">
-      <div class=" header">For Developper</div>
+      <div class=" header">For contributers</div>
       <div class="menu">
          <a class="item" href="get-started-developer.html">
-         REPL commands
+         Getting Started for contributers
          </a>
          <a class="item" href="developer-guide.html">
-         Developer guide
+         Developer guide for contributers
          </a>
       </div>
    </div>
-</div>      <div class="pusher">
-         <div class="ui fixed inverted teal menu">
-            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
-            <a class="view-ui item" onClick="viewSidebar()">
-              Menu
-            </a>
+</div>         </div>
+         <div class="twelve wide stretched column">
+      <h1><a href="#deploy-batch-components" name="deploy-batch-components">Deploy batch components</a></h1><h2><a href="#how-to-deploy" name="how-to-deploy">How to deploy</a></h2><p>You can deploy batch conpornents on Control-bus using <a href="https://github.com/job-streamer/job-streamer-maven-plugin">maven plugin</a> or by upload a jar file that has all dependencies of components in it to Console.<br/>Anyway, we recommend that you make a batch components project as a &ldquo;maven project&rdquo;.</p><h3>Deploy using <a href="https://github.com/job-streamer/job-streamer-maven-plugin">maven plugin</a></h3><p>Example<br/>==</p><h4>1. Get example:</h4>
+<pre><code>    % git clone https://github.com/job-streamer/job-streamer-examples.git
+</code></pre><h4>2. Deploy:</h4>
+<pre><code>    % cd job-streamer-examples
+    % mvn -e clean package job-streamer:deploy
+</code></pre>
+<blockquote><p>It is necessary to write authentication information for Control-bus on pom.xml.<br/>It is necessary that deploy resources and Control-bus exist in the same server.</p>
+</blockquote><h3><a href="#deploy-from-console" name="deploy-from-console">Deploy from Console</a></h3><p>Example<br/>==</p><h4>1. Get example:</h4>
+<pre><code>    % git clone https://github.com/job-streamer/job-streamer-examples.git
+</code></pre><h4>2. Create with-dependencies.jar:</h4>
+<pre><code>    % cd job-streamer-examples
+    % mvn compile assembly:single
+</code></pre><h4>3. Transit to &ldquo;Upload Batch Components&rdquo; in the header right menu:</h4><h4>4. Drag and drop the jar file created in step 1 to &ldquo;Drop files here to upload&rdquo; area, and the jar file will be upoloaded:</h4>
          </div>
-         <div id="main_content_wrap" class="main grid content full height">
-      <h1><a href="#deploy-batch-components" name="deploy-batch-components">Deploy batch components</a></h1><h2><a href="#how-to-deploy" name="how-to-deploy">How to deploy</a></h2><p>You can deploy batch conpornent on control bus using <a href="https://github.com/job-streamer/job-streamer-maven-plugin">maven plugin</a> .</p><p>For the reason,we recommend you make batch component as &ldquo;maven project&rdquo;</p><h2><a href="#example" name="example">Example</a></h2>
-<ol>
-  <li><p>Get Example:</p>
-  <pre><code>% git clone https://github.com/job-streamer/job-streamer-examples.git
-</code></pre></li>
-  <li><p>Deploy it:</p>
-  <pre><code>% cd job-streamer-examples
-% mvn -e clean package job-streamer:deploy
-</code></pre></li>
-</ol>
-<blockquote><p>Deployed on control-bus.<br/>It needs that deploy resources and control bus are in same server.</p>
-</blockquote>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
@@ -96,18 +107,11 @@
                </div>
             </div>
          </div>
-      </div>
       <script src="https://cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/prism.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-java.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-bash.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
       <script src="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.js"> </script>
-      <script type="text/javascript">
-         function viewSidebar() {
-           $('.sidebar')
-             .sidebar('toggle');
-         }
-      </script>
    </body>
 </html>

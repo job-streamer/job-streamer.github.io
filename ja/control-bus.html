@@ -23,6 +23,9 @@
    <div class="item">
       <div class="header">ガイド</div>
       <div class="menu">
+         <a class="item" href="auth.html">
+         認証認可
+         </a>
          <a class="item" href="deploy-batch-components.html">
          バッチコンポーネントのデプロイ
          </a>
@@ -39,11 +42,8 @@
          ジョブの設定
          </a>
          <a class="item" href="notificator-config.html">
-         Notificatorの設定
+         通知サーバの設定
          </a>
-         </a>
-         <a class="item" href="auth.html">
-         認証認可
          </a>
          <a class="item" href="import-export.html">
          インポート・エクスポート
@@ -71,19 +71,19 @@
       </div>
    </div>
    <div class="item">
-      <div class=" header">開発者向け情報</div>
+      <div class=" header">コントリビューター向け情報</div>
       <div class="menu">
          <a class="item" href="get-started-developer.html">
-         REPLコマンド集
+         コントリビューター向け Getting Started
          </a>
          <a class="item" href="developer-guide.html">
-         ディベロッパーガイド
+         コントリビューター向けガイドライン
          </a>
       </div>
    </div>
 </div>         </div>
          <div class="twelve wide stretched column">
-      <h1>Control-bus</h1><h2>Control-busとは？</h2><p>control-busはAPI呼び出しを制御しています。<br/>すべてのAPI呼び出しはcontrol-busを介して行います。<br/>なので直接console-&gt;agentといったAPIアクセスが発生することはありません。</p><h2>Control-busで出来ること</h2>
+      <h1><a href="#control-bus" name="control-bus">Control bus</a></h1><p>Control-bus は API 呼び出しを制御します。<br/>すべての API 呼び出しは control-bus を介して行います。<br/>そのため、直接 console -&gt; agent といった APIアクセス が発生することはありません。</p><h2><a href="#control-bus-で出来ること" name="control-bus-で出来ること">Control bus で出来ること</a></h2>
 <ul>
   <li>バッチ部品のデプロイ</li>
   <li>ジョブの登録</li>
@@ -98,9 +98,9 @@
   <li><p>ジョブのスケジューリング</p></li>
   <li>ジョブのスケジュールの停止</li>
   <li>ジョブのスケジューリングの削除</li>
-</ul><h2>Control-bus APIs</h2><p>Control-busのAPIはednとJSONに対応しています.</p><h3><a href="#create-a-appliccation" name="create-a-appliccation">Create a appliccation</a></h3>
+</ul><h2><a href="#control-bus-api" name="control-bus-api">Control bus API</a></h2><p>Control-bus は REST API を提供します。<br/>POST/PUT 時のパラメータは edn 形式と JSON 形式に対応しています。</p><h3><a href="#認証" name="認証">認証</a></h3><p>全ての API の実行には認証が必要です。<br/>API 呼び出し時の認証方法については <a href="./auth.html#api-実行時の認証">認証認可#API 実行時の認証</a> を参照してください</p><h3><a href="#アプリケーション作成" name="アプリケーション作成">アプリケーション作成</a></h3>
 <pre><code>POST /apps
-</code></pre><h4><a href="#example" name="example">Example</a></h4>
+</code></pre><h4><a href="#例" name="例">例</a></h4>
 <pre><code class="clojure">{
   :name &quot;batch-example&quot;
   :description &quot;Batch example&quot;
@@ -112,12 +112,12 @@
   ]
 }
 </code></pre><p><code>NOTICE</code></p>
-<blockquote><p>Currently, JobStreamer supports only single application.</p>
-</blockquote><h3><a href="#list-jobs" name="list-jobs">List jobs</a></h3>
+<blockquote><p>JobStreamer は現状では単一のアプリケーション (アプリケーション名: default) にしか対応していません。</p>
+</blockquote><h3><a href="#ジョブ一覧取得" name="ジョブ一覧取得">ジョブ一覧取得</a></h3>
 <pre><code>GET /:app-name/jobs
-</code></pre><h4><a href="#query" name="query">Query</a></h4><p>jobを条件検索したい場合は以下のようにパラメータを付加することでできます。</p>
-<pre><code>GET /:app-name/jobs?q=[query]
-</code></pre><p>queryでは基本的にスペース区切りでjob名を指定することで、部分一致検索を行います。<br/>それ以外にもプレフィックスをつけることで様々な検索が可能です。</p>
+</code></pre><h4><a href="#検索" name="検索">検索</a></h4><p>job を条件検索したい場合は以下のように URL パラメータを付加することでできます。</p>
+<pre><code>GET /:app-name/jobs?q=[query]&amp;with=[with]&amp;sort-by=[sort-by]&amp;limit=[limit]&amp;offset=[offset]
+</code></pre><h5>1. query</h5><p>query では基本的にスペース区切りで job 名を指定することで部分一致検索を行います。<br/>それ以外にもプレフィックスをつけることで様々な検索が可能です。</p>
 <table>
   <thead>
     <tr>
@@ -128,117 +128,161 @@
   <tbody>
     <tr>
       <td>exit-status:</td>
-      <td>最終実行のexit-statusとパラメータが部分一致するかどうか</td>
+      <td>最終実行の exit-status と指定値が部分一致するかどうか</td>
     </tr>
     <tr>
       <td>since:</td>
-      <td>最終実行の終了時刻(yyyy-MM-dd)がパラメータ以降であるかどうか</td>
+      <td>最終実行の終了時刻 (yyyy-MM-dd) が指定値以降であるかどうか</td>
     </tr>
     <tr>
       <td>until:</td>
-      <td>最終実行の終了時刻(yyyy-MM-dd)がパラメータ以前であるかどうか</td>
+      <td>最終実行の終了時刻 (yyyy-MM-dd) が指定値以前であるかどうか</td>
     </tr>
   </tbody>
-</table><h5><a href="#example" name="example">Example</a></h5><p>encoded</p>
-<pre><code>GET /:app-name/jobs?q=send%20mail%20since%3a2000%2d01%2d01%20until%3a2100%2d01%2d01
-</code></pre><p>not encoded</p>
-<pre><code>GET /:app-name/jobs?q=send mail since:2000-01-01 until:2100-01-01
-</code></pre><p>job名に　send か mail を含み jobの最終実行が2000-01-01から2100-01-01のjobが得られます。</p><h3><a href="#create-a-job" name="create-a-job">Create a job</a></h3>
-<pre><code>POST /:app-name/jobs
-</code></pre><h4><a href="#parameters" name="parameters">Parameters</a></h4>
+</table>
+<ul>
+  <li>例</li>
+</ul>
+<pre><code>query=send mail since:2000-01-01 until:2100-01-01
+</code></pre><h5>2. with</h5><p>結果として取得するジョブの属性をカンマ区切りで指定します。<br/>指定可能な属性は下記です。</p>
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Type</th>
+      <th> </th>
       <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>job/name</td>
-      <td>String</td>
-      <td>Required. The name of the job.</td>
+      <td>execution </td>
+      <td>結果に実行履歴を付与します</td>
     </tr>
     <tr>
-      <td>job/components</td>
-      <td>Map</td>
-      <td>Required. The components of the job.</td>
+      <td>schedule </td>
+      <td>結果にジョブの実行スケジュールを付与します</td>
     </tr>
     <tr>
-      <td>job/properties</td>
-      <td>Map</td>
-      <td>Required but accept null. The properties of the job.</td>
+      <td>notation </td>
+      <td>結果にジョブの XML, SVG 表記を付与します</td>
     </tr>
     <tr>
-      <td>step/name</td>
-      <td>String</td>
-      <td>Required. The name of the step.</td>
-    </tr>
-    <tr>
-      <td>step/properties</td>
-      <td>Map</td>
-      <td>Required but accept null. The properties of the step.</td>
+      <td>settings </td>
+      <td>結果にジョブの設定を付与します</td>
     </tr>
   </tbody>
-</table><h4><a href="#example" name="example">Example</a></h4><p>edn</p>
+</table>
+<ul>
+  <li>例</li>
+</ul>
+<pre><code>with=execution,schedule
+</code></pre><h5>3. sort-by</h5><p>ジョブのソートキーを指定します。<br/>ソートキーはキー名と昇順降順(asc/desc)をコロン区切りのセットで指定してください。<br/>複数のソートキーを指定する場合はそれをカンマ区切りで優先順に繋げてください。<br/>ソートキーとして指定できる属性は下記です。</p>
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>name </td>
+      <td>ジョブ名 </td>
+    </tr>
+    <tr>
+      <td>last-execution-started </td>
+      <td>ジョブ最終実行の開始日時 </td>
+    </tr>
+    <tr>
+      <td>last-execution-duration </td>
+      <td>ジョブ最終実行の実行時間 </td>
+    </tr>
+    <tr>
+      <td>last-execution-status </td>
+      <td>ジョブ最終実行の終了ステータス </td>
+    </tr>
+    <tr>
+      <td>next-execution-start </td>
+      <td>ジョブ次回実行の開始予定日時 </td>
+    </tr>
+  </tbody>
+</table>
+<ul>
+  <li>例</li>
+</ul>
+<pre><code>sort-by=name:asc,last-execution-status:desc
+</code></pre><h5>4. limit</h5><p>検索上限数を指定して下さい。</p><h5>5. offset</h5><p>ページングの実装などの用途で検索のオフセットを指定して下さい。</p><h5><a href="#例" name="例">例</a></h5><p>job 名に &ldquo;send&rdquo; か &ldquo;mail&rdquo; を含み job の最終実行が 2000-01-01 から 2100-01-01 の job を検索するクエリ</p>
+<pre><code>send mail since:2000-01-01 until:2100-01-01
+</code></pre><p>API を呼び出す際には URL エンコーディングして渡します。</p>
+<pre><code>GET /:app-name/jobs?q=send%20mail%20since%3a2000%2d01%2d01%20until%3a2100%2d01%2d01
+</code></pre><h3><a href="#ジョブ作成" name="ジョブ作成">ジョブ作成</a></h3>
+<pre><code>POST /:app-name/jobs
+</code></pre><h4><a href="#パラメータ" name="パラメータ">パラメータ</a></h4>
+<table>
+  <thead>
+    <tr>
+      <th>Name </th>
+      <th>Type </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>job/name </td>
+      <td>String </td>
+      <td>Required. The name of the job. </td>
+    </tr>
+    <tr>
+      <td>job/bpmn-xml-notation </td>
+      <td>String </td>
+      <td>Required. job body formatted as BPMN </td>
+    </tr>
+    <tr>
+      <td>job/svg-notation </td>
+      <td>String </td>
+      <td>Required. job svg string </td>
+    </tr>
+  </tbody>
+</table><h5>例: edn 形式</h5>
 <pre><code class="clojure">{
   :job/name &quot;example-job&quot;
-  :job/components [{
-    :step/name &quot;example-step&quot;
-    :step/properties nil
-    :step/batchlet {
-      :batchlet/ref &quot;example.HelloBatch&quot;
-      }}]
-  :job/properties {:key &quot;value&quot;}}
-</code></pre><p>JSON</p>
+  :job/bpmn-xml-notation &quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;UTF-8\&quot;?&gt;\n&lt;bpmn:definitions xmlns:xsi=\&quot;http://www.w3.org/2001/XMLSchema-instance\&quot; xmlns:bpmn=\&quot;http://www.omg.org/spec/BPMN/20100524/MODEL\&quot; xmlns:jsr352=\&quot;http://jsr352/\&quot; xmlns:bpmndi=\&quot;http://www.omg.org/spec/BPMN/20100524/DI\&quot; xmlns:dc=\&quot;http://www.omg.org/spec/DD/20100524/DC\&quot; xmlns:di=\&quot;http://www.omg.org/spec/DD/20100524/DI\&quot; id=\&quot;Definitions_1\&quot; targetNamespace=\&quot;http://bpmn.io/schema/bpmn\&quot;&gt;\n  &lt;jsr352:job id=\&quot;Job_1\&quot; bpmn:name=\&quot;test\&quot; isExecutable=\&quot;false\&quot;&gt;\n    &lt;jsr352:start id=\&quot;Start_1\&quot;&gt;\n      &lt;bpmn:outgoing&gt;Transition_1i7cmsw&lt;/bpmn:outgoing&gt;\n    &lt;/jsr352:start&gt;\n    &lt;jsr352:step id=\&quot;Step_1j4854h\&quot;&gt;\n      &lt;bpmn:incoming&gt;Transition_1i7cmsw&lt;/bpmn:incoming&gt;\n    &lt;/jsr352:step&gt;\n    &lt;jsr352:transition id=\&quot;Transition_1i7cmsw\&quot; sourceRef=\&quot;Start_1\&quot; targetRef=\&quot;Step_1j4854h\&quot; /&gt;\n  &lt;/jsr352:job&gt;\n  &lt;bpmndi:BPMNDiagram id=\&quot;BPMNDiagram_1\&quot;&gt;\n    &lt;bpmndi:BPMNPlane id=\&quot;BPMNPlane_1\&quot; bpmnElement=\&quot;Job_1\&quot;&gt;\n      &lt;bpmndi:BPMNShape id=\&quot;_BPMNShape_Start_2\&quot; bpmnElement=\&quot;Start_1\&quot;&gt;\n        &lt;dc:Bounds x=\&quot;173\&quot; y=\&quot;102\&quot; width=\&quot;36\&quot; height=\&quot;36\&quot; /&gt;\n      &lt;/bpmndi:BPMNShape&gt;\n      &lt;bpmndi:BPMNShape id=\&quot;Step_1j4854h_di\&quot; bpmnElement=\&quot;Step_1j4854h\&quot;&gt;\n        &lt;dc:Bounds x=\&quot;241\&quot; y=\&quot;110\&quot; width=\&quot;120\&quot; height=\&quot;100\&quot; /&gt;\n      &lt;/bpmndi:BPMNShape&gt;\n      &lt;bpmndi:BPMNEdge id=\&quot;Transition_1i7cmsw_di\&quot; bpmnElement=\&quot;Transition_1i7cmsw\&quot;&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;209\&quot; y=\&quot;120\&quot; /&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;225\&quot; y=\&quot;120\&quot; /&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;225\&quot; y=\&quot;152\&quot; /&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;241\&quot; y=\&quot;152\&quot; /&gt;\n        &lt;bpmndi:BPMNLabel&gt;\n          &lt;dc:Bounds x=\&quot;240\&quot; y=\&quot;126\&quot; width=\&quot;0\&quot; height=\&quot;0\&quot; /&gt;\n        &lt;/bpmndi:BPMNLabel&gt;\n      &lt;/bpmndi:BPMNEdge&gt;\n    &lt;/bpmndi:BPMNPlane&gt;\n  &lt;/bpmndi:BPMNDiagram&gt;\n&lt;/bpmn:definitions&gt;\n&quot;
+  :job/svg-notation &quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;utf-8\&quot;?&gt;\n&lt;!-- created with bpmn-js / http://bpmn.io --&gt;\n&lt;!DOCTYPE svg PUBLIC \&quot;-//W3C//DTD SVG 1.1//EN\&quot; \&quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\&quot;&gt;\n&lt;svg xmlns=\&quot;http://www.w3.org/2000/svg\&quot; xmlns:xlink=\&quot;http://www.w3.org/1999/xlink\&quot; width=\&quot;200\&quot; height=\&quot;120\&quot; viewBox=\&quot;167 96 200 120\&quot; version=\&quot;1.1\&quot;&gt;&lt;defs&gt;&lt;marker id=\&quot;sequenceflow-end\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;11\&quot; refY=\&quot;10\&quot; markerWidth=\&quot;10\&quot; markerHeight=\&quot;10\&quot; orient=\&quot;auto\&quot;&gt;&lt;path d=\&quot;M 1 5 L 11 10 L 1 15 Z\&quot; style=\&quot;fill: black; stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 10000, 1;\&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;marker id=\&quot;messageflow-start\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;6\&quot; refY=\&quot;6\&quot; markerWidth=\&quot;20\&quot; markerHeight=\&quot;20\&quot; orient=\&quot;auto\&quot;&gt;&lt;circle cx=\&quot;6\&quot; cy=\&quot;6\&quot; r=\&quot;3.5\&quot; style=\&quot;fill: white; stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 10000, 1; stroke: black;\&quot;&gt;&lt;/circle&gt;&lt;/marker&gt;&lt;marker id=\&quot;messageflow-end\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;8.5\&quot; refY=\&quot;5\&quot; markerWidth=\&quot;20\&quot; markerHeight=\&quot;20\&quot; orient=\&quot;auto\&quot;&gt;&lt;path d=\&quot;m 1 5 l 0 -3 l 7 3 l -7 3 z\&quot; style=\&quot;fill: white; stroke-width: 1px; stroke-linecap: butt; stroke-dasharray: 10000, 1; stroke: black;\&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;marker id=\&quot;association-start\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;1\&quot; refY=\&quot;10\&quot; markerWidth=\&quot;10\&quot; markerHeight=\&quot;10\&quot; orient=\&quot;auto\&quot;&gt;&lt;path d=\&quot;M 11 5 L 1 10 L 11 15\&quot; style=\&quot;fill: none; stroke-width: 1.5px; stroke-linecap: round; stroke-dasharray: 10000, 1; stroke: black;\&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;marker id=\&quot;association-end\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;12\&quot; refY=\&quot;10\&quot; markerWidth=\&quot;10\&quot; markerHeight=\&quot;10\&quot; orient=\&quot;auto\&quot;&gt;&lt;path d=\&quot;M 1 5 L 11 10 L 1 15\&quot; style=\&quot;fill: none; stroke-width: 1.5px; stroke-linecap: round; stroke-dasharray: 10000, 1; stroke: black;\&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;marker id=\&quot;conditional-flow-marker\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;-1\&quot; refY=\&quot;10\&quot; markerWidth=\&quot;10\&quot; markerHeight=\&quot;10\&quot; orient=\&quot;auto\&quot;&gt;&lt;path d=\&quot;M 0 10 L 8 6 L 16 10 L 8 14 Z\&quot; style=\&quot;fill: white; stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 10000, 1; stroke: black;\&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;marker id=\&quot;conditional-default-flow-marker\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;-5\&quot; refY=\&quot;10\&quot; markerWidth=\&quot;10\&quot; markerHeight=\&quot;10\&quot; orient=\&quot;auto\&quot;&gt;&lt;path d=\&quot;M 1 4 L 5 16\&quot; style=\&quot;fill: black; stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 10000, 1; stroke: black;\&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;/defs&gt;&lt;g class=\&quot;djs-group\&quot;&gt;&lt;g class=\&quot;djs-element djs-shape\&quot; data-element-id=\&quot;Start_1\&quot; style=\&quot;display: block;\&quot; transform=\&quot;translate(173 102)\&quot;&gt;&lt;g class=\&quot;djs-visual\&quot;&gt;&lt;circle cx=\&quot;18\&quot; cy=\&quot;18\&quot; r=\&quot;18\&quot; style=\&quot;stroke: black; stroke-width: 2px; fill: white;\&quot;/&gt;&lt;/g&gt;&lt;rect x=\&quot;0\&quot; y=\&quot;0\&quot; width=\&quot;36\&quot; height=\&quot;36\&quot; class=\&quot;djs-hit\&quot; style=\&quot;fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;\&quot;/&gt;&lt;rect x=\&quot;-6\&quot; y=\&quot;-6\&quot; width=\&quot;48\&quot; height=\&quot;48\&quot; class=\&quot;djs-outline\&quot; style=\&quot;fill: none;\&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class=\&quot;djs-group\&quot;&gt;&lt;g class=\&quot;djs-element djs-shape\&quot; data-element-id=\&quot;Start_1_label\&quot; style=\&quot;display: none;\&quot; transform=\&quot;translate(191 138)\&quot;&gt;&lt;g class=\&quot;djs-visual\&quot;&gt;&lt;text class=\&quot;djs-label\&quot; transform=\&quot;translate(0,0)\&quot; style=\&quot;font-family: Arial, sans-serif; font-size: 11px;\&quot;&gt;&lt;tspan x=\&quot;45\&quot; y=\&quot;12\&quot;/&gt;&lt;/text&gt;&lt;/g&gt;&lt;rect x=\&quot;0\&quot; y=\&quot;0\&quot; width=\&quot;0\&quot; height=\&quot;0\&quot; class=\&quot;djs-hit\&quot; style=\&quot;fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;\&quot;/&gt;&lt;rect x=\&quot;-6\&quot; y=\&quot;-6\&quot; width=\&quot;12\&quot; height=\&quot;12\&quot; class=\&quot;djs-outline\&quot; style=\&quot;fill: none;\&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class=\&quot;djs-group\&quot;&gt;&lt;g class=\&quot;djs-element djs-shape\&quot; data-element-id=\&quot;Step_1j4854h\&quot; style=\&quot;display: block;\&quot; transform=\&quot;translate(241 110)\&quot;&gt;&lt;g class=\&quot;djs-visual\&quot;&gt;&lt;rect x=\&quot;0\&quot; y=\&quot;0\&quot; width=\&quot;120\&quot; height=\&quot;100\&quot; rx=\&quot;10\&quot; ry=\&quot;10\&quot; style=\&quot;stroke: black; stroke-width: 2px; fill: white;\&quot;/&gt;&lt;rect x=\&quot;0\&quot; y=\&quot;0\&quot; width=\&quot;40\&quot; height=\&quot;20\&quot; rx=\&quot;0\&quot; ry=\&quot;0\&quot; style=\&quot;stroke: black; stroke-width: 2px; fill: white;\&quot;/&gt;&lt;text style=\&quot;font-family: Arial, sans-serif; font-size: 12px; fill: rgb(0, 0, 0);\&quot;&gt;&lt;tspan x=\&quot;7.5\&quot; y=\&quot;13.5\&quot;&gt;Step&lt;/tspan&gt;&lt;/text&gt;&lt;text style=\&quot;font-family: Arial, sans-serif; font-size: 12px;\&quot;&gt;&lt;tspan x=\&quot;60\&quot; y=\&quot;15\&quot;/&gt;&lt;/text&gt;&lt;/g&gt;&lt;rect x=\&quot;0\&quot; y=\&quot;0\&quot; width=\&quot;120\&quot; height=\&quot;100\&quot; class=\&quot;djs-hit\&quot; style=\&quot;fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;\&quot;/&gt;&lt;rect x=\&quot;-6\&quot; y=\&quot;-6\&quot; width=\&quot;132\&quot; height=\&quot;112\&quot; class=\&quot;djs-outline\&quot; style=\&quot;fill: none;\&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class=\&quot;djs-group\&quot;&gt;&lt;g class=\&quot;djs-element djs-connection\&quot; data-element-id=\&quot;Transition_1i7cmsw\&quot; style=\&quot;display: block;\&quot;&gt;&lt;g class=\&quot;djs-visual\&quot;&gt;&lt;path d=\&quot;m  209,120L225,120 L225,152 L241,152 \&quot; style=\&quot;fill: none; stroke-width: 2px; stroke: black; stroke-linejoin: round; marker-end: url(&#39;#sequenceflow-end&#39;);\&quot;/&gt;&lt;/g&gt;&lt;polyline points=\&quot;209,120 225,120 225,152 241,152 \&quot; class=\&quot;djs-hit\&quot; style=\&quot;fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;\&quot;/&gt;&lt;rect x=\&quot;203\&quot; y=\&quot;114\&quot; width=\&quot;44\&quot; height=\&quot;44\&quot; class=\&quot;djs-outline\&quot; style=\&quot;fill: none;\&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class=\&quot;djs-group\&quot;&gt;&lt;g class=\&quot;djs-element djs-shape\&quot; data-element-id=\&quot;Transition_1i7cmsw_label\&quot; style=\&quot;display: none;\&quot; transform=\&quot;translate(240 126)\&quot;&gt;&lt;g class=\&quot;djs-visual\&quot;&gt;&lt;text class=\&quot;djs-label\&quot; transform=\&quot;translate(0,0)\&quot; style=\&quot;font-family: Arial, sans-serif; font-size: 11px;\&quot;&gt;&lt;tspan x=\&quot;45\&quot; y=\&quot;12\&quot;/&gt;&lt;/text&gt;&lt;/g&gt;&lt;rect x=\&quot;0\&quot; y=\&quot;0\&quot; width=\&quot;0\&quot; height=\&quot;0\&quot; class=\&quot;djs-hit\&quot; style=\&quot;fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;\&quot;/&gt;&lt;rect x=\&quot;-6\&quot; y=\&quot;-6\&quot; width=\&quot;12\&quot; height=\&quot;12\&quot; class=\&quot;djs-outline\&quot; style=\&quot;fill: none;\&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;&quot;}
+}
+</code></pre><h5>例: JSON 形式</h5>
 <pre><code class="JSON">{
   &quot;job/name&quot;: &quot;example-job&quot;,
-  &quot;job/components&quot;: [
-    {
-      &quot;step/name&quot;: &quot;example-step&quot;,
-      &quot;step/properties&quot;: null,
-      &quot;step/batchlet&quot;: {
-        &quot;batchlet/ref&quot;: &quot;example.HelloBatch&quot;
-      }
-    }
-  ],
-  &quot;job/properties&quot;: {
-      &quot;key&quot;: &quot;value&quot;
-  }
+  &quot;job/bpmn-xml-notation&quot;: &quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;UTF-8\&quot;?&gt;\n&lt;bpmn:definitions xmlns:xsi=\&quot;http://www.w3.org/2001/XMLSchema-instance\&quot; xmlns:bpmn=\&quot;http://www.omg.org/spec/BPMN/20100524/MODEL\&quot; xmlns:jsr352=\&quot;http://jsr352/\&quot; xmlns:bpmndi=\&quot;http://www.omg.org/spec/BPMN/20100524/DI\&quot; xmlns:dc=\&quot;http://www.omg.org/spec/DD/20100524/DC\&quot; xmlns:di=\&quot;http://www.omg.org/spec/DD/20100524/DI\&quot; id=\&quot;Definitions_1\&quot; targetNamespace=\&quot;http://bpmn.io/schema/bpmn\&quot;&gt;\n  &lt;jsr352:job id=\&quot;Job_1\&quot; bpmn:name=\&quot;test\&quot; isExecutable=\&quot;false\&quot;&gt;\n    &lt;jsr352:start id=\&quot;Start_1\&quot;&gt;\n      &lt;bpmn:outgoing&gt;Transition_1i7cmsw&lt;/bpmn:outgoing&gt;\n    &lt;/jsr352:start&gt;\n    &lt;jsr352:step id=\&quot;Step_1j4854h\&quot;&gt;\n      &lt;bpmn:incoming&gt;Transition_1i7cmsw&lt;/bpmn:incoming&gt;\n    &lt;/jsr352:step&gt;\n    &lt;jsr352:transition id=\&quot;Transition_1i7cmsw\&quot; sourceRef=\&quot;Start_1\&quot; targetRef=\&quot;Step_1j4854h\&quot; /&gt;\n  &lt;/jsr352:job&gt;\n  &lt;bpmndi:BPMNDiagram id=\&quot;BPMNDiagram_1\&quot;&gt;\n    &lt;bpmndi:BPMNPlane id=\&quot;BPMNPlane_1\&quot; bpmnElement=\&quot;Job_1\&quot;&gt;\n      &lt;bpmndi:BPMNShape id=\&quot;_BPMNShape_Start_2\&quot; bpmnElement=\&quot;Start_1\&quot;&gt;\n        &lt;dc:Bounds x=\&quot;173\&quot; y=\&quot;102\&quot; width=\&quot;36\&quot; height=\&quot;36\&quot; /&gt;\n      &lt;/bpmndi:BPMNShape&gt;\n      &lt;bpmndi:BPMNShape id=\&quot;Step_1j4854h_di\&quot; bpmnElement=\&quot;Step_1j4854h\&quot;&gt;\n        &lt;dc:Bounds x=\&quot;241\&quot; y=\&quot;110\&quot; width=\&quot;120\&quot; height=\&quot;100\&quot; /&gt;\n      &lt;/bpmndi:BPMNShape&gt;\n      &lt;bpmndi:BPMNEdge id=\&quot;Transition_1i7cmsw_di\&quot; bpmnElement=\&quot;Transition_1i7cmsw\&quot;&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;209\&quot; y=\&quot;120\&quot; /&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;225\&quot; y=\&quot;120\&quot; /&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;225\&quot; y=\&quot;152\&quot; /&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;241\&quot; y=\&quot;152\&quot; /&gt;\n        &lt;bpmndi:BPMNLabel&gt;\n          &lt;dc:Bounds x=\&quot;240\&quot; y=\&quot;126\&quot; width=\&quot;0\&quot; height=\&quot;0\&quot; /&gt;\n        &lt;/bpmndi:BPMNLabel&gt;\n      &lt;/bpmndi:BPMNEdge&gt;\n    &lt;/bpmndi:BPMNPlane&gt;\n  &lt;/bpmndi:BPMNDiagram&gt;\n&lt;/bpmn:definitions&gt;\n&quot;,
+  &quot;job/svg-notation&quot;: &quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;utf-8\&quot;?&gt;\n&lt;!-- created with bpmn-js / http://bpmn.io --&gt;\n&lt;!DOCTYPE svg PUBLIC \&quot;-//W3C//DTD SVG 1.1//EN\&quot; \&quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\&quot;&gt;\n&lt;svg xmlns=\&quot;http://www.w3.org/2000/svg\&quot; xmlns:xlink=\&quot;http://www.w3.org/1999/xlink\&quot; width=\&quot;200\&quot; height=\&quot;120\&quot; viewBox=\&quot;167 96 200 120\&quot; version=\&quot;1.1\&quot;&gt;&lt;defs&gt;&lt;marker id=\&quot;sequenceflow-end\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;11\&quot; refY=\&quot;10\&quot; markerWidth=\&quot;10\&quot; markerHeight=\&quot;10\&quot; orient=\&quot;auto\&quot;&gt;&lt;path d=\&quot;M 1 5 L 11 10 L 1 15 Z\&quot; style=\&quot;fill: black; stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 10000, 1;\&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;marker id=\&quot;messageflow-start\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;6\&quot; refY=\&quot;6\&quot; markerWidth=\&quot;20\&quot; markerHeight=\&quot;20\&quot; orient=\&quot;auto\&quot;&gt;&lt;circle cx=\&quot;6\&quot; cy=\&quot;6\&quot; r=\&quot;3.5\&quot; style=\&quot;fill: white; stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 10000, 1; stroke: black;\&quot;&gt;&lt;/circle&gt;&lt;/marker&gt;&lt;marker id=\&quot;messageflow-end\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;8.5\&quot; refY=\&quot;5\&quot; markerWidth=\&quot;20\&quot; markerHeight=\&quot;20\&quot; orient=\&quot;auto\&quot;&gt;&lt;path d=\&quot;m 1 5 l 0 -3 l 7 3 l -7 3 z\&quot; style=\&quot;fill: white; stroke-width: 1px; stroke-linecap: butt; stroke-dasharray: 10000, 1; stroke: black;\&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;marker id=\&quot;association-start\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;1\&quot; refY=\&quot;10\&quot; markerWidth=\&quot;10\&quot; markerHeight=\&quot;10\&quot; orient=\&quot;auto\&quot;&gt;&lt;path d=\&quot;M 11 5 L 1 10 L 11 15\&quot; style=\&quot;fill: none; stroke-width: 1.5px; stroke-linecap: round; stroke-dasharray: 10000, 1; stroke: black;\&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;marker id=\&quot;association-end\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;12\&quot; refY=\&quot;10\&quot; markerWidth=\&quot;10\&quot; markerHeight=\&quot;10\&quot; orient=\&quot;auto\&quot;&gt;&lt;path d=\&quot;M 1 5 L 11 10 L 1 15\&quot; style=\&quot;fill: none; stroke-width: 1.5px; stroke-linecap: round; stroke-dasharray: 10000, 1; stroke: black;\&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;marker id=\&quot;conditional-flow-marker\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;-1\&quot; refY=\&quot;10\&quot; markerWidth=\&quot;10\&quot; markerHeight=\&quot;10\&quot; orient=\&quot;auto\&quot;&gt;&lt;path d=\&quot;M 0 10 L 8 6 L 16 10 L 8 14 Z\&quot; style=\&quot;fill: white; stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 10000, 1; stroke: black;\&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;marker id=\&quot;conditional-default-flow-marker\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;-5\&quot; refY=\&quot;10\&quot; markerWidth=\&quot;10\&quot; markerHeight=\&quot;10\&quot; orient=\&quot;auto\&quot;&gt;&lt;path d=\&quot;M 1 4 L 5 16\&quot; style=\&quot;fill: black; stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 10000, 1; stroke: black;\&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;/defs&gt;&lt;g class=\&quot;djs-group\&quot;&gt;&lt;g class=\&quot;djs-element djs-shape\&quot; data-element-id=\&quot;Start_1\&quot; style=\&quot;display: block;\&quot; transform=\&quot;translate(173 102)\&quot;&gt;&lt;g class=\&quot;djs-visual\&quot;&gt;&lt;circle cx=\&quot;18\&quot; cy=\&quot;18\&quot; r=\&quot;18\&quot; style=\&quot;stroke: black; stroke-width: 2px; fill: white;\&quot;/&gt;&lt;/g&gt;&lt;rect x=\&quot;0\&quot; y=\&quot;0\&quot; width=\&quot;36\&quot; height=\&quot;36\&quot; class=\&quot;djs-hit\&quot; style=\&quot;fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;\&quot;/&gt;&lt;rect x=\&quot;-6\&quot; y=\&quot;-6\&quot; width=\&quot;48\&quot; height=\&quot;48\&quot; class=\&quot;djs-outline\&quot; style=\&quot;fill: none;\&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class=\&quot;djs-group\&quot;&gt;&lt;g class=\&quot;djs-element djs-shape\&quot; data-element-id=\&quot;Start_1_label\&quot; style=\&quot;display: none;\&quot; transform=\&quot;translate(191 138)\&quot;&gt;&lt;g class=\&quot;djs-visual\&quot;&gt;&lt;text class=\&quot;djs-label\&quot; transform=\&quot;translate(0,0)\&quot; style=\&quot;font-family: Arial, sans-serif; font-size: 11px;\&quot;&gt;&lt;tspan x=\&quot;45\&quot; y=\&quot;12\&quot;/&gt;&lt;/text&gt;&lt;/g&gt;&lt;rect x=\&quot;0\&quot; y=\&quot;0\&quot; width=\&quot;0\&quot; height=\&quot;0\&quot; class=\&quot;djs-hit\&quot; style=\&quot;fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;\&quot;/&gt;&lt;rect x=\&quot;-6\&quot; y=\&quot;-6\&quot; width=\&quot;12\&quot; height=\&quot;12\&quot; class=\&quot;djs-outline\&quot; style=\&quot;fill: none;\&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class=\&quot;djs-group\&quot;&gt;&lt;g class=\&quot;djs-element djs-shape\&quot; data-element-id=\&quot;Step_1j4854h\&quot; style=\&quot;display: block;\&quot; transform=\&quot;translate(241 110)\&quot;&gt;&lt;g class=\&quot;djs-visual\&quot;&gt;&lt;rect x=\&quot;0\&quot; y=\&quot;0\&quot; width=\&quot;120\&quot; height=\&quot;100\&quot; rx=\&quot;10\&quot; ry=\&quot;10\&quot; style=\&quot;stroke: black; stroke-width: 2px; fill: white;\&quot;/&gt;&lt;rect x=\&quot;0\&quot; y=\&quot;0\&quot; width=\&quot;40\&quot; height=\&quot;20\&quot; rx=\&quot;0\&quot; ry=\&quot;0\&quot; style=\&quot;stroke: black; stroke-width: 2px; fill: white;\&quot;/&gt;&lt;text style=\&quot;font-family: Arial, sans-serif; font-size: 12px; fill: rgb(0, 0, 0);\&quot;&gt;&lt;tspan x=\&quot;7.5\&quot; y=\&quot;13.5\&quot;&gt;Step&lt;/tspan&gt;&lt;/text&gt;&lt;text style=\&quot;font-family: Arial, sans-serif; font-size: 12px;\&quot;&gt;&lt;tspan x=\&quot;60\&quot; y=\&quot;15\&quot;/&gt;&lt;/text&gt;&lt;/g&gt;&lt;rect x=\&quot;0\&quot; y=\&quot;0\&quot; width=\&quot;120\&quot; height=\&quot;100\&quot; class=\&quot;djs-hit\&quot; style=\&quot;fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;\&quot;/&gt;&lt;rect x=\&quot;-6\&quot; y=\&quot;-6\&quot; width=\&quot;132\&quot; height=\&quot;112\&quot; class=\&quot;djs-outline\&quot; style=\&quot;fill: none;\&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class=\&quot;djs-group\&quot;&gt;&lt;g class=\&quot;djs-element djs-connection\&quot; data-element-id=\&quot;Transition_1i7cmsw\&quot; style=\&quot;display: block;\&quot;&gt;&lt;g class=\&quot;djs-visual\&quot;&gt;&lt;path d=\&quot;m  209,120L225,120 L225,152 L241,152 \&quot; style=\&quot;fill: none; stroke-width: 2px; stroke: black; stroke-linejoin: round; marker-end: url(&#39;#sequenceflow-end&#39;);\&quot;/&gt;&lt;/g&gt;&lt;polyline points=\&quot;209,120 225,120 225,152 241,152 \&quot; class=\&quot;djs-hit\&quot; style=\&quot;fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;\&quot;/&gt;&lt;rect x=\&quot;203\&quot; y=\&quot;114\&quot; width=\&quot;44\&quot; height=\&quot;44\&quot; class=\&quot;djs-outline\&quot; style=\&quot;fill: none;\&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class=\&quot;djs-group\&quot;&gt;&lt;g class=\&quot;djs-element djs-shape\&quot; data-element-id=\&quot;Transition_1i7cmsw_label\&quot; style=\&quot;display: none;\&quot; transform=\&quot;translate(240 126)\&quot;&gt;&lt;g class=\&quot;djs-visual\&quot;&gt;&lt;text class=\&quot;djs-label\&quot; transform=\&quot;translate(0,0)\&quot; style=\&quot;font-family: Arial, sans-serif; font-size: 11px;\&quot;&gt;&lt;tspan x=\&quot;45\&quot; y=\&quot;12\&quot;/&gt;&lt;/text&gt;&lt;/g&gt;&lt;rect x=\&quot;0\&quot; y=\&quot;0\&quot; width=\&quot;0\&quot; height=\&quot;0\&quot; class=\&quot;djs-hit\&quot; style=\&quot;fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;\&quot;/&gt;&lt;rect x=\&quot;-6\&quot; y=\&quot;-6\&quot; width=\&quot;12\&quot; height=\&quot;12\&quot; class=\&quot;djs-outline\&quot; style=\&quot;fill: none;\&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;&quot;
 }
-</code></pre><h3><a href="#get-a-single-job" name="get-a-single-job">Get a single job</a></h3>
+</code></pre><h3><a href="#単一ジョブ取得" name="単一ジョブ取得">単一ジョブ取得</a></h3>
 <pre><code>GET /:app-name/job/:job-name
-</code></pre><h4><a href="#response" name="response">Response</a></h4>
-<pre><code class="clojure">{
-  :db/id 17592186045451
-  :job/stats {
-    :total 49
-    :success 39
-    :failure 3
-    :average 2660/39
-  }
-  :job/schedule {
-    :schedule/active? true
-    :schedule/cron-notation &quot;0 0 * * * ?&quot;
-  }
-  :job/restartable? true
-  :job/name &quot;MyShell&quot;
-  :job/next-execution {
-    :job-execution/start-time #inst &quot;2015-04-13T09:00:00.000-00:00&quot;
-  }
-  :job/latest-execution {
-    :job-execution/batch-status {:db/ident :batch-status/queued}
-    :job-execution/create-time #inst &quot;2015-04-13T07:00:00.006-00:00&quot;
-  }
-}
-</code></pre><h3><a href="#update-a-job" name="update-a-job">Update a job</a></h3>
+</code></pre><h4><a href="#レスポンス" name="レスポンス">レスポンス</a></h4>
+<pre><code class="clojure">{:db/id 17592186062189
+ :job/name &quot;test&quot;
+ :job/next-execution nil
+ :job/exclusive? false
+ :job/stats {:total 12
+             :success 12
+             :failure 0
+             :average 27/4}
+ :job/bpmn-xml-notation &quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;UTF-8\&quot;?&gt;\n&lt;bpmn:definitions xmlns:xsi=\&quot;http://www.w3.org/2001/XMLSchema-instance\&quot; xmlns:bpmn=\&quot;http://www.omg.org/spec/BPMN/20100524/MODEL\&quot; xmlns:jsr352=\&quot;http://jsr352/\&quot; xmlns:bpmndi=\&quot;http://www.omg.org/spec/BPMN/20100524/DI\&quot; xmlns:dc=\&quot;http://www.omg.org/spec/DD/20100524/DC\&quot; xmlns:di=\&quot;http://www.omg.org/spec/DD/20100524/DI\&quot; id=\&quot;Definitions_1\&quot; targetNamespace=\&quot;http://bpmn.io/schema/bpmn\&quot;&gt;\n  &lt;jsr352:job id=\&quot;Job_1\&quot; bpmn:name=\&quot;test\&quot; isExecutable=\&quot;false\&quot;&gt;\n    &lt;jsr352:start id=\&quot;Start_1\&quot;&gt;\n      &lt;bpmn:outgoing&gt;Transition_1i7cmsw&lt;/bpmn:outgoing&gt;\n    &lt;/jsr352:start&gt;\n    &lt;jsr352:step id=\&quot;Step_1j4854h\&quot;&gt;\n      &lt;bpmn:incoming&gt;Transition_1i7cmsw&lt;/bpmn:incoming&gt;\n    &lt;/jsr352:step&gt;\n    &lt;jsr352:transition id=\&quot;Transition_1i7cmsw\&quot; sourceRef=\&quot;Start_1\&quot; targetRef=\&quot;Step_1j4854h\&quot; /&gt;\n  &lt;/jsr352:job&gt;\n  &lt;bpmndi:BPMNDiagram id=\&quot;BPMNDiagram_1\&quot;&gt;\n    &lt;bpmndi:BPMNPlane id=\&quot;BPMNPlane_1\&quot; bpmnElement=\&quot;Job_1\&quot;&gt;\n      &lt;bpmndi:BPMNShape id=\&quot;_BPMNShape_Start_2\&quot; bpmnElement=\&quot;Start_1\&quot;&gt;\n        &lt;dc:Bounds x=\&quot;173\&quot; y=\&quot;102\&quot; width=\&quot;36\&quot; height=\&quot;36\&quot; /&gt;\n      &lt;/bpmndi:BPMNShape&gt;\n      &lt;bpmndi:BPMNShape id=\&quot;Step_1j4854h_di\&quot; bpmnElement=\&quot;Step_1j4854h\&quot;&gt;\n        &lt;dc:Bounds x=\&quot;241\&quot; y=\&quot;110\&quot; width=\&quot;120\&quot; height=\&quot;100\&quot; /&gt;\n      &lt;/bpmndi:BPMNShape&gt;\n      &lt;bpmndi:BPMNEdge id=\&quot;Transition_1i7cmsw_di\&quot; bpmnElement=\&quot;Transition_1i7cmsw\&quot;&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;209\&quot; y=\&quot;120\&quot; /&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;225\&quot; y=\&quot;120\&quot; /&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;225\&quot; y=\&quot;152\&quot; /&gt;\n        &lt;di:waypoint xsi:type=\&quot;dc:Point\&quot; x=\&quot;241\&quot; y=\&quot;152\&quot; /&gt;\n        &lt;bpmndi:BPMNLabel&gt;\n          &lt;dc:Bounds x=\&quot;240\&quot; y=\&quot;126\&quot; width=\&quot;0\&quot; height=\&quot;0\&quot; /&gt;\n        &lt;/bpmndi:BPMNLabel&gt;\n      &lt;/bpmndi:BPMNEdge&gt;\n    &lt;/bpmndi:BPMNPlane&gt;\n  &lt;/bpmndi:BPMNDiagram&gt;\n&lt;/bpmn:definitions&gt;\n&quot;
+ :job/svg-notation &quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;utf-8\&quot;?&gt;\n&lt;!-- created with bpmn-js / http://bpmn.io --&gt;\n&lt;!DOCTYPE svg PUBLIC \&quot;-//W3C//DTD SVG 1.1//EN\&quot; \&quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\&quot;&gt;\n&lt;svg xmlns=\&quot;http://www.w3.org/2000/svg\&quot; xmlns:xlink=\&quot;http://www.w3.org/1999/xlink\&quot; width=\&quot;200\&quot; height=\&quot;120\&quot; viewBox=\&quot;167 96 200 120\&quot; version=\&quot;1.1\&quot;&gt;&lt;defs&gt;&lt;marker id=\&quot;sequenceflow-end\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;11\&quot; refY=\&quot;10\&quot; markerWidth=\&quot;10\&quot; markerHeight=\&quot;10\&quot; orient=\&quot;auto\&quot;&gt;&lt;path d=\&quot;M 1 5 L 11 10 L 1 15 Z\&quot; style=\&quot;fill: black; stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 10000, 1;\&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;marker id=\&quot;messageflow-start\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;6\&quot; refY=\&quot;6\&quot; markerWidth=\&quot;20\&quot; markerHeight=\&quot;20\&quot; orient=\&quot;auto\&quot;&gt;&lt;circle cx=\&quot;6\&quot; cy=\&quot;6\&quot; r=\&quot;3.5\&quot; style=\&quot;fill: white; stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 10000, 1; stroke: black;\&quot;&gt;&lt;/circle&gt;&lt;/marker&gt;&lt;marker id=\&quot;messageflow-end\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;8.5\&quot; refY=\&quot;5\&quot; markerWidth=\&quot;20\&quot; markerHeight=\&quot;20\&quot; orient=\&quot;auto\&quot;&gt;&lt;path d=\&quot;m 1 5 l 0 -3 l 7 3 l -7 3 z\&quot; style=\&quot;fill: white; stroke-width: 1px; stroke-linecap: butt; stroke-dasharray: 10000, 1; stroke: black;\&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;marker id=\&quot;association-start\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;1\&quot; refY=\&quot;10\&quot; markerWidth=\&quot;10\&quot; markerHeight=\&quot;10\&quot; orient=\&quot;auto\&quot;&gt;&lt;path d=\&quot;M 11 5 L 1 10 L 11 15\&quot; style=\&quot;fill: none; stroke-width: 1.5px; stroke-linecap: round; stroke-dasharray: 10000, 1; stroke: black;\&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;marker id=\&quot;association-end\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;12\&quot; refY=\&quot;10\&quot; markerWidth=\&quot;10\&quot; markerHeight=\&quot;10\&quot; orient=\&quot;auto\&quot;&gt;&lt;path d=\&quot;M 1 5 L 11 10 L 1 15\&quot; style=\&quot;fill: none; stroke-width: 1.5px; stroke-linecap: round; stroke-dasharray: 10000, 1; stroke: black;\&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;marker id=\&quot;conditional-flow-marker\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;-1\&quot; refY=\&quot;10\&quot; markerWidth=\&quot;10\&quot; markerHeight=\&quot;10\&quot; orient=\&quot;auto\&quot;&gt;&lt;path d=\&quot;M 0 10 L 8 6 L 16 10 L 8 14 Z\&quot; style=\&quot;fill: white; stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 10000, 1; stroke: black;\&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;marker id=\&quot;conditional-default-flow-marker\&quot; viewBox=\&quot;0 0 20 20\&quot; refX=\&quot;-5\&quot; refY=\&quot;10\&quot; markerWidth=\&quot;10\&quot; markerHeight=\&quot;10\&quot; orient=\&quot;auto\&quot;&gt;&lt;path d=\&quot;M 1 4 L 5 16\&quot; style=\&quot;fill: black; stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 10000, 1; stroke: black;\&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;/defs&gt;&lt;g class=\&quot;djs-group\&quot;&gt;&lt;g class=\&quot;djs-element djs-shape\&quot; data-element-id=\&quot;Start_1\&quot; style=\&quot;display: block;\&quot; transform=\&quot;translate(173 102)\&quot;&gt;&lt;g class=\&quot;djs-visual\&quot;&gt;&lt;circle cx=\&quot;18\&quot; cy=\&quot;18\&quot; r=\&quot;18\&quot; style=\&quot;stroke: black; stroke-width: 2px; fill: white;\&quot;/&gt;&lt;/g&gt;&lt;rect x=\&quot;0\&quot; y=\&quot;0\&quot; width=\&quot;36\&quot; height=\&quot;36\&quot; class=\&quot;djs-hit\&quot; style=\&quot;fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;\&quot;/&gt;&lt;rect x=\&quot;-6\&quot; y=\&quot;-6\&quot; width=\&quot;48\&quot; height=\&quot;48\&quot; class=\&quot;djs-outline\&quot; style=\&quot;fill: none;\&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class=\&quot;djs-group\&quot;&gt;&lt;g class=\&quot;djs-element djs-shape\&quot; data-element-id=\&quot;Start_1_label\&quot; style=\&quot;display: none;\&quot; transform=\&quot;translate(191 138)\&quot;&gt;&lt;g class=\&quot;djs-visual\&quot;&gt;&lt;text class=\&quot;djs-label\&quot; transform=\&quot;translate(0,0)\&quot; style=\&quot;font-family: Arial, sans-serif; font-size: 11px;\&quot;&gt;&lt;tspan x=\&quot;45\&quot; y=\&quot;12\&quot;/&gt;&lt;/text&gt;&lt;/g&gt;&lt;rect x=\&quot;0\&quot; y=\&quot;0\&quot; width=\&quot;0\&quot; height=\&quot;0\&quot; class=\&quot;djs-hit\&quot; style=\&quot;fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;\&quot;/&gt;&lt;rect x=\&quot;-6\&quot; y=\&quot;-6\&quot; width=\&quot;12\&quot; height=\&quot;12\&quot; class=\&quot;djs-outline\&quot; style=\&quot;fill: none;\&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class=\&quot;djs-group\&quot;&gt;&lt;g class=\&quot;djs-element djs-shape\&quot; data-element-id=\&quot;Step_1j4854h\&quot; style=\&quot;display: block;\&quot; transform=\&quot;translate(241 110)\&quot;&gt;&lt;g class=\&quot;djs-visual\&quot;&gt;&lt;rect x=\&quot;0\&quot; y=\&quot;0\&quot; width=\&quot;120\&quot; height=\&quot;100\&quot; rx=\&quot;10\&quot; ry=\&quot;10\&quot; style=\&quot;stroke: black; stroke-width: 2px; fill: white;\&quot;/&gt;&lt;rect x=\&quot;0\&quot; y=\&quot;0\&quot; width=\&quot;40\&quot; height=\&quot;20\&quot; rx=\&quot;0\&quot; ry=\&quot;0\&quot; style=\&quot;stroke: black; stroke-width: 2px; fill: white;\&quot;/&gt;&lt;text style=\&quot;font-family: Arial, sans-serif; font-size: 12px; fill: rgb(0, 0, 0);\&quot;&gt;&lt;tspan x=\&quot;7.5\&quot; y=\&quot;13.5\&quot;&gt;Step&lt;/tspan&gt;&lt;/text&gt;&lt;text style=\&quot;font-family: Arial, sans-serif; font-size: 12px;\&quot;&gt;&lt;tspan x=\&quot;60\&quot; y=\&quot;15\&quot;/&gt;&lt;/text&gt;&lt;/g&gt;&lt;rect x=\&quot;0\&quot; y=\&quot;0\&quot; width=\&quot;120\&quot; height=\&quot;100\&quot; class=\&quot;djs-hit\&quot; style=\&quot;fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;\&quot;/&gt;&lt;rect x=\&quot;-6\&quot; y=\&quot;-6\&quot; width=\&quot;132\&quot; height=\&quot;112\&quot; class=\&quot;djs-outline\&quot; style=\&quot;fill: none;\&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class=\&quot;djs-group\&quot;&gt;&lt;g class=\&quot;djs-element djs-connection\&quot; data-element-id=\&quot;Transition_1i7cmsw\&quot; style=\&quot;display: block;\&quot;&gt;&lt;g class=\&quot;djs-visual\&quot;&gt;&lt;path d=\&quot;m  209,120L225,120 L225,152 L241,152 \&quot; style=\&quot;fill: none; stroke-width: 2px; stroke: black; stroke-linejoin: round; marker-end: url(&#39;#sequenceflow-end&#39;);\&quot;/&gt;&lt;/g&gt;&lt;polyline points=\&quot;209,120 225,120 225,152 241,152 \&quot; class=\&quot;djs-hit\&quot; style=\&quot;fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;\&quot;/&gt;&lt;rect x=\&quot;203\&quot; y=\&quot;114\&quot; width=\&quot;44\&quot; height=\&quot;44\&quot; class=\&quot;djs-outline\&quot; style=\&quot;fill: none;\&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class=\&quot;djs-group\&quot;&gt;&lt;g class=\&quot;djs-element djs-shape\&quot; data-element-id=\&quot;Transition_1i7cmsw_label\&quot; style=\&quot;display: none;\&quot; transform=\&quot;translate(240 126)\&quot;&gt;&lt;g class=\&quot;djs-visual\&quot;&gt;&lt;text class=\&quot;djs-label\&quot; transform=\&quot;translate(0,0)\&quot; style=\&quot;font-family: Arial, sans-serif; font-size: 11px;\&quot;&gt;&lt;tspan x=\&quot;45\&quot; y=\&quot;12\&quot;/&gt;&lt;/text&gt;&lt;/g&gt;&lt;rect x=\&quot;0\&quot; y=\&quot;0\&quot; width=\&quot;0\&quot; height=\&quot;0\&quot; class=\&quot;djs-hit\&quot; style=\&quot;fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;\&quot;/&gt;&lt;rect x=\&quot;-6\&quot; y=\&quot;-6\&quot; width=\&quot;12\&quot; height=\&quot;12\&quot; class=\&quot;djs-outline\&quot; style=\&quot;fill: none;\&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;&quot;
+ :job/dynamic-parameters #{}
+ :job/latest-execution{:db/id 17592189204505
+                       :job-execution/start-time #inst &quot;2017-03-27T01:10:36.339-00:00&quot;
+                       :job-execution/end-time #inst &quot;2017-03-27T01:10:36.350-00:00&quot;
+                       :job-execution/create-time #inst &quot;2017-03-27T01:09:09.964-00:00&quot;
+                       :job-execution/exit-status &quot;COMPLETED&quot;
+                       :job-execution/batch-status {:db/ident :batch-status/completed}
+                       :job-execution/agent {:agent/name &quot;ip-10-0-2-175&quot;
+                                             :agent/instance-id #uuid &quot;5c6e27ba-037b-42aa-91cc-b55eec159bd0&quot;}}}
+</code></pre><h3><a href="#ジョブ更新" name="ジョブ更新">ジョブ更新</a></h3>
 <pre><code>PUT /:app-name/job/:job-name
-</code></pre><h4><a href="#inputs" name="inputs">Inputs</a></h4><p>reffer <a href="#create-a-job">Creare a job</a></p><h3><a href="#delete-a-job" name="delete-a-job">Delete a job</a></h3>
+</code></pre><h4><a href="#パラメータ" name="パラメータ">パラメータ</a></h4><p><a href="#ジョブ作成">ジョブ作成</a> を参照してください。</p><h3><a href="#ジョブ削除" name="ジョブ削除">ジョブ削除</a></h3>
 <pre><code>DELETE /:app-name/job/:job-name
-</code></pre><h3><a href="#create-a-calendar" name="create-a-calendar">Create a calendar</a></h3>
+</code></pre><h3><a href="#カレンダー作成" name="カレンダー作成">カレンダー作成</a></h3>
 <pre><code>POST /calendars
-</code></pre><h4><a href="#input" name="input">Input</a></h4>
+</code></pre><h4><a href="#パラメータ" name="パラメータ">パラメータ</a></h4>
 <table>
   <thead>
     <tr>
@@ -263,31 +307,37 @@
       <td>Array</td>
       <td>Not Required. Holidays of calendar.</td>
     </tr>
+    <tr>
+      <td>calendar/day-start</td>
+      <td>String</td>
+      <td>Not Required (default: 00:00). Time when a day start.</td>
+    </tr>
   </tbody>
-</table><p>edn</p>
+</table><h5>例: edn 形式</h5>
 <pre><code class="clojure">{
   :calendar/name &quot;example&quot;
   :calendar/weekly-holiday [true false false false false false true]
   :calendar/holidays [#inst &quot;2016-09-15T15:00:00.000-00:00&quot;]
+  :calendar/day-start &quot;01:00&quot;
   :new? true
 }
-</code></pre><p>JSON</p>
+</code></pre><h5>例: JSON 形式</h5>
 <pre><code class="JSON">{
-  &quot;calendar/name&quot;: &quot;example&quot;
-  &quot;calendar/weekly-holiday&quot;: [true false false false false false true]
-  &quot;calendar/holidays&quot; [&quot;2016-09-15&quot;]
+  &quot;calendar/name&quot;: &quot;example&quot;,
+  &quot;calendar/weekly-holiday&quot;: [true false false false false false true],
+  &quot;calendar/holidays&quot; [&quot;2016-09-15&quot;],
+  &quot;calendar/day-start&quot;: &quot;01:00&quot;,
   :new? true
 }
-</code></pre><h3><a href="#list-calendars" name="list-calendars">List calendars</a></h3>
+</code></pre><h3><a href="#カレンダー一覧取得" name="カレンダー一覧取得">カレンダー一覧取得</a></h3>
 <pre><code>GET /calendars
-</code></pre><h3><a href="#update-calendar" name="update-calendar">Update calendar</a></h3>
+</code></pre><h3><a href="#カレンダー更新" name="カレンダー更新">カレンダー更新</a></h3>
 <pre><code>PUT /calendar/:calendar-name
-
-</code></pre><h3><a href="#delete-calendar" name="delete-calendar">Delete calendar</a></h3>
+</code></pre><h3><a href="#カレンダー削除" name="カレンダー削除">カレンダー削除</a></h3>
 <pre><code>DELETE /calendar/:calendar-name
-</code></pre><h3><a href="#schedule-a-job" name="schedule-a-job">Schedule a job</a></h3>
+</code></pre><h4><a href="#パラメータ" name="パラメータ">パラメータ</a></h4><p><a href="#カレンダー作成">カレンダー作成</a> を参照してください。</p><h3><a href="#ジョブ実行スケジュール作成" name="ジョブ実行スケジュール作成">ジョブ実行スケジュール作成</a></h3><p>ジョブに対する実行スケジュールを作成します。<br/>実行スケジュールの詳細は <a href="./schedule-job.html">ジョブのスケジューリング</a> を参照して下さい。</p>
 <pre><code>POST /:app-name/job/:job-name/schedule
-</code></pre><h4><a href="#input" name="input">Input</a></h4>
+</code></pre><h4><a href="#パラメータ" name="パラメータ">パラメータ</a></h4>
 <table>
   <thead>
     <tr>
@@ -313,20 +363,46 @@
       <td>Not Required. Name of calendar.</td>
     </tr>
   </tbody>
-</table><p>edn</p>
+</table><h5>例: edn 形式</h5>
 <pre><code class="clojure">{
  :schedule/cron-notation &quot;0 0 * * * ?&quot;, :schedule/calendar {:calendar/name &quot;example&quot;}
 }
-</code></pre><p>JSON</p>
+</code></pre><h5>例: JSON 形式</h5>
 <pre><code class="JSON">{
- &quot;schedule/cron-notation&quot;: &quot;0 0 * * * ?&quot;
+ &quot;schedule/cron-notation&quot;: &quot;0 0 * * * ?&quot;,
  &quot;:schedule/calendar&quot;:{
    &quot;calendar/name&quot;: &quot;example&quot;
  }
 }
-</code></pre><h3><a href="#execute-a-job" name="execute-a-job">Execute a job</a></h3>
+</code></pre><h3><a href="#ジョブ実行" name="ジョブ実行">ジョブ実行</a></h3>
 <pre><code>POST /:app-name/job/:job-name/executions
-</code></pre><h3><a href="#list-executions" name="list-executions">List executions</a></h3>
+</code></pre><h4><a href="#パラメータ" name="パラメータ">パラメータ</a></h4><p>実行するジョブにパラメータが存在している場合、POST パラメータで渡すことが出来ます。<br/>ジョブへのパラメータ指定方法については <a href="./create-a-job.html">ジョブの作成</a> を参照してください。</p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>[parameter name]</td>
+      <td>String</td>
+      <td>Not Required. Parameter for job</td>
+    </tr>
+  </tbody>
+</table><h5>例: edn 形式</h5>
+<pre><code class="clojure">{
+  :job-param1 &quot;test&quot;
+  :job-param2 &quot;test&quot;
+}
+</code></pre><h5>例: JSON 形式</h5>
+<pre><code class="JSON">{
+  &quot;job-param1&quot;: &quot;test&quot;,
+  &quot;job-param2&quot;: &quot;test&quot;
+}
+</code></pre><h3><a href="#ジョブ実行履歴一覧取得" name="ジョブ実行履歴一覧取得">ジョブ実行履歴一覧取得</a></h3>
 <pre><code>GET /:app-name/job/:job-name/executions
 </code></pre><h4><a href="#response" name="response">Response</a></h4>
 <pre><code class="clojure">[
@@ -344,17 +420,17 @@
     :job-execution/job-parameters &quot;{}&quot;
   }
 ]
-</code></pre><h3><a href="#delete-executions" name="delete-executions">Delete executions</a></h3>
+</code></pre><h3><a href="#ジョブ実行履歴削除" name="ジョブ実行履歴削除">ジョブ実行履歴削除</a></h3>
 <pre><code>DELETE /:app-name/job/:job-name/executions
-</code></pre><h3><a href="#get-a-single-execution" name="get-a-single-execution">Get a single execution</a></h3>
+</code></pre><h3><a href="#ジョブ実行履歴取得" name="ジョブ実行履歴取得">ジョブ実行履歴取得</a></h3>
 <pre><code>GET /:app-name/job/:job-name/execution/:execution-id
-</code></pre><h3><a href="#stop-a-execution" name="stop-a-execution">Stop a execution</a></h3>
+</code></pre><h3><a href="#ジョブ実行一時停止" name="ジョブ実行一時停止">ジョブ実行一時停止</a></h3>
 <pre><code>PUT /:app-name/job/:job-name/execution/:execution-id/stop
-</code></pre><h3><a href="#restart-a-execution" name="restart-a-execution">Restart a execution</a></h3>
+</code></pre><h3><a href="#ジョブ実行再開" name="ジョブ実行再開">ジョブ実行再開</a></h3>
 <pre><code>PUT /:app-name/job/:job-name/execution/:execution-id/restart
-</code></pre><h3><a href="#abandon-a-execution" name="abandon-a-execution">Abandon a execution</a></h3>
+</code></pre><h3><a href="#ジョブ実行破棄" name="ジョブ実行破棄">ジョブ実行破棄</a></h3>
 <pre><code>PUT /:app-name/job/:job-name/execution/:execution-id/abandon
-</code></pre><h3><a href="#list-agents" name="list-agents">List agents</a></h3>
+</code></pre><h3><a href="#実行エージェント一覧取得" name="実行エージェント一覧取得">実行エージェント一覧取得</a></h3>
 <pre><code>GET /agents
 </code></pre><h4><a href="#response" name="response">Response</a></h4>
 <pre><code class="clojure">[{
@@ -392,7 +468,7 @@
   :agent/host &quot;127.0.0.1&quot;
   :agent/executions []
 }]
-</code></pre><h3><a href="#get-a-single-agent" name="get-a-single-agent">Get a single agent</a></h3>
+</code></pre><h3><a href="#実行エージェント取得" name="実行エージェント取得">実行エージェント取得</a></h3>
 <pre><code>GET /agent/:instance-id
 </code></pre><h4><a href="#response" name="response">Response</a></h4>
 <pre><code class="clojure">{
@@ -430,7 +506,7 @@
   :agent/host &quot;127.0.0.1&quot;
   :agent/executions []
 }
-</code></pre><h3><a href="#get-statistics-of-control-bus" name="get-statistics-of-control-bus">Get statistics of control bus</a></h3>
+</code></pre><h3>Control-bus 統計情報取得</h3>
 <pre><code>GET /:app-name/stats
 </code></pre><h4><a href="#response" name="response">Response</a></h4>
 <pre><code class="clojure">{:agents 0, :jobs 3}

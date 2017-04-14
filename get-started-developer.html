@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <meta charset="UTF-8">
+      <meta charset="UTF-8"/>
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <meta name="description" content="JobStreamer : JobStreamer site."/>
@@ -10,21 +10,30 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
    </head>
    <body>
-<div class="ui sidebar inverted vertical menu">
+         <div class="ui fixed inverted teal menu">
+            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
+         </div>
+         <div/>
+         <div id="main_content_wrap" class="main ui grid content">
+         <div class="four wide column">
+<div class="ui vertical fluid tabular menu">
    <a class="item" href="get-started-quickly.html">
    Getting Started
    </a>
    <div class="item">
       <div class="header">Guide</div>
       <div class="menu">
+         <a class="item" href="auth.html">
+         Authentication and authorization
+         </a>
          <a class="item" href="deploy-batch-components.html">
          Deploy batch components
          </a>
          <a class="item" href="create-a-job.html">
-         Create a job
+         Create job
          </a>
          <a class="item" href="execute-the-job.html">
-         Execute the job
+         Execute job
          </a>
          <a class="item" href="schedule-job.html">
          Schedule job
@@ -34,6 +43,12 @@
          </a>
          <a class="item" href="notificator-config.html">
          Notificator config
+         </a>
+         <a class="item" href="import-export.html">
+         Import and export
+         </a>
+         <a class="item" href="test-mode.html">
+         Test mode
          </a>
       </div>
    </div>
@@ -55,25 +70,25 @@
       </div>
    </div>
    <div class="item">
-      <div class=" header">For Developper</div>
+      <div class=" header">For contributers</div>
       <div class="menu">
          <a class="item" href="get-started-developer.html">
-         REPL commands
+         Getting Started for contributers
          </a>
          <a class="item" href="developer-guide.html">
-         Developer guide
+         Developer guide for contributers
          </a>
       </div>
    </div>
-</div>      <div class="pusher">
-         <div class="ui fixed inverted teal menu">
-            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
-            <a class="view-ui item" onClick="viewSidebar()">
-              Menu
-            </a>
+</div>         </div>
+         <div class="twelve wide stretched column">
+      <h1><a href="#getting-started-for-contributers" name="getting-started-for-contributers">Getting Started for contributers</a></h1><p>Developers of JobStreamer can develop it efficiently by using Clojure REPL.</p><h2><a href="#start-repl" name="start-repl">Start REPL</a></h2><p>All components included in JobStreamer can be run and developped in the REPL.<br/>You need install jdk and <a href="https://leiningen.org/">Leiningen</a> to run REPL.</p><h3>Example: Control-bus</h3><h4>1. Clone project</h4>
+<pre><code>    % git clone https://github.com/job-streamer/job-streamer-control-bus.git
+</code></pre><h4>2. Run REPL</h4>
+<pre><code>    % cd job-streamer-control-bus
+    % lein do clean, repl
+</code></pre><p>The same applies to other components.</p><h2><a href="#common-commands" name="common-commands">Common commands</a></h2><p>You can enter Clojre code directly to execute and improve efficiency of development with following commands.</p><h3>(dev)</h3><p>Switch to the developer mode and activate following commands.</p><h3>(go)</h3><p>Start system.</p><h3>(reset)</h3><p>Reload setting and restart system.</p><h3>(test)</h3><p>Run tests.</p>
          </div>
-         <div id="main_content_wrap" class="main grid content full height">
-      <h1><a href="#repl-commands" name="repl-commands">Repl Commands</a></h1><h2>Common by Agent, Control-bus and Console</h2><h3>(dev)</h3><p>change to developer mode</p><h3>(go)</h3><p>starts server</p><h3>(reset)</h3><p>reload</p><h3>(test)</h3><p>run tests</p>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
@@ -85,18 +100,11 @@
                </div>
             </div>
          </div>
-      </div>
       <script src="https://cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/prism.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-java.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-bash.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
       <script src="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.js"> </script>
-      <script type="text/javascript">
-         function viewSidebar() {
-           $('.sidebar')
-             .sidebar('toggle');
-         }
-      </script>
    </body>
 </html>

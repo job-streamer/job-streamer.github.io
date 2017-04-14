@@ -82,14 +82,14 @@
    </div>
 </div>         </div>
          <div class="twelve wide stretched column">
-      <h1><a href="#create-job" name="create-job">Create job</a></h1><h2>1. Open the login page of job-streamer-console.</h2><p>http://[IP address of the server]:[port number of Console(default: 8080)]</p><h2>2. Enter id/password of the login user and login.</h2><p>Built-in admin user is admin/password123</p><h2>3. Press the &ldquo;New&rdquo; button on the top page.</h2><p><img src="img/new_job_button.png" alt="image" /></p><h2>4. Create a job.</h2><p>For example, we create a simple job that has only one step as following.</p><p><img src="img/make-step.png" alt="image" /><br/><img src="img/make-batchlet.png" alt="image" /><br/><img src="img/select-batchlet-ref.png" alt="image" /><br/><img src="img/type-job-name.png" alt="image" /></p>
+      <h1><a href="#import-and-export" name="import-and-export">Import and export</a></h1><p>You can import/export jobs and calendars. So you can migrate/restore then smoothly.<br/>Press Import/Export menu from the header right pull-down.<br/>Exported file is saved in the edn file format.</p><h2><a href="#import-export-job" name="import-export-job">Import/Export job</a></h2><p>You can take over all information except for the job execution history between import and export.</p><h2><a href="#import-export-calendar" name="import-export-calendar">Import/Export calendar</a></h2><p>You can take over all information about the calendar between import and export.</p><h2><a href="#notes" name="notes">Notes</a></h2>
 <ul>
-  <li>Set attributes.<br/><img src="img/set-attr.png" alt="image" /></li>
-  <li>Set properties.
+  <li>If there are jobs/caledars with the same name between import and export, it will be overwritten without any warning.</li>
+  <li>If you import jobs/caledars on the InternetExplorer10/11, you can not temporarily delete the imported file.
   <ul>
-    <li>You can specify a job parameter here in the following format (EL: Expression Language).<br/>#{jobParameters[&lsquo;ParameterName&rsquo;]}</li>
+    <li>You will be able to it after close the browser.</li>
   </ul></li>
-</ul><p><img src="img/set-properties.png" alt="image" /></p><p>You can use only batch components (Batchlet/ItemReader/ItemWriter/ItemProcessor etc.) that was deployed to the Control-bus.<br/>If you want to use new batch components, please refer to <a href="./deploy-batch-components.html">Deploy batch components</a>.</p>
+</ul>
          </div>
          </div>
          <div class="ui inverted teal footer vertical segment">

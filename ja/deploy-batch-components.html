@@ -23,6 +23,9 @@
    <div class="item">
       <div class="header">ガイド</div>
       <div class="menu">
+         <a class="item" href="auth.html">
+         認証認可
+         </a>
          <a class="item" href="deploy-batch-components.html">
          バッチコンポーネントのデプロイ
          </a>
@@ -39,11 +42,8 @@
          ジョブの設定
          </a>
          <a class="item" href="notificator-config.html">
-         Notificatorの設定
+         通知サーバの設定
          </a>
-         </a>
-         <a class="item" href="auth.html">
-         認証認可
          </a>
          <a class="item" href="import-export.html">
          インポート・エクスポート
@@ -71,37 +71,31 @@
       </div>
    </div>
    <div class="item">
-      <div class=" header">開発者向け情報</div>
+      <div class=" header">コントリビューター向け情報</div>
       <div class="menu">
          <a class="item" href="get-started-developer.html">
-         REPLコマンド集
+         コントリビューター向け Getting Started
          </a>
          <a class="item" href="developer-guide.html">
-         ディベロッパーガイド
+         コントリビューター向けガイドライン
          </a>
       </div>
    </div>
 </div>         </div>
          <div class="twelve wide stretched column">
-      <h1><a href="#バッチ部品のデプロイ" name="バッチ部品のデプロイ">バッチ部品のデプロイ</a></h1><h2><a href="#デプロイ手法" name="デプロイ手法">デプロイ手法</a></h2><p><a href="https://github.com/job-streamer/job-streamer-maven-plugin">maven plugin</a>を用いてバッチ部品をコントロールバス上にデプロイします。<br/>そのため、バッチ部品はmavenプロジェクトで作成することを推奨します。</p><p>例<br/>==</p>
-<ol>
-  <li><p>Exampleを取得:</p>
-  <pre><code>% git clone https://github.com/job-streamer/job-streamer-examples.git
-</code></pre></li>
-  <li><p>デプロイ:</p>
-  <pre><code>% cd job-streamer-examples
-% mvn -e clean package job-streamer:deploy
-</code></pre></li>
-</ol>
-<blockquote><p>デプロイを行うにはデプロイ資源とcontrol-busが同じサーバーに存在する必要があります。</p>
-</blockquote><h2><a href="#consoleからデプロイを行う" name="consoleからデプロイを行う">Consoleからデプロイを行う</a></h2>
-<ol>
-  <li><p>with-dependencies.jarを作成する</p>
-  <pre><code>% mvn compile assembly:single
-</code></pre></li>
-  <li><p>右メニューから「Upload Batch Components」に遷移</p></li>
-  <li>ドラッグアンドドロップで1.で作成したjarをアップロードする</li>
-</ol>
+      <h1><a href="#バッチ部品のデプロイ" name="バッチ部品のデプロイ">バッチ部品のデプロイ</a></h1><h2><a href="#デプロイ手法" name="デプロイ手法">デプロイ手法</a></h2><p><a href="https://github.com/job-streamer/job-streamer-maven-plugin">maven plugin</a> を用いて、もしくは jar ファイルに固めた上で Console から、バッチ部品を Control-bus 上にデプロイします。<br/>いずれの手段を用いるにしてもバッチ部品は maven プロジェクトで作成することを推奨します。</p><h3><a href="#maven-plugin-からデプロイを行う" name="maven-plugin-からデプロイを行う">maven plugin からデプロイを行う</a></h3><p>例<br/>==</p><h4>1. Example を取得:</h4>
+<pre><code>    % git clone https://github.com/job-streamer/job-streamer-examples.git
+</code></pre><h4>2. デプロイ:</h4>
+<pre><code>    % cd job-streamer-examples
+    % mvn -e clean package job-streamer:deploy
+</code></pre>
+<blockquote><p>job-streamer-examples/pom.xml に control-bus の認証情報を記述する必要があります。<br/>デプロイを行うにはデプロイ資源とcontrol-busが同じサーバーに存在する必要があります。</p>
+</blockquote><h3><a href="#console-からデプロイを行う" name="console-からデプロイを行う">Console からデプロイを行う</a></h3><p>例<br/>==</p><h4>1. Example を取得:</h4>
+<pre><code>    % git clone https://github.com/job-streamer/job-streamer-examples.git
+</code></pre><h4>2. with-dependencies.jar を作成</h4>
+<pre><code>    % cd job-streamer-examples
+    % mvn compile assembly:single
+</code></pre><h4>3. 右メニューから「Upload Batch Components」に遷移</h4><h4>4. 1. で作成した jar ファイルを「Drop files here to upload」と書かれた領域にドラッグアンドドロップし、アップロード</h4>
          </div>
          </div>
          <div class="ui inverted teal footer vertical segment">

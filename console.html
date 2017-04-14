@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <meta charset="UTF-8">
+      <meta charset="UTF-8"/>
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <meta name="description" content="JobStreamer : JobStreamer site."/>
@@ -10,21 +10,30 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
    </head>
    <body>
-<div class="ui sidebar inverted vertical menu">
+         <div class="ui fixed inverted teal menu">
+            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
+         </div>
+         <div/>
+         <div id="main_content_wrap" class="main ui grid content">
+         <div class="four wide column">
+<div class="ui vertical fluid tabular menu">
    <a class="item" href="get-started-quickly.html">
    Getting Started
    </a>
    <div class="item">
       <div class="header">Guide</div>
       <div class="menu">
+         <a class="item" href="auth.html">
+         Authentication and authorization
+         </a>
          <a class="item" href="deploy-batch-components.html">
          Deploy batch components
          </a>
          <a class="item" href="create-a-job.html">
-         Create a job
+         Create job
          </a>
          <a class="item" href="execute-the-job.html">
-         Execute the job
+         Execute job
          </a>
          <a class="item" href="schedule-job.html">
          Schedule job
@@ -34,6 +43,12 @@
          </a>
          <a class="item" href="notificator-config.html">
          Notificator config
+         </a>
+         <a class="item" href="import-export.html">
+         Import and export
+         </a>
+         <a class="item" href="test-mode.html">
+         Test mode
          </a>
       </div>
    </div>
@@ -55,31 +70,27 @@
       </div>
    </div>
    <div class="item">
-      <div class=" header">For Developper</div>
+      <div class=" header">For contributers</div>
       <div class="menu">
          <a class="item" href="get-started-developer.html">
-         REPL commands
+         Getting Started for contributers
          </a>
          <a class="item" href="developer-guide.html">
-         Developer guide
+         Developer guide for contributers
          </a>
       </div>
    </div>
-</div>      <div class="pusher">
-         <div class="ui fixed inverted teal menu">
-            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
-            <a class="view-ui item" onClick="viewSidebar()">
-              Menu
-            </a>
-         </div>
-         <div id="main_content_wrap" class="main grid content full height">
-      <h1><a href="#console" name="console">Console</a></h1><h2>What&rsquo;s Console?</h2><p>Management console is front-end of Control bus, it has function only display the result that got from Control-bus&rsquo;s API.</p><h2>What&rsquo;s Console can do?</h2>
+</div>         </div>
+         <div class="twelve wide stretched column">
+      <h1><a href="#management-console" name="management-console">Management Console</a></h1><p>Management Console is front-end of the Control-bus.<br/>It can execute APIs provided by Control-bus and display the results.<br/>So it does not have more functions than Control-bus.</p><h2><a href="#what-management-console-can-do" name="what-management-console-can-do">What Management Console can do</a></h2>
 <ul>
-  <li>job/calendar make/modify/delete</li>
-  <li>manually job execute</li>
-  <li>measure agent usage rate.</li>
-  <li>import/export<br/>etc.</li>
-</ul><h2><a href="#github-link" name="github-link">GitHub Link</a></h2><p><a href="https://github.com/job-streamer/job-streamer-console">https://github.com/job-streamer/job-streamer-console</a></p>
+  <li>Create/Change/Delete job/calendar</li>
+  <li>Execute job manually</li>
+  <li>Measure use rate of agents</li>
+  <li>Import/Export job/calendar</li>
+  <li>etc.</li>
+</ul><h2><a href="#github" name="github">GitHub</a></h2><p><a href="https://github.com/job-streamer/job-streamer-console">https://github.com/job-streamer/job-streamer-console</a></p>
+         </div>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
@@ -91,18 +102,11 @@
                </div>
             </div>
          </div>
-      </div>
       <script src="https://cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/prism.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-java.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-bash.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
       <script src="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.js"> </script>
-      <script type="text/javascript">
-         function viewSidebar() {
-           $('.sidebar')
-             .sidebar('toggle');
-         }
-      </script>
    </body>
 </html>

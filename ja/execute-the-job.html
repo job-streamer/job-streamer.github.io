@@ -23,6 +23,9 @@
    <div class="item">
       <div class="header">ガイド</div>
       <div class="menu">
+         <a class="item" href="auth.html">
+         認証認可
+         </a>
          <a class="item" href="deploy-batch-components.html">
          バッチコンポーネントのデプロイ
          </a>
@@ -39,11 +42,8 @@
          ジョブの設定
          </a>
          <a class="item" href="notificator-config.html">
-         Notificatorの設定
+         通知サーバの設定
          </a>
-         </a>
-         <a class="item" href="auth.html">
-         認証認可
          </a>
          <a class="item" href="import-export.html">
          インポート・エクスポート
@@ -71,19 +71,19 @@
       </div>
    </div>
    <div class="item">
-      <div class=" header">開発者向け情報</div>
+      <div class=" header">コントリビューター向け情報</div>
       <div class="menu">
          <a class="item" href="get-started-developer.html">
-         REPLコマンド集
+         コントリビューター向け Getting Started
          </a>
          <a class="item" href="developer-guide.html">
-         ディベロッパーガイド
+         コントリビューター向けガイドライン
          </a>
       </div>
    </div>
 </div>         </div>
          <div class="twelve wide stretched column">
-      <h1><a href="#ジョブの実行" name="ジョブの実行">ジョブの実行</a></h1><h2><a href="#手動実行" name="手動実行">手動実行</a></h2><p>トップ画面の再生ボタン押下により、ジョブを手動実行できます。</p><h2><a href="#停止" name="停止">停止</a></h2><p>トップ画面の停止ボタン押下により、ジョブを停止できます。</p><h2><a href="#リスタート" name="リスタート">リスタート</a></h2><p>ジョブをリスタート可能に組んでいる場合、中断または失敗ジョブに対して、コンソールからリスタートできます。</p><p><img src="img/restart.png" alt="image" /></p><h2><a href="#パラメータ" name="パラメータ">パラメータ</a></h2><p>実行・リスタート時にパラメータが必要な場合は、自動的にJobStreamerが解析して入力フォームを作るので、値を入力してExecute/Restartボタンを押します。</p><p><img src="img/restart_dialog.png" alt="image" /></p><h2><a href="#ジョブの実行ログについて" name="ジョブの実行ログについて">ジョブの実行ログについて</a></h2><p>トップ画面から実行ログにを確認できます。</p><p><img src="img/execute_log.png" alt="image" /></p><h1><a href="#スケジューリングして実行" name="スケジューリングして実行">スケジューリングして実行</a></h1><p><a href="./schedule-job.html">スケジューリング</a>を参照してください。</p>
+      <h1><a href="#ジョブの実行" name="ジョブの実行">ジョブの実行</a></h1><h2><a href="#手動実行" name="手動実行">手動実行</a></h2><p>トップ画面で一覧表示されている各ジョブの実行ボタンを押下すると、対象のジョブを手動実行できます。</p><h2><a href="#停止" name="停止">停止</a></h2><p>各ジョブの停止ボタンを押下すると、ジョブを停止できます。</p><h2><a href="#リスタート" name="リスタート">リスタート</a></h2><p>ジョブがリスタート可能（ジョブを構成する Batchlet が javax.batch.api.AbstractBatchlet.stop を実装）である場合、中断または失敗ジョブをコンソールからリスタートできます。</p><p><img src="img/restart.png" alt="image" /></p><h2><a href="#パラメータ指定" name="パラメータ指定">パラメータ指定</a></h2><p>ジョブ作成時に Properties で EL 式によるパラメータを指定した場合、 実行・リスタート時にパラメータの入力フォームが表示されます。<br/>各パラメータを入力し、 Execute/Restart ボタンを押すとパラメータが反映された状態でジョブが実行されます。</p><p><img src="img/restart_dialog.png" alt="image" /></p><h2><a href="#実行ログ参照" name="実行ログ参照">実行ログ参照</a></h2><p>トップ画面上で各ジョブの開始時刻を押下すると実行ログを確認できます。</p><p><img src="img/execute_log.png" alt="image" /></p><h2><a href="#スケジューリングして実行" name="スケジューリングして実行">スケジューリングして実行</a></h2><p><a href="./schedule-job.html">スケジューリング</a> を参照してください。</p>
          </div>
          </div>
          <div class="ui inverted teal footer vertical segment">

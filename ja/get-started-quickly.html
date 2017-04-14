@@ -23,6 +23,9 @@
    <div class="item">
       <div class="header">ガイド</div>
       <div class="menu">
+         <a class="item" href="auth.html">
+         認証認可
+         </a>
          <a class="item" href="deploy-batch-components.html">
          バッチコンポーネントのデプロイ
          </a>
@@ -39,11 +42,8 @@
          ジョブの設定
          </a>
          <a class="item" href="notificator-config.html">
-         Notificatorの設定
+         通知サーバの設定
          </a>
-         </a>
-         <a class="item" href="auth.html">
-         認証認可
          </a>
          <a class="item" href="import-export.html">
          インポート・エクスポート
@@ -71,170 +71,178 @@
       </div>
    </div>
    <div class="item">
-      <div class=" header">開発者向け情報</div>
+      <div class=" header">コントリビューター向け情報</div>
       <div class="menu">
          <a class="item" href="get-started-developer.html">
-         REPLコマンド集
+         コントリビューター向け Getting Started
          </a>
          <a class="item" href="developer-guide.html">
-         ディベロッパーガイド
+         コントリビューター向けガイドライン
          </a>
       </div>
    </div>
 </div>         </div>
          <div class="twelve wide stretched column">
-      <h1><a href="#クイックスタート" name="クイックスタート">クイックスタート</a></h1><h2><a href="#control-bus" name="control-bus">Control bus</a></h2>
+      <h1><a href="#getting-started" name="getting-started">Getting Started</a></h1><h2><a href="#control-bus" name="control-bus">Control bus</a></h2>
 <ol>
-  <li><p><a href="https://my.datomic.com/downloads/free">datomic-free</a>を取得:</p>
+  <li><p><a href="https://my.datomic.com/downloads/free">datomic-free</a> を取得</p>
   <pre><code>% unzip datomic-free-0.9.5394.zip
 % cd datomic-free-0.9.5394
 % bin/transactor config/samples/free-transactor-template.properties
 </code></pre></li>
-  <li><p>最新版 <a href="https://github.com/job-streamer/job-streamer-control-bus/releases/latest">control-bus</a>を取得:</p></li>
-  <li><p>contorl busを起動:</p><p>% bin/control_bus</p></li>
+  <li><p>最新版 <a href="https://github.com/job-streamer/job-streamer-control-bus/releases/latest">Control-bus</a> を取得</p></li>
+  <li><p>contorl busを起動</p>
+  <pre><code>% bin/control_bus
+</code></pre></li>
   <li><p>環境設定</p></li>
 </ol>
 <table>
   <thead>
     <tr>
-      <th align="center">環境変数名 </th>
-      <th align="center">　　説明 　　 </th>
-      <th align="center">デフォルト値 </th>
+      <th align="left">環境変数名 </th>
+      <th align="left">説明 </th>
+      <th align="left">デフォルト値 </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td align="center">CONTROL_BUS_PORT </td>
-      <td align="center">ポート番号 </td>
-      <td align="center">45102 </td>
+      <td align="left">CONTROL_BUS_PORT </td>
+      <td align="left">ポート番号 </td>
+      <td align="left">45102 </td>
     </tr>
     <tr>
-      <td align="center">DISCOVERY_PORT</td>
-      <td align="center">実行エージェントからの接続要求をLISTENするためのポート</td>
-      <td align="center">45100</td>
+      <td align="left">DISCOVERY_PORT </td>
+      <td align="left">実行エージェントからの接続要求を LISTEN するためのポート </td>
+      <td align="left">45100 </td>
     </tr>
     <tr>
-      <td align="center">DISCOVERY_ADDRESS</td>
-      <td align="center">実行エージェントからの接続要求をLISTENするためのマルチキャストIP</td>
-      <td align="center">(OPTION)</td>
+      <td align="left">DISCOVERY_ADDRESS </td>
+      <td align="left">実行エージェントからの接続要求を LISTEN するためのマルチキャストIP </td>
+      <td align="left">(OPTION) </td>
     </tr>
     <tr>
-      <td align="center">NOTIFICATOR_URL</td>
-      <td align="center">通知サーバのURL</td>
-      <td align="center"><a href="http://localhost:2121|">http://localhost:2121|</a></td>
+      <td align="left">NOTIFICATOR_URL </td>
+      <td align="left">通知サーバの URL </td>
+      <td align="left"><a href="http://localhost:2121">http://localhost:2121</a> </td>
     </tr>
     <tr>
-      <td align="center">ACCESS_CONTROL_ALLOW_ORIGIN</td>
-      <td align="center">オペレーターからみたconsoleのURL</td>
-      <td align="center"><a href="http://localhost:3000">http://localhost:3000</a></td>
+      <td align="left">ACCESS_CONTROL_ALLOW_ORIGIN </td>
+      <td align="left">オペレーターからみた Console のURL </td>
+      <td align="left"><a href="http://localhost:3000">http://localhost:3000</a> </td>
     </tr>
     <tr>
-      <td align="center">CONTROLE_BUS_RESOURCE_PATH</td>
-      <td align="center">control-busのクラスパスに追加されるパス</td>
-      <td align="center">(OPTION)</td>
+      <td align="left">CONTROLE_BUS_RESOURCE_PATH </td>
+      <td align="left">Control-bus のクラスパスに追加されるパス </td>
+      <td align="left">(OPTION) </td>
     </tr>
   </tbody>
-</table><h2><a href="#management-console" name="management-console">Management console</a></h2>
+</table><h2><a href="#console" name="console">Console</a></h2>
 <ol>
-  <li><p>最新版 <a href="https://github.com/job-streamer/job-streamer-console/releases/latest">management console</a><br/>を取得:</p></li>
-  <li><p>consoleを起動:</p><p>% bin/console</p></li>
+  <li><p>最新版 <a href="https://github.com/job-streamer/job-streamer-console/releases/latest">Console</a> を取得</p></li>
+  <li><p>consoleを起動</p>
+  <pre><code>% bin/console
+</code></pre></li>
   <li><p>環境設定</p></li>
 </ol>
 <table>
   <thead>
     <tr>
-      <th align="center">環境変数名 </th>
-      <th align="center">　　説明 　　 </th>
-      <th align="center">デフォルト値 </th>
+      <th align="left">環境変数名 </th>
+      <th align="left">説明 </th>
+      <th align="left">デフォルト値 </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td align="center">CONSOLE_PORT </td>
-      <td align="center">ポート番号 </td>
-      <td align="center">3000 </td>
+      <td align="left">CONSOLE_PORT </td>
+      <td align="left">ポート番号 </td>
+      <td align="left">3000 </td>
     </tr>
     <tr>
-      <td align="center">CONTROL_BUS_URL </td>
-      <td align="center">Control-busのurl </td>
-      <td align="center"><a href="http://localhost:45102">http://localhost:45102</a> </td>
+      <td align="left">CONTROL_BUS_URL </td>
+      <td align="left">Control-busのurl </td>
+      <td align="left"><a href="http://localhost:45102">http://localhost:45102</a> </td>
     </tr>
   </tbody>
 </table><h2><a href="#agent" name="agent">Agent</a></h2>
 <ol>
-  <li><p>最新版<a href="https://github.com/job-streamer/job-streamer-agent/releases/latest">agent</a>を取得:</p></li>
-  <li><p>agentを起動:</p><p>% bin/agent</p></li>
+  <li><p>最新版 <a href="https://github.com/job-streamer/job-streamer-agent/releases/latest">Agent</a> を取得</p></li>
+  <li><p>agentを起動</p>
+  <pre><code>% bin/agent
+</code></pre></li>
   <li><p>環境設定</p></li>
 </ol>
 <table>
   <thead>
     <tr>
-      <th align="center">環境変数名 </th>
-      <th align="center">　　説明 　　 </th>
-      <th align="center">デフォルト値 </th>
+      <th align="left">環境変数名 </th>
+      <th align="left">説明 </th>
+      <th align="left">デフォルト値 </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td align="center">AGENT_PORT </td>
-      <td align="center">ポート番号 </td>
-      <td align="center">4510 </td>
+      <td align="left">AGENT_PORT </td>
+      <td align="left">ポート番号 </td>
+      <td align="left">4510 </td>
     </tr>
     <tr>
-      <td align="center">INSTANCE_NAME </td>
-      <td align="center">インスタンス名<br> 起動ごとにAgentのIDが変えたくない場合はこれを指定してください。</td>
-      <td align="center">(OPTION) </td>
+      <td align="left">INSTANCE_NAME </td>
+      <td align="left">インスタンス名<br> 起動ごとにAgentのIDが変えたくない場合はこれを指定してください。 </td>
+      <td align="left">(OPTION) </td>
     </tr>
     <tr>
-      <td align="center">DISCOVERY_PORT</td>
-      <td align="center">接続要求をブロードキャスト(またはマルチキャスト)するためのポート</td>
-      <td align="center">45100</td>
+      <td align="left">DISCOVERY_PORT </td>
+      <td align="left">接続要求をブロードキャスト(またはマルチキャスト)するためのポート </td>
+      <td align="left">45100 </td>
     </tr>
     <tr>
-      <td align="center">DISCOVERY_ADDRESS</td>
-      <td align="center">接続要求をマルチキャストするためのIPアドレス。<br>同一ネットワーク内に複数のコントロールバスを起動する場合はこれを指定して下さい。</td>
-      <td align="center">(OPTION)</td>
+      <td align="left">DISCOVERY_ADDRESS </td>
+      <td align="left">接続要求をマルチキャストするための IP アドレス。<br>同一ネットワーク内に複数のコントロールバスを起動する場合はこれを指定して下さい。 </td>
+      <td align="left">(OPTION) </td>
     </tr>
     <tr>
-      <td align="center">AGENT_RESOURCE_PATH</td>
-      <td align="center">agentのクラスパスに追加されるパス</td>
-      <td align="center">(OPTION)</td>
+      <td align="left">AGENT_RESOURCE_PATH </td>
+      <td align="left">Agent のクラスパスに追加されるパス </td>
+      <td align="left">(OPTION) </td>
     </tr>
   </tbody>
 </table><h2><a href="#notificator" name="notificator">Notificator</a></h2>
 <ol>
-  <li><p>最新版<a href="https://github.com/job-streamer/job-streamer-notificator/releases/latest">notificator</a>を取得:</p></li>
-  <li><p>notificatorを起動:</p><p>% bin/notificator {ednファイルのパス} (hbsファイルのあるディレクトリのパス)</p></li>
+  <li><p>最新版 <a href="https://github.com/job-streamer/job-streamer-notificator/releases/latest">Notificator</a> を取得</p></li>
+  <li><p>notificatorを起動</p>
+  <pre><code>% bin/notificator [ednファイルのパス] [hbsファイルのあるディレクトリのパス]
+</code></pre></li>
   <li><p>環境設定</p></li>
 </ol>
 <table>
   <thead>
     <tr>
-      <th align="center">環境変数名 </th>
-      <th align="center">　　説明 　　 </th>
-      <th align="center">デフォルト値 </th>
+      <th align="left">環境変数名 </th>
+      <th align="left">説明 </th>
+      <th align="left">デフォルト値 </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td align="center">NOTIFICATOR_PORT </td>
-      <td align="center">ポート番号 </td>
-      <td align="center">2121 </td>
+      <td align="left">NOTIFICATOR_PORT </td>
+      <td align="left">ポート番号 </td>
+      <td align="left">2121 </td>
     </tr>
     <tr>
-      <td align="center">NOTIFICATOR_RULES</td>
-      <td align="center">ルール(edn)ファイルのパス</td>
-      <td align="center">（第一引数） </td>
+      <td align="left">NOTIFICATOR_RULES </td>
+      <td align="left">ルール(edn)ファイルのパス </td>
+      <td align="left">（第一引数） </td>
     </tr>
     <tr>
-      <td align="center">NOTIFICATOR_TEMPLATES_PLEFIX</td>
-      <td align="center">テンプレート(hbs)のあるディレクトリのパス</td>
-      <td align="center">templates</td>
+      <td align="left">NOTIFICATOR_TEMPLATES_PLEFIX </td>
+      <td align="left">テンプレート(hbs)のあるディレクトリのパス </td>
+      <td align="left">templates </td>
     </tr>
   </tbody>
 </table>
-<blockquote><p>edn/hbsファイルについては<a href="./notificator-config.html">notificator config</a>を参照してください。</p>
-</blockquote><h2><a href="#バッチ部品のデプロイ" name="バッチ部品のデプロイ">バッチ部品のデプロイ</a></h2><p><a href="./deploy-batch-components.html">バッチ部品のデプロイ</a>を参照してください。</p><h2><a href="#ログの取得" name="ログの取得">ログの取得</a></h2><p>環境変数CONTROL_BUS_RESOURCE_PATH, AGENT_RESOURCE_PATHを設定し、そこに<a href="https://logback.qos.ch/manual/configuration_ja.html">logback.xml</a>を配置することでlogの定義を独自定義することが可能です。</p>
+<blockquote><p>edn/hbs ファイルについては <a href="./notificator-config.html">notificator config</a> を参照してください。</p>
+</blockquote><h2><a href="#バッチ部品のデプロイ" name="バッチ部品のデプロイ">バッチ部品のデプロイ</a></h2><p><a href="./deploy-batch-components.html">バッチ部品のデプロイ</a> を参照してください。</p><h2><a href="#ログの取得" name="ログの取得">ログの取得</a></h2><p>環境変数 CONTROL_BUS_RESOURCE_PATH, AGENT_RESOURCE_PATH を設定し、そこに <a href="https://logback.qos.ch/manual/configuration_ja.html">logback.xml</a> を配置することで log の定義を独自定義することが可能です。</p>
          </div>
          </div>
          <div class="ui inverted teal footer vertical segment">

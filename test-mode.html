@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
    <head>
       <meta charset="UTF-8"/>
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -21,40 +21,39 @@
    Getting Started
    </a>
    <div class="item">
-      <div class="header">ガイド</div>
+      <div class="header">Guide</div>
       <div class="menu">
          <a class="item" href="auth.html">
-         認証認可
+         Authentication and authorization
          </a>
          <a class="item" href="deploy-batch-components.html">
-         バッチコンポーネントのデプロイ
+         Deploy batch components
          </a>
          <a class="item" href="create-a-job.html">
-         ジョブの作成
+         Create job
          </a>
          <a class="item" href="execute-the-job.html">
-         ジョブの手動実行
+         Execute job
          </a>
          <a class="item" href="schedule-job.html">
-         ジョブのスケジュール実行
+         Schedule job
          </a>
          <a class="item" href="job-config.html">
-         ジョブの設定
+         Job config
          </a>
          <a class="item" href="notificator-config.html">
-         通知サーバの設定
-         </a>
+         Notificator config
          </a>
          <a class="item" href="import-export.html">
-         インポート・エクスポート
+         Import and export
          </a>
          <a class="item" href="test-mode.html">
-         テストモード
+         Test mode
          </a>
       </div>
    </div>
    <div class="item">
-      <div class="header">コンポーネント</div>
+      <div class="header">Components</div>
       <div class="menu">
          <a class="item" href="control-bus.html">
          Control bus
@@ -71,23 +70,23 @@
       </div>
    </div>
    <div class="item">
-      <div class=" header">コントリビューター向け情報</div>
+      <div class=" header">For contributers</div>
       <div class="menu">
          <a class="item" href="get-started-developer.html">
-         コントリビューター向け Getting Started
+         Getting Started for contributers
          </a>
          <a class="item" href="developer-guide.html">
-         コントリビューター向けガイドライン
+         Developer guide for contributers
          </a>
       </div>
    </div>
 </div>         </div>
          <div class="twelve wide stretched column">
-      <h1><a href="#テストモード" name="テストモード">テストモード</a></h1><p>テストモードとは job 作成時に job の構造が正しいのかテストするための機能です。</p><h2><a href="#用途" name="用途">用途</a></h2><p>テストモードでは例えば以下のような不正な job を精査してくれます。</p>
+      <h1><a href="#test-mode" name="test-mode">Test mode</a></h1><p>Test mode is a function to test whether the job structure is correct or not when you create it.</p><h2><a href="#use-case" name="use-case">Use case</a></h2><p>For example, you can validate invalid jobs like following in the test mode.</p>
 <ul>
-  <li>step がループしている</li>
-  <li>step 名が重複している</li>
-</ul><h2><a href="#使用方法" name="使用方法">使用方法</a></h2><h3>1. job 作成画面にてテスト実行ボタンを押下</h3><p><img src="img/execute-test-mode.png" alt="image" /></p><h3>2. すべての step がモックに置き換えられ実行される</h3><h3>3. 成功した場合はプログレスバーが緑色になる</h3><p><img src="img/test-success.png" alt="image" /></p><h3>4. 失敗した場合はプログレスバーが赤色になり、エラーログが console に出力される</h3><p><img src="img/fail-test.png" alt="image" /></p><h2><a href="#api" name="api">API</a></h2><h3>1. 新規テスト実行</h3>
+  <li>Step is looping</li>
+  <li>Step names duplicate</li>
+</ul><h2><a href="#how-to-use" name="how-to-use">How to use</a></h2><h3>1. Press execution button in the job creation page.</h3><p><img src="img/execute-test-mode.png" alt="image" /></p><h3>2. All steps is replaced to the mock and executed.</h3><h3>3. Progress bar turns green when it succeeds.</h3><p><img src="img/test-success.png" alt="image" /></p><h3>4. Progress bar turns red and error logs is outputted in the console when it failed.</h3><p><img src="img/fail-test.png" alt="image" /></p><h2><a href="#api" name="api">API</a></h2><h3>1. Execute new test</h3>
 <pre><code>POST /test-executions
 </code></pre><h4><a href="#request" name="request">Request</a></h4>
 <pre><code class="clojure">{
@@ -106,12 +105,12 @@
     <tr>
       <td>bpmn</td>
       <td>String</td>
-      <td>テスト実行したいbpmnファイル</td>
+      <td>BPMN file content you want to test</td>
     </tr>
   </tbody>
 </table><h4><a href="#response" name="response">Response</a></h4>
 <pre><code class="clojure">{:state-id 1}
-</code></pre><h3>2. テスト実行状況取得</h3>
+</code></pre><h3>2. Get test execution status</h3>
 <pre><code>GET /test-execution/:state-id
 </code></pre><h4><a href="#response" name="response">Response</a></h4>
 <pre><code class="clojure">{:log-message &quot;JBERET000007: Failed to run job Job_1, Step_1wdp5if, org.jberet.job.model.Step@762a8334&quot;, :log-exception &quot;java.lang.IllegalStateException: JBERET000607: The step Step_1wdp5if would form a loopback in sequence: [Step_1wdp5if, Step_0mjwgb4]\n\tat org.jberet.runtime.runner.StepExecutionRunner.run(StepExecutionRunner.java:108)\n\tat org.jberet.runtime.runner.CompositeExecutionRunner.runStep(CompositeExecutionRunner.java:164)\n\tat org.jberet.runtime.runner.CompositeExecutionRunner.runJobElement(CompositeExecutionRunner.java:128)\n\tat org.jberet.runtime.runner.StepExecutionRunner.run(StepExecutionRunner.java:196)\n\tat org.jberet.runtime.runner.CompositeExecutionRunner.runStep(CompositeExecutionRunner.java:164)\n\tat org.jberet.runtime.runner.CompositeExecutionRunner.runJobElement(CompositeExecutionRunner.java:128)\n\tat org.jberet.runtime.runner.StepExecutionRunner.run(StepExecutionRunner.java:196)\n\tat org.jberet.runtime.runner.CompositeExecutionRunner.runStep(CompositeExecutionRunner.java:164)\n\tat org.jberet.runtime.runner.CompositeExecutionRunner.runFromHeadOrRestartPoint(CompositeExecutionRunner.java:88)\n\tat org.jberet.runtime.runner.JobExecutionRunner.run(JobExecutionRunner.java:59)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)\n\tat java.lang.Thread.run(Thread.java:745)\n&quot;, :batch-status :batch-status/failed}

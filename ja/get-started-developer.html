@@ -23,6 +23,9 @@
    <div class="item">
       <div class="header">ガイド</div>
       <div class="menu">
+         <a class="item" href="auth.html">
+         認証認可
+         </a>
          <a class="item" href="deploy-batch-components.html">
          バッチコンポーネントのデプロイ
          </a>
@@ -39,11 +42,8 @@
          ジョブの設定
          </a>
          <a class="item" href="notificator-config.html">
-         Notificatorの設定
+         通知サーバの設定
          </a>
-         </a>
-         <a class="item" href="auth.html">
-         認証認可
          </a>
          <a class="item" href="import-export.html">
          インポート・エクスポート
@@ -71,19 +71,24 @@
       </div>
    </div>
    <div class="item">
-      <div class=" header">開発者向け情報</div>
+      <div class=" header">コントリビューター向け情報</div>
       <div class="menu">
          <a class="item" href="get-started-developer.html">
-         REPLコマンド集
+         コントリビューター向け Getting Started
          </a>
          <a class="item" href="developer-guide.html">
-         ディベロッパーガイド
+         コントリビューター向けガイドライン
          </a>
       </div>
    </div>
 </div>         </div>
          <div class="twelve wide stretched column">
-      <h1><a href="#replコマンド集" name="replコマンド集">REPLコマンド集</a></h1><h2><a href="#共通コマンド" name="共通コマンド">共通コマンド</a></h2><h3>(dev)</h3><p>開発者モードに切り替え</p><h3>(go)</h3><p>サーバー起動</p><h3>(reset)</h3><p>リロード</p><h3>(test)</h3><p>テストの実行</p>
+      <h1><a href="#コントリビューター向け-getting-started" name="コントリビューター向け-getting-started">コントリビューター向け Getting Started</a></h1><p>JobStreamer の開発者は Clojure REPL を使うことで効率的に開発を進めることができます。</p><h2><a href="#repl-起動" name="repl-起動">REPL 起動</a></h2><p>JobStreamer に含まれる全コンポーネントは REPL から起動し、開発することが出来ます。<br/>REPL を起動するためには jdk, <a href="https://leiningen.org/">Leiningen</a> が必要となるためインストールして下さい。</p><h3>例: Control-bus の場合</h3><h4>1. プロジェクトを clone</h4>
+<pre><code>    % git clone https://github.com/job-streamer/job-streamer-control-bus.git
+</code></pre><h4>2. REPL 起動</h4>
+<pre><code>    % cd job-streamer-control-bus
+    % lein do clean, repl
+</code></pre><p>その他のコンポーネントに関しても同様です。</p><h2><a href="#共通コマンド" name="共通コマンド">共通コマンド</a></h2><p>REPL 上では Clojure のコードを直接入力して実行できる他、下記の共通コマンドによりコンポーネントの開発を効率化することが出来ます。</p><h3>(dev)</h3><p>開発者モードに切り替えて、以下のコマンドを利用可能にする</p><h3>(go)</h3><p>システム起動</p><h3>(reset)</h3><p>設定をリロードしてシステム再起動</p><h3>(test)</h3><p>テストの実行</p>
          </div>
          </div>
          <div class="ui inverted teal footer vertical segment">

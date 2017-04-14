@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <meta charset="UTF-8">
+      <meta charset="UTF-8"/>
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <meta name="description" content="JobStreamer : JobStreamer site."/>
@@ -10,21 +10,30 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
    </head>
    <body>
-<div class="ui sidebar inverted vertical menu">
+         <div class="ui fixed inverted teal menu">
+            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
+         </div>
+         <div/>
+         <div id="main_content_wrap" class="main ui grid content">
+         <div class="four wide column">
+<div class="ui vertical fluid tabular menu">
    <a class="item" href="get-started-quickly.html">
    Getting Started
    </a>
    <div class="item">
       <div class="header">Guide</div>
       <div class="menu">
+         <a class="item" href="auth.html">
+         Authentication and authorization
+         </a>
          <a class="item" href="deploy-batch-components.html">
          Deploy batch components
          </a>
          <a class="item" href="create-a-job.html">
-         Create a job
+         Create job
          </a>
          <a class="item" href="execute-the-job.html">
-         Execute the job
+         Execute job
          </a>
          <a class="item" href="schedule-job.html">
          Schedule job
@@ -34,6 +43,12 @@
          </a>
          <a class="item" href="notificator-config.html">
          Notificator config
+         </a>
+         <a class="item" href="import-export.html">
+         Import and export
+         </a>
+         <a class="item" href="test-mode.html">
+         Test mode
          </a>
       </div>
    </div>
@@ -55,25 +70,20 @@
       </div>
    </div>
    <div class="item">
-      <div class=" header">For Developper</div>
+      <div class=" header">For contributers</div>
       <div class="menu">
          <a class="item" href="get-started-developer.html">
-         REPL commands
+         Getting Started for contributers
          </a>
          <a class="item" href="developer-guide.html">
-         Developer guide
+         Developer guide for contributers
          </a>
       </div>
    </div>
-</div>      <div class="pusher">
-         <div class="ui fixed inverted teal menu">
-            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
-            <a class="view-ui item" onClick="viewSidebar()">
-              Menu
-            </a>
+</div>         </div>
+         <div class="twelve wide stretched column">
+      <h1><a href="#execute-job" name="execute-job">Execute job</a></h1><h2><a href="#execute-job-manually" name="execute-job-manually">Execute job manually</a></h2><p>Press the play button for each job at the job list view (top page), then job execution starts.</p><h2><a href="#stop-job-forcibly" name="stop-job-forcibly">Stop job Forcibly</a></h2><p>Press the stop button for each job at the job list view (top page), then job execution stops.</p><h2><a href="#restart-job" name="restart-job">Restart job</a></h2><p>If the job can be restarted (it means all batchlets making up the job implement javax.batch.api.AbstractBatchlet.stop), you can restart the job that was interrupted or failed from the Console.</p><p><img src="img/restart.png" alt="image" /></p><h2><a href="#specify-parameter" name="specify-parameter">Specify parameter</a></h2><p>If you used Expression Language in the job Properties when you created the job, input parameter form is displayed when you execute or restart the job.<br/>Input each parameters and press Execute/Restart button, then the job starts with parametes.</p><p><img src="img/restart_dialog.png" alt="image" /></p><h2><a href="#refer-to-job-execution-log" name="refer-to-job-execution-log">Refer to job execution log</a></h2><p>Press the start time link for each job at the job list view, then you can check the execution log.</p><p><img src="img/execute_log.png" alt="image" /></p><h2><a href="#schedule-job" name="schedule-job">Schedule job</a></h2><p>Please refer to <a href="./schedule-job.html">Schedule job</a>.</p>
          </div>
-         <div id="main_content_wrap" class="main grid content full height">
-      <h1><a href="#execute-a-job" name="execute-a-job">Execute a job</a></h1><h2><a href="#manual-execution" name="manual-execution">Manual execution</a></h2><p>Push play button at job list view(top page),then you can manually execute.</p><h2><a href="#forcibly-stop-execution" name="forcibly-stop-execution">Forcibly stop execution</a></h2><p>Push stop button at job list view(top page),then you can stop job execution.</p><h2><a href="#restart" name="restart">Restart</a></h2><p>If you made job be able to restart,you can restart falure/abandoned job.</p><p><img src="img/restart.png" alt="image" /></p><p>If parameter is needed, Jobstreamer automatically analize and make input form,then you input value and push restart button</p><p><img src="img/restart_dialog.png" alt="image" /></p><h2><a href="#about-executtion-log" name="about-executtion-log">about executtion log</a></h2><p>You can confirm the execution log in console.</p><p><img src="img/execute_log.png" alt="image" /></p><h2><a href="#scheduled-execution" name="scheduled-execution">scheduled execution</a></h2><p>Please refer <a href="./schedule-job.html">schedule job</a></p>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
@@ -85,18 +95,11 @@
                </div>
             </div>
          </div>
-      </div>
       <script src="https://cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/prism.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-java.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-bash.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
       <script src="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.js"> </script>
-      <script type="text/javascript">
-         function viewSidebar() {
-           $('.sidebar')
-             .sidebar('toggle');
-         }
-      </script>
    </body>
 </html>

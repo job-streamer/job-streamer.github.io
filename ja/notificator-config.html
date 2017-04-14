@@ -23,6 +23,9 @@
    <div class="item">
       <div class="header">ガイド</div>
       <div class="menu">
+         <a class="item" href="auth.html">
+         認証認可
+         </a>
          <a class="item" href="deploy-batch-components.html">
          バッチコンポーネントのデプロイ
          </a>
@@ -39,11 +42,8 @@
          ジョブの設定
          </a>
          <a class="item" href="notificator-config.html">
-         Notificatorの設定
+         通知サーバの設定
          </a>
-         </a>
-         <a class="item" href="auth.html">
-         認証認可
          </a>
          <a class="item" href="import-export.html">
          インポート・エクスポート
@@ -71,38 +71,46 @@
       </div>
    </div>
    <div class="item">
-      <div class=" header">開発者向け情報</div>
+      <div class=" header">コントリビューター向け情報</div>
       <div class="menu">
          <a class="item" href="get-started-developer.html">
-         REPLコマンド集
+         コントリビューター向け Getting Started
          </a>
          <a class="item" href="developer-guide.html">
-         ディベロッパーガイド
+         コントリビューター向けガイドライン
          </a>
       </div>
    </div>
 </div>         </div>
          <div class="twelve wide stretched column">
-      <h1><a href="#通知サーバの設定" name="通知サーバの設定">通知サーバの設定</a></h1><h2><a href="#ednファイル" name="ednファイル">ednファイル</a></h2><p>ednファイルを用いてルールの設定を行います。<br/>ednファイルにはコントロールバスからあるキーが送られた時に動作を定義します。<br/>ednファイルはNotificator起動時の第一引数として設定します。</p><p>例 :成功メールのjobを作成する場合</p>
+      <h1><a href="#通知サーバの設定" name="通知サーバの設定">通知サーバの設定</a></h1><p>通知サーバ (Notificator) の概要については <a href="./notificator.html">Notificator</a> を参照してください。</p><h2><a href="#設定ファイル" name="設定ファイル">設定ファイル</a></h2><p>edn 形式のファイルにより設定をします。<br/>設定ファイルにはコントロールバスからあるキーが送られた時の動作を定義します。<br/>Notificator 起動時の第一引数として当ファイルのパスを渡すことで設定を反映します。（後述）</p><h3>例1: 成功メールの job を作成する場合</h3>
 <pre><code>{
   :send-success-email {:uri &quot;http://localhost:45102/default/job/success-mail/executions?Exchange.CONTENT_TYPE=application/edn&quot;}
 }
-</code></pre><p>この設定では:send-success-emailのキーが送られた時&ldquo;http://localhost:45102/default/job/success-mail/executions?Exchange.CONTENT_TYPE=application/edn&rdquo;にPOSTリクエストを送るので、&ldquo;success-mail&rdquo;というjobが実行されます。</p><p>例：成功したときsmtpリクエストを送りメール送信する場合</p>
+</code></pre><p>この設定ではコントロールバスより :send-success-email のキーが送られた時 &ldquo;http://localhost:45102/default/job/success-mail/executions?Exchange.CONTENT_TYPE=application/edn&rdquo; に POST リクエストを送り、&ldquo;success-mail&rdquo; というジョブを実行します。</p><h3>例2: 成功したとき smtp リクエストを送りメール送信する場合</h3>
 <pre><code>{
   :send-success-email {
     :uri &quot;smtp://[smtp-server-ip-address]:25?from=example-from@example.com&amp;to=example-to@example.com&amp;subject=success&quot;
     :message &quot;success&quot;
   }
 }
-</code></pre><p>この設定では:send-success-emailのキーが送られた時smtpサーバーに直接メール送信のリクエストが送られます。</p><h3><a href="#ednファイルのフォーマット" name="ednファイルのフォーマット">ednファイルのフォーマット</a></h3><p>ednファイルは以下の形で記述してください。</p>
-<pre><code>｛
-  :key1 {:uri     &quot;xxx&quot;
-         :to      &quot;yyy&quot;
-         :message &quot;zzz&quot;}
-  :key2{...}
-  ...
-  :keyx{...}}
-</code></pre><p>:uri - Apache CamelのRouteBuilder#fromに相当する。キーが送られてきたときの動作を記述する。<br/> 設定できる動作は<a href="http://camel.apache.org/components.html">http://camel.apache.org/components.html</a>を参照<br/>:to - Apache CamelのRouteBuilder#toに相当する。<br/>:message - Apache Camelのsetbodyに相当する。</p><h2><a href="#handlebars-テンプレート機能-を使う" name="handlebars-テンプレート機能-を使う">Handlebars（テンプレート機能）を使う</a></h2><p>Handlebarsを使うことでメッセージ等のテンプレートを作成することができます。<br/>例えば、以下のようなhbsファイル(success.hbs)を作成します。</p>
+</code></pre><p>この設定では :send-success-email のキーが送られた時 smtp サーバーに直接メール送信のリクエストを送ります。</p><h3><a href="#ednファイルのフォーマット" name="ednファイルのフォーマット">ednファイルのフォーマット</a></h3><p>ednファイルは以下の形で記述してください。</p>
+<pre><code>{:key1 {:uri     &quot;xxx&quot;
+        :to      &quot;yyy&quot;
+        :message &quot;zzz&quot;}
+ :key2 {...}
+ ...
+ :keyx{...}}
+</code></pre>
+<ul>
+  <li>:uri - キーが送られてきたときの動作を記述する
+  <ul>
+    <li>Apache CamelのRouteBuilder#from に相当</li>
+    <li>設定できる動作は<a href="http://camel.apache.org/components.html">http://camel.apache.org/components.html</a>を参照</li>
+  </ul></li>
+  <li>:to - Apache Camel の RouteBuilder#to に相当</li>
+  <li>:message - Apache Camel の setbodyに相当</li>
+</ul><h2><a href="#handlebars-テンプレート機能-を使う" name="handlebars-テンプレート機能-を使う">Handlebars（テンプレート機能）を使う</a></h2><p>Handlebars を使うことでメッセージ等のテンプレートを作成することができます。<br/>例えば、以下のような hbs ファイル(success.hbs)を作成します。</p>
 <pre><code>Hello, your batch is {{exit-status}}!
 end time is {{end-time}}
 </code></pre><p>hbsファイル内では以下のキーが指定できます。</p>
@@ -135,7 +143,7 @@ end time is {{end-time}}
       <td>exit status</td>
     </tr>
   </tbody>
-</table><p>ednファイルでは以下のように&ldquo;message-template&rdquo; というキーでhbsファイルのファイル名を指定します。</p>
+</table><p>ednファイルでは以下のように &ldquo;message-template&rdquo; というキーで hbs ファイルのファイル名(拡張子なし)を指定します。</p>
 <pre><code>{
   :send-success-email {
     :uri &quot;smtp://[smtp-server-ip-address]:25?from=example-from@example.com&amp;to=example-to@example.com&amp;subject=success&quot;
@@ -144,9 +152,9 @@ end time is {{end-time}}
 }
 </code></pre><p>:send-success-emailのキーが送られると以下のような本文のメールが送信されます。</p>
 <pre><code>Hello, your batch is COMPLETED!end time is Sat Sep 17 01:09:29 JST 2016
-</code></pre><h2><a href="#notificatorの起動" name="notificatorの起動">notificatorの起動</a></h2><p>以下のように起動します。</p>
+</code></pre><h2><a href="#notificator-の起動" name="notificator-の起動">Notificator の起動</a></h2><p>以下のように起動します。</p>
 <pre><code>bin/notificator [edn file] [hbs file dir]
-</code></pre><p>hbsファイルを複数用いる場合は同一ディレクトリ内に置いてください。<br/>hbsファイルを用いない場合第二引数は省略可能です。</p>
+</code></pre><p>hbs ファイルを複数用いる場合は同一ディレクトリ内に置いてください。<br/>hbs ファイルを用いない場合第二引数は省略可能です。</p>
          </div>
          </div>
          <div class="ui inverted teal footer vertical segment">

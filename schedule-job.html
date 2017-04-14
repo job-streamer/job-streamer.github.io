@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <meta charset="UTF-8">
+      <meta charset="UTF-8"/>
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <meta name="description" content="JobStreamer : JobStreamer site."/>
@@ -10,21 +10,30 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.5.0/themes/prism.css" type="text/css"/>
    </head>
    <body>
-<div class="ui sidebar inverted vertical menu">
+         <div class="ui fixed inverted teal menu">
+            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
+         </div>
+         <div/>
+         <div id="main_content_wrap" class="main ui grid content">
+         <div class="four wide column">
+<div class="ui vertical fluid tabular menu">
    <a class="item" href="get-started-quickly.html">
    Getting Started
    </a>
    <div class="item">
       <div class="header">Guide</div>
       <div class="menu">
+         <a class="item" href="auth.html">
+         Authentication and authorization
+         </a>
          <a class="item" href="deploy-batch-components.html">
          Deploy batch components
          </a>
          <a class="item" href="create-a-job.html">
-         Create a job
+         Create job
          </a>
          <a class="item" href="execute-the-job.html">
-         Execute the job
+         Execute job
          </a>
          <a class="item" href="schedule-job.html">
          Schedule job
@@ -34,6 +43,12 @@
          </a>
          <a class="item" href="notificator-config.html">
          Notificator config
+         </a>
+         <a class="item" href="import-export.html">
+         Import and export
+         </a>
+         <a class="item" href="test-mode.html">
+         Test mode
          </a>
       </div>
    </div>
@@ -55,25 +70,20 @@
       </div>
    </div>
    <div class="item">
-      <div class=" header">For Developper</div>
+      <div class=" header">For contributers</div>
       <div class="menu">
          <a class="item" href="get-started-developer.html">
-         REPL commands
+         Getting Started for contributers
          </a>
          <a class="item" href="developer-guide.html">
-         Developer guide
+         Developer guide for contributers
          </a>
       </div>
    </div>
-</div>      <div class="pusher">
-         <div class="ui fixed inverted teal menu">
-            <div class="title item"><a href="./index.html"><b>Job Streamer</b></a></div>
-            <a class="view-ui item" onClick="viewSidebar()">
-              Menu
-            </a>
+</div>         </div>
+         <div class="twelve wide stretched column">
+      <h1><a href="#schedule-job" name="schedule-job">Schedule job</a></h1><p>You can control automatic job execution using calendar and cron expressions.</p><h2><a href="#how-to-regist-calendar" name="how-to-regist-calendar">How to regist calendar</a></h2><p>You can specify job execute date by creating a calendar and associating it with a job.</p><h3>1. Select &ldquo;Calendar&rdquo; from the pull-down menu at the header right menu.</h3><p><img src="img/goto-calendar.png" alt="image" /></p><h3>2. Press &ldquo;New&rdquo; button on the calendar page.</h3><p><img src="img/goto-calendar-new.png" alt="image" /></p><h3>3. Input information and create calendar.</h3><p>Enter calendar name, select dates and press &ldquo;Save&rdquo; button to create calendar.<br/>If the business date you want to set does not start at 00:00 (For example, a case where you needs to consider Jun/2/2017 01:00 as Jun/1/2017 25:00), enter the start time of the day in &ldquo;Day start&rdquo;.<br/><img src="img/create-calendar.png" alt="image" /></p><h3>4. Associate calendar with job.</h3><p>It is necessary to associate a calendar to a job as following &ldquo;How to regist schedule&rdquo; in order to use calendar actually.<br/>You can deter a job execution on dates not included in a calendar by setting calendar with cron expressions.</p><h2><a href="#how-to-regist-schedule" name="how-to-regist-schedule">How to regist schedule</a></h2><p>You can schedule a job execution by calendar and Quartz format (cron expressions).</p><h3>1. Open the schedule edit view from the &ldquo;Next&rdquo; panel on the job detail page.</h3><p><img src="img/schedule.png" alt="image" /></p><h3>2. Easy creation of schedule.</h3><p>You can construc a quartz format interactively on the &ldquo;Next&rdquo; panel.</p><h4>2.1. Select schedule pattern from Daily or Weekly, Monthly.</h4><p><img src="img/select-pattern-of-schedule.png" alt="image" /></p><h4>2.2. Enter ignition time (hour).</h4><p><img src="img/input-fire-time.png" alt="image" /></p><h4>2.3. Quartz format will be constructed and enterd in the form automatically.</h4><p><img src="img/output-cron.png" alt="image" /></p><p>Finally, the value of the Quartz format form will be submitted.<br/>If you want to enter the Quartz format directly, enter it in the <a href="http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html">cron expressions</a> format.</p><p><img src="img/schedule_quartz.png" alt="image" /></p><h3>3. Associate calendar</h3><p>Associate a calendar that that you registed in the &ldquo;How to regist calendar&rdquo; section with the schedule.</p><p><img src="img/schedule_calendar.png" alt="image" /></p><h3>4. Regist schedule</h3><p>When you regist the schedule by &ldquo;Save&rdquo; button, then automatic job execution starts.<br/>It will fire at the date and time that match both its cron expression and its calendar.</p>
          </div>
-         <div id="main_content_wrap" class="main grid content full height">
-      <h1><a href="#scheduling" name="scheduling">Scheduling</a></h1><h2><a href="#scheduled-execution" name="scheduled-execution">Scheduled execution</a></h2><p>You can automatically execute job registrationing schedule using <a href="http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html">quartz scheduler</a>.</p><p><img src="img/schedule_quartz.png" alt="image" /></p><h2><a href="#create-a-calendar" name="create-a-calendar">Create a calendar</a></h2><p>1.Go to calendar page from right menu at top page.</p><p><img src="img/goto-calendar.png" alt="image" /></p><p>2.Push new button.</p><p><img src="img/goto-calendar-new.png" alt="image" /></p><p>3.Create a calendar</p><p><img src="img/create-calendar.png" alt="image" /></p><h2><a href="#set-calendar" name="set-calendar">Set calendar</a></h2><p>You can control job execution setting calendar with quartz scheduler.</p>
          </div>
          <div class="ui inverted teal footer vertical segment">
             <div class="container">
@@ -85,18 +95,11 @@
                </div>
             </div>
          </div>
-      </div>
       <script src="https://cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/prism.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-java.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/components/prism-bash.min.js"></script>
       <script src="https://cdn.jsdelivr.net/prism/1.5.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
       <script src="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.js"> </script>
-      <script type="text/javascript">
-         function viewSidebar() {
-           $('.sidebar')
-             .sidebar('toggle');
-         }
-      </script>
    </body>
 </html>
