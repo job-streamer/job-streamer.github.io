@@ -86,7 +86,48 @@
    </div>
 </div>         </div>
          <div class="twelve wide stretched column">
-      <h1><a href="#ジョブのスケジューリング" name="ジョブのスケジューリング">ジョブのスケジューリング</a></h1><p>カレンダー及び cron 式を使い、ジョブの自動実行を制御することが出来ます。</p><h2><a href="#カレンダーの登録方法" name="カレンダーの登録方法">カレンダーの登録方法</a></h2><p>カレンダーを作成しジョブに紐づけることで、ジョブの実行日を指定できます。</p><h3>1. 画面右上のプルダウンメニューより Calendar を選択</h3><p><img src="img/goto-calendar.png" alt="image" /></p><h3>2. カレンダー画面にて New ボタンを押下</h3><p><img src="img/goto-calendar-new.png" alt="image" /></p><h3>3. 情報を入力してカレンダー登録</h3><p>Calendar name を入力し、日付を選択して Save を押下するとカレンダーが作成されます。<br/>もし設定したい業務日付が 00:00 始まりではない場合（例えば 1/2 01:00 を 1/1 25:00とみなす等)、「Day start」の項目に一日の開始時刻を入力して下さい。</p><p><img src="img/create-calendar.png" alt="image" /></p><h3>4. カレンダーをジョブに紐づける</h3><p>実際にカレンダーを利用するには、以降の「スケジュールの登録方法」でジョブに紐づける必要があります。<br/>cron 式とともにカレンダーを設定することで、カレンダーに含まれていない日付のジョブ実行を抑止することができます。</p><h2><a href="#スケジュールの登録方法" name="スケジュールの登録方法">スケジュールの登録方法</a></h2><p>カレンダーおよび cron 式でジョブ実行をスケジューリングします。</p><h3>1. ジョブ詳細画面上の Next パネルからスケジュール編集画面を開く</h3><p><img src="img/schedule.png" alt="image" /></p><h3>2. スケジュールの簡易作成</h3><p>Next パネル上で対話的に cron 式を組み立てることが出来ます。</p><h4>2.1. スケジュールのパターン（日次・週次・月次）を選択します。</h4><p><img src="img/select-pattern-of-schedule.png" alt="image" /></p><h4>2.2. 発火時刻（時）を入力します。</h4><p><img src="img/input-fire-time.png" alt="image" /></p><h4>2.3. Quartz format が構築されてフォームに自動入力されます。</h4><p><img src="img/output-cron.png" alt="image" /></p><p>最終的には Quartz format フォームの値が登録されます。<br/>Quartz format を直接入力する場合は <a href="http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html">cron expressions</a> 形式で入力して下さい。</p><p><img src="img/schedule_quartz.png" alt="image" /></p><h3>3. カレンダーの指定</h3><p>スケジュールに「カレンダーの登録方法」で登録したカレンダーを紐づけます。</p><p><img src="img/schedule_calendar.png" alt="image" /></p><h3>4. スケジュール登録</h3><p>Save ボタンでスケジュールを登録すると、ジョブの自動実行が始まります。<br/>カレンダーと cron 式両方に合致した日時に実行されます。</p>
+      <h1><a href="#死活監視" name="死活監視">死活監視</a></h1><p>JobStreamer の各コンポーネントは死活監視をサポートします。<br/>それぞれのコンポーネントは /healthcheck エンドポイントを持ち、サービスが利用可能な場合 GET リクエストに HTTP Code 200 OK を返します。<br/>サービスが利用できない場合は HTTP Code 503 Service Unavailable を返します。</p><p>この機能は下記のバージョンのコンポーネントで利用可能です。</p>
+<table>
+  <thead>
+    <tr>
+      <th>component </th>
+      <th>version </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>job-streamer-control-bus </td>
+      <td>&gt;=1.0.8 </td>
+    </tr>
+    <tr>
+      <td>job-streamer-console </td>
+      <td>&gt;=1.0.4 </td>
+    </tr>
+    <tr>
+      <td>job-streamer-agent </td>
+      <td>&gt;=1.0.7 </td>
+    </tr>
+    <tr>
+      <td>job-streamer-notificator </td>
+      <td>&gt;=1.0.2 </td>
+    </tr>
+  </tbody>
+</table><h2>control-bus</h2>
+<pre><code>GET [control-bus host]:[CONTROL_BUS_PORT]/healthcheck
+200
+</code></pre><p>datomic への接続がない場合、</p>
+<pre><code>GET [control-bus host]:[CONTROL_BUS_PORT]/healthcheck
+503
+</code></pre><h2><a href="#console" name="console">console</a></h2>
+<pre><code>GET [console host]:[CONSOLE_PORT]/healthcheck
+200
+</code></pre><h2><a href="#agent" name="agent">agent</a></h2>
+<pre><code>GET [agent host]:[AGENT_PORT]/healthcheck
+200
+</code></pre><h2><a href="#notificator" name="notificator">notificator</a></h2>
+<pre><code>GET [notificator host]:[NOTIFICATOR_PORT]/healthcheck
+200
+</code></pre>
          </div>
          </div>
          <div class="ui inverted teal footer vertical segment">
