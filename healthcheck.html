@@ -85,7 +85,48 @@
    </div>
 </div>         </div>
          <div class="twelve wide stretched column">
-      <h1><a href="#execute-job" name="execute-job">Execute job</a></h1><h2><a href="#execute-job-manually" name="execute-job-manually">Execute job manually</a></h2><p>Press the play button for each job at the job list view (top page), then job execution starts.</p><h2><a href="#stop-job-forcibly" name="stop-job-forcibly">Stop job Forcibly</a></h2><p>Press the stop button for each job at the job list view (top page), then job execution stops.</p><h2><a href="#restart-job" name="restart-job">Restart job</a></h2><p>If the job can be restarted (it means all batchlets making up the job implement javax.batch.api.AbstractBatchlet.stop), you can restart the job that was interrupted or failed from the Console.</p><p><img src="img/restart.png" alt="image" /></p><h2><a href="#specify-parameter" name="specify-parameter">Specify parameter</a></h2><p>If you used Expression Language in the job Properties when you created the job, input parameter form is displayed when you execute or restart the job.<br/>Input each parameters and press Execute/Restart button, then the job starts with parametes.</p><p><img src="img/restart_dialog.png" alt="image" /></p><h2><a href="#refer-to-job-execution-log" name="refer-to-job-execution-log">Refer to job execution log</a></h2><p>Press the start time link for each job at the job list view, then you can check the execution log.</p><p><img src="img/execute_log.png" alt="image" /></p><h2><a href="#schedule-job" name="schedule-job">Schedule job</a></h2><p>Please refer to <a href="./schedule-job.html">Schedule job</a>.</p>
+      <h1><a href="#healthcheck" name="healthcheck">Healthcheck</a></h1><p>JobStreamer supports healthcheck.<br/>Each components has /healthcheck endpoint and they return HTTP Code 200 OK to GET request if service is available.<br/>They return HTTP Code 503 Service Unavailable if service is unavailable.</p><p>This function is added following versions.</p>
+<table>
+  <thead>
+    <tr>
+      <th>component </th>
+      <th>version </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>job-streamer-control-bus </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>job-streamer-console </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>job-streamer-agent </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>job-streamer-notificator </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table><h2>control-bus</h2>
+<pre><code>GET [control-bus host]:[CONTROL_BUS_PORT]/healthcheck
+200
+</code></pre><p>If it losts datomic connection,</p>
+<pre><code>GET [control-bus host]:[CONTROL_BUS_PORT]/healthcheck
+503
+</code></pre><h2><a href="#console" name="console">console</a></h2>
+<pre><code>GET [console host]:[CONSOLE_PORT]/healthcheck
+200
+</code></pre><h2><a href="#agent" name="agent">agent</a></h2>
+<pre><code>GET [agent host]:[AGENT_PORT]/healthcheck
+200
+</code></pre><h2><a href="#notificator" name="notificator">notificator</a></h2>
+<pre><code>GET [notificator host]:[NOTIFICATOR_PORT]/healthcheck
+200
+</code></pre>
          </div>
          </div>
          <div class="ui inverted teal footer vertical segment">
