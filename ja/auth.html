@@ -110,7 +110,7 @@
   </ul></li>
 </ul><p>Console 上で権限のない操作を行った場合にはエラーメッセージが表示されて実行されません。<br/>デフォルトで存在する &ldquo;admin&rdquo; というユーザには &ldquo;admin&rdquo; 権限が付与されています。<br/>それ以外の権限を持つユーザを作成する場合は以下の「ユーザ管理」を参照してください。</p><h2><a href="#ユーザ管理" name="ユーザ管理">ユーザ管理</a></h2><p>現状、ログインユーザ作成・削除機能をAPIのみで提供してます。<br/>下記のサンプルを基に実行してください。</p>
 <pre><code class="sh"># &quot;operator&quot; 権限を持った、&quot;test-user&quot; というログインユーザを &quot;password123&quot; というパスワードで作成
-curl -XPOST localhost:45102/user -H &#39;Content-Type: application/edn&#39; -d &#39;{:user/id &quot;test-user&quot; :user/password &quot;password123&quot; :roll &quot;operator&quot;}&#39;
+curl -XPOST localhost:45102/user -H &#39;Content-Type: application/edn&#39; -d &#39;{:user/id &quot;test-user&quot; :user/password &quot;password123&quot; :role &quot;operator&quot;}&#39;
 # &quot;test-user&quot; という ID のログインユーザを削除
 curl -XDELETE localhost:45102/user/test-user
 </code></pre><h3><a href="#api-実行時の認証" name="api-実行時の認証">API 実行時の認証</a></h3><p>Control-bus の API を利用するためにも認証処理が必要となります。<br/>まず下記の通りログイン API を実行して認証トークンを取得します。</p>
@@ -121,7 +121,27 @@ curl -XPOST localhost:45102/auth -H &quot;Content-Type: application/edn&quot; -d
 </code></pre><p>この場合、 5f080f9c-3023-4a6a-89fb-de983f768c4d が認証トークンです。<br/>次にこのトークンを使って、&ldquo;Authorization: Token 5f080f9c-3023-4a6a-89fb-de983f768c4d&rdquo; ヘッダを付与してリクエストすると、認証ユーザが権限を持つ任意の API を実行することが出来ます。</p>
 <pre><code class="sh">curl -XGET -H &#39;Content-Type: application/edn&#39; -H &#39;Authorization: Token 5f080f9c-3023-4a6a-89fb-de983f768c4d&#39; http://localhost:45102/default/jobs
 {:results [...]}
-</code></pre>
+</code></pre><h2>OAuth2.0認証</h2><p>JobStreamerでは認証方式として上記の仕組みの他にOAuth2.0を利用できます。<br/>OAuth2.0による認証ではユーザはoperatorの権限を持ったguestユーザとしてログインされます。</p><h3><a href="#利用方法" name="利用方法">利用方法</a></h3><p>OAuth2.0を利用するためにはcontrol-busのクラスパス上に設定ファイルが必要になります。</p>
+<pre><code class="edn">;; resources/job-streamer-control-bus/config.edn
+
+{:auth {:console-url &quot;http://xxx.yyy.z.ww:3000&quot;
+        :control-bus-url &quot;http://xxx.yyy.z.ww:45102&quot;
+        :oauth-providers {&quot;yahoo&quot; {:name &quot;Yahoo&quot;                              ;; 必須。ボタンの表示名
+                                   :class-name &quot;yahoo&quot;                        ;; オプション。ボタンのクラス名
+                                   :domain &quot;https://auth.login.yahoo.co.jp&quot;   ;; 必須。OAuth2.0 認可サーバのドメイン
+                                   :client-id &quot;xxxx&quot;                          ;; 必須。OAuth2.0 のクライアントID
+                                   :client-secret &quot;xxxx&quot;                      ;; 必須。OAuth2.0 のクライアントシークレット
+                                   :scope &quot;openid&quot;                            ;; オプション。OAuth2.0 のスコープ。
+                                   :auth-endpoint &quot;yconnect/v2/authorization&quot; ;; 必須。OAuth2.0 の認可エンドポイント。
+                                   :token-endpoint &quot;yconnect/v2/token&quot;}       ;; 必須。OAuth2.0 のトークンエンドポイント。
+                          &quot;github&quot; {:name &quot;Github&quot;
+                                    :class-name &quot;github&quot;
+                                    :domain &quot;https://github.com&quot;
+                                    :client-id &quot;xxxx&quot;
+                                    :client-secret &quot;xxxx&quot;
+                                    :auth-endpoint &quot;login/oauth/authorize&quot;
+                                    :token-endpoint &quot;login/oauth/access_token&quot;}}}}
+</code></pre><p>また利用するOAuth2.0 認証サーバでの設定が必要になります。</p><p>動作確認をしたOAuth2.0 認証サーバを以下に示します。<br/>* Github<br/>* Yahoo! ID連携</p>
          </div>
          </div>
          <div class="ui inverted teal footer vertical segment">

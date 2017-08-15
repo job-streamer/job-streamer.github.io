@@ -109,7 +109,7 @@
   </ul></li>
 </ul><p>If you do an unallowed operation on the Console, an error message will appear and the operation will be canceled.<br/>Default user, &ldquo;admin&rdquo; has &ldquo;admin&rdquo; authority.<br/>Please refer to following &ldquo;User management&rdquo; section, if you want to create other users who have other authority.</p><h2><a href="#user-management" name="user-management">User management</a></h2><p>Currently, login user creation and deletion are provided by API.<br/>Please execute it like following example.</p>
 <pre><code class="sh"># Create login user named &quot;test-user&quot; with &quot;operator&quot; authority and password &quot;password123&quot;
-curl -XPOST localhost:45102/user -H &#39;Content-Type: application/edn&#39; -d &#39;{:user/id &quot;test-user&quot; :user/password &quot;password123&quot; :roll &quot;operator&quot;}&#39;
+curl -XPOST localhost:45102/user -H &#39;Content-Type: application/edn&#39; -d &#39;{:user/id &quot;test-user&quot; :user/password &quot;password123&quot; :role &quot;operator&quot;}&#39;
 # Delete login user whose id is &quot;test-user&quot;.
 curl -XDELETE localhost:45102/user/test-user
 </code></pre><h3><a href="#authentification-in-api-execution" name="authentification-in-api-execution">Authentification in API execution</a></h3><p>You also need authentification when you use Control-bus REST API.<br/>At first you need to get authentification token by executing login API.</p>
@@ -120,7 +120,27 @@ curl -XPOST localhost:45102/auth -H &quot;Content-Type: application/edn&quot; -d
 </code></pre><p>In this case, 5f080f9c-3023-4a6a-89fb-de983f768c4d is the authentification token.<br/>Next, request with &ldquo;Authorization: Token 5f080f9c-3023-4a6a-89fb-de983f768c4d&rdquo; header and you can execute any APIs you are allowed.</p>
 <pre><code class="sh">curl -XGET -H &#39;Content-Type: application/edn&#39; -H &#39;Authorization: Token 5f080f9c-3023-4a6a-89fb-de983f768c4d&#39; http://localhost:45102/default/jobs
 {:results [...]}
-</code></pre>
+</code></pre><h2>OAuth2.0 Authentication</h2><p>You can use OAuth2.0 as authentication in JobStreamer.<br/>If you login to JobStreamer by using OAuth2.0, You will get the &ldquo;operator&rdquo; role.</p><h3><a href="#how-to-use" name="how-to-use">How to use</a></h3><p>To Use OAuth2.0, You have to locate a configuration file on your class path.</p>
+<pre><code class="edn">;; resources/job-streamer-control-bus/config.edn
+
+{:auth {:console-url &quot;http://xxx.yyy.z.ww:3000&quot;
+        :control-bus-url &quot;http://xxx.yyy.z.ww:45102&quot;
+        :oauth-providers {&quot;yahoo&quot; {:name &quot;Yahoo&quot;                              ;; Required. Name in button
+                                   :class-name &quot;yahoo&quot;                        ;; Option. Class name in button
+                                   :domain &quot;https://auth.login.yahoo.co.jp&quot;   ;; Required. Authorization server domain in OAuth2.0
+                                   :client-id &quot;xxxx&quot;                          ;; Required. Client id in OAuth2.0
+                                   :client-secret &quot;xxxx&quot;                      ;; Required. Client secret in OAuth2.0
+                                   :scope &quot;openid&quot;                            ;; Option. Scope in OAuth2.0
+                                   :auth-endpoint &quot;yconnect/v2/authorization&quot; ;; Required. Authorization endpoint in OAuth2.0
+                                   :token-endpoint &quot;yconnect/v2/token&quot;}       ;; Required. Token endpoint in OAuth2.0
+                          &quot;github&quot; {:name &quot;Github&quot;
+                                    :class-name &quot;github&quot;
+                                    :domain &quot;https://github.com&quot;
+                                    :client-id &quot;xxxx&quot;
+                                    :client-secret &quot;xxxx&quot;
+                                    :auth-endpoint &quot;login/oauth/authorize&quot;
+                                    :token-endpoint &quot;login/oauth/access_token&quot;}}}}
+</code></pre><p>And you have to configure the OAuth2.0 authorization server.</p><p>We confirmed that it works with the following OAuth2.0 services.<br/>* Github<br/>* Yahoo! ID connect</p>
          </div>
          </div>
          <div class="ui inverted teal footer vertical segment">
