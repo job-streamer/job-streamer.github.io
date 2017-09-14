@@ -73,19 +73,19 @@
       </div>
    </div>
    <div class="item">
-      <div class=" header">For contributers</div>
+      <div class=" header">For contributors</div>
       <div class="menu">
          <a class="item" href="get-started-developer.html">
-         Getting Started for contributers
+         Getting Started for contributors
          </a>
          <a class="item" href="developer-guide.html">
-         Developer guide for contributers
+         Developer guide for contributors
          </a>
       </div>
    </div>
 </div>         </div>
          <div class="twelve wide stretched column">
-      <h1><a href="#developer-guide-for-contributers" name="developer-guide-for-contributers">Developer guide for contributers</a></h1><h2><a href="#format-policy" name="format-policy">Format policy</a></h2>
+      <h1><a href="#developer-guide-for-contributors" name="developer-guide-for-contributors">Developer guide for contributors</a></h1><h2><a href="#format-policy" name="format-policy">Format policy</a></h2>
 <ul>
   <li>All of exchange data is done using <a href="https://github.com/edn-format/edn">EDN Format</a>.(In comparison with the JSON, there is an advantage that it is possible to have a type of <code>Date</code> and <code>UUID</code> .)</li>
   <li>Map key in EDN is keyword with entity&rsquo;s name-space. (Easy to understand when see only data.)</li>
@@ -93,25 +93,25 @@
 <ul>
   <li>Both Agent and Control bus use REST API as interface.(for enable tool-development Other than Console)</li>
   <li>Must call from Control bus to Agent API.Don&rsquo;t call reverse.</li>
-</ul><h2><a href="#connection-policy" name="connection-policy">connection policy</a></h2>
+</ul><h2><a href="#connection-policy" name="connection-policy">Connection policy</a></h2>
 <ul>
-  <li>In order to Improve responsivility of Agent,WebSocket connect bus from agent to Control.</li>
-  <li>Consideration of failure,WebSocket doesn&rsquo;t exchange data,only notification.</li>
+  <li>In order to improve responsibility of Agent, WebSocket connects bus from agent to Control.</li>
+  <li>Consideration of failure, WebSocket doesn&rsquo;t exchange data, only notification.</li>
   <li>Monitoring dead-or-alive and performance of Agent is done through WebSocket.</li>
-  <li>In order to make Agent be no configuration,detect Control bus address automatically.
+  <li>In order to make Agent be no configuration, it detects Control bus address automatically.
   <ol>
     <li>Agent broadcast its own address when process starts.</li>
-    <li>When Control bus catch broadcast from Agent, send connection<br/>request to Agent.</li>
-    <li>Agent that recieve connection request try to connect control bus<br/>on WebSocket.</li>
+    <li>When Control bus catches broadcast from Agent, sends connection<br/>request to Agent.</li>
+    <li>Agent that receive connection request tries to connect control bus<br/>on WebSocket.</li>
   </ol></li>
-  <li>When close connection from Agent to Control bus,Agent restart broadcast,so that even if switch Control bus stand-by,switch connection automatically.</li>
+  <li>When close connection from Agent to Control bus, Agent restart broadcast, so that even if switch Control bus stand-by, switch connection automatically.</li>
 </ul><h2><a href="#persitence-policy" name="persitence-policy">Persitence policy</a></h2>
 <ul>
   <li>All data flowing at Control bus are stored in Datomic.</li>
   <li>Accessing to Datomic is allowed only from Control bus.</li>
 </ul><h2><a href="#if-you-want-more-safely-structure" name="if-you-want-more-safely-structure">If you want more safely structure</a></h2>
 <ul>
-  <li>Because <a href="https://github.com/kawasima/websocket-classloader">WebSocketClassLoader</a> is eccentric structure,enable useing application deploying to Agent.<br/>In this case,If bypass ClassLoder configuation,Agent&rsquo;s local context ClassLoder is used.<br/>In this way,enable to use JobStreamer as job scheduler.</li>
+  <li>Because <a href="https://github.com/kawasima/websocket-classloader">WebSocketClassLoader</a> is eccentric structure, enable using application deploying to Agent.<br/>In this case, if bypass ClassLoader configuration, Agent&rsquo;s local context ClassLoader is used.<br/>In this way, enable to use JobStreamer as job scheduler.</li>
   <li>Job&rsquo;s execution log is sent to Control bus and stored in Datomic in the default setting.</li>
   <li>Depending on logback setting, be able to write log into local file of Agent or Control bus.</li>
 </ul>
